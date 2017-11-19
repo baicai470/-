@@ -1,4 +1,4 @@
-package com.config;
+/*package com.config;
 
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
@@ -22,8 +22,8 @@ public class SwaggerWebMvcConfigurerAdapter extends WebMvcConfigurerAdapter {
     public ViewResolver viewResolver() {  
         InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();  
         viewResolver.setViewClass(JstlView.class);  
-/*        viewResolver.setPrefix("/WEB-INF/views/");  
-        viewResolver.setSuffix(".jsp");  */
+        viewResolver.setPrefix("/WEB-INF/views/");  
+        viewResolver.setSuffix(".jsp");  
         return viewResolver;  
     }  
    
@@ -36,13 +36,14 @@ public class SwaggerWebMvcConfigurerAdapter extends WebMvcConfigurerAdapter {
     @Override  
     public void addResourceHandlers(ResourceHandlerRegistry registry) {  
         super.addResourceHandlers(registry);  
-       /* registry.addResourceHandler("swagger-ui.html")  
+        registry.addResourceHandler("swagger-ui.html")  
                 .addResourceLocations("classpath:/META-INF/resources/");  
         registry.addResourceHandler("/webjars/**")  
                 .addResourceLocations("classpath:/META-INF/resources/webjars/");  
-    */}  
+    }  
     @Override  
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {  
         configurer.enable();  
     }  
 }  
+*/

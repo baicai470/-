@@ -13,4 +13,45 @@ public class TeacherController {
 		return "teacher/index1";
 	}
 
+	@RequestMapping(value="/index2",method=RequestMethod.GET)
+	public String index2(){
+		
+		return "teacher/index2";
+	}
+	
+	@RequestMapping(value="/index3",method=RequestMethod.GET)
+	public String index3(){
+		
+		return "teacher/index3";
+	}
+	
+	@RequestMapping(value="/index4",method=RequestMethod.GET)
+	public String index4(){
+		
+		return "teacher/index4";
+	}
+	
+	@RequestMapping(value="/index5",method=RequestMethod.GET)
+	public String index5(){
+		
+		return "teacher/index5";
+	}
+	
+	@RequestMapping(value="/top",method=RequestMethod.GET)
+	public String top(){
+		
+		return "teacher/top";
+	}
+	
+	@RequestMapping(value="/button",method=RequestMethod.GET)
+	public String button(){
+		
+		return "teacher/button";
+	}
+	
+	@RequestMapping(value="/footer",method=RequestMethod.GET)
+	public String footer(){
+		
+		return "teacher/footer";
+	}
 }
