@@ -15,21 +15,12 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class swagger2 {
 
-    @Bean
-    public Docket createRestApi() {
-        return new Docket(DocumentationType.SWAGGER_2)
-                .apiInfo(apiInfo())
-                .select()
-                .apis(RequestHandlerSelectors.basePackage("com.forezp.controller"))
-                .paths(PathSelectors.any())
-                .build();
-    }
-    private ApiInfo apiInfo() {
-        return new ApiInfoBuilder()
-                .title("springboot利用swagger构建api文档")
-                .description("简单优雅的restfun风格，http://blog.csdn.net/forezp")
-                .termsOfServiceUrl("http://blog.csdn.net/forezp")
-                .version("1.0")
-                .build();
-    }
+	 @Bean  
+	    public Docket api() {  
+	        return new Docket(DocumentationType.SWAGGER_2)  
+	                .select()  
+	                .apis(RequestHandlerSelectors.any())  
+	                .paths(PathSelectors.any())  
+	                .build();  
+	    }  
 }

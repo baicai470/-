@@ -12,4 +12,3 @@ spring:
        hibernate.hbm2ddl.auto: update #生产环境,测试环境不可用这个属性.
        show-sql: true
     database: sql-server
-
