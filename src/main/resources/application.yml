@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    url: jdbc:sqlserver://localhost:1433;DatabaseName=EXAM
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    username: sa
+    password: 836919260
+  jpa:
+    hibernate:
+      naming:
+        strategy: org.hibernate.cfg.DefaultNamingStrategy
+    properties: 
+       hibernate.hbm2ddl.auto: update #生产环境,测试环境不可用这个属性.
+       show-sql: true
+    database: sql-server
+

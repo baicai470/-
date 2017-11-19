@@ -1,0 +1,80 @@
+<style>
+	body{
+		margin: 0;
+		padding: 0;
+	}
+	#container{
+		margin: 0;
+		padding: 0;
+		width:auto;
+		height: auto;
+	}
+	#header{
+		background-color:#000000;
+		color: gold;
+		font-family: arial;
+		height: 100px;
+/*		text-align: center;
+*/		font-size: 40px;
+		padding-top: 10px;
+		padding-bottom: 10px;
+		border-bottom: 10px;
+		border-bottom-color: gold;
+	}
+	#menu{
+		width:150px;
+		height: 500px;
+		/*padding:0 0 lem 0;*/
+		font-size:30px;
+		font-family:"黑体";
+		/*background-color:#ADD8E6;*/
+		/*color:#ADD8E6;*/
+		position: absolute;	
+		background-color: #000000;
+		clear: both;
+	}
+	#btn{
+		margin:0;
+/*		display:block;
+*//*		padding:5px 5px 5px 0.5em;
+*/		background-color:#000000;
+		font-family: arial;
+		color:#fff;
+		text-decoration:none;
+		width:100%
+		border-right-width:0;
+		border-left-width:5px;
+		border-left-style:solid;
+		border-left-color:#000000;
+		border-bottom-width:1px;
+		border-bottom-style:solid;
+		border-bottom-color:#FFD700;
+	}
+	
+	#btn:visited{
+		background-color:#101010;
+		color:#fff;
+		border-right-width:0;
+		border-left-width:5px;
+		border-left-style:solid;
+		border-left-color:gold;
+	}
+	#btn:hover{
+		background-color:#101010;
+		color:#fff;
+		border-right-width:0;
+		border-left-width:5px;
+		border-left-style:solid;
+		border-left-color:gold;
+	}
+	#context{
+		background-color: #EEEEE;
+	}
+	#footer{
+		background-color: #000000;
+		text-align: center;
+		color: gold;
+		clear: both;
+		width: 100%;
+	}
+</style>
