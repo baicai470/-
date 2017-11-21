@@ -1,91 +1,118 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
-		<meta charset="UTF-8">
+		<meta charset="UTF-8"/>
 		<title></title>
 	</head>
+	<script type="text/javascript">
+		window.onload = function() {
+			showLeftTime();
+		}
+		var leftTime = parseInt("1800");
+		var timer = setInterval(function() {
+			showLeftTime()
+		}, 1000);
+		//显示剩余的时间
+		function showLeftTime() {
+			var leftHours = parseInt(leftTime / 3600);
+			var leftMinutes = parseInt(leftTime / 60);
+			var leftSeconds = parseInt(leftTime % 60);
+			if(leftTime &lt; 0) {
+				clearInterval(timer);
+				document.location.href = document.location.href;
+			} else {
+				document.getElementById('leftTime').innerHTML = '剩余时间：' + leftHours + '时' + leftMinutes + '分' + leftSeconds + '秒';
+			}
+			leftTime--;
+		}
+	</script>
+
 	<body>
 		<ol id="stem">
-			<li>
-				<ol id="branch">
-					<li></li>
-					<li></li>
-					<li></li>
-					<li></li>
-				</ol>
+			<li>desw
+				<dl>
+					<dd><input type="radio" name="choose1" id="choose1a" value="choose" /> <label for="choose1a">dews</label></dd>
+					<dd><input type="radio" name="choose1" id="choose1b" value="choose" /> <label for="choose1b">dews</label></dd>
+					<dd><input type="radio" name="choose1" id="choose1c" value="choose" /> <label for="choose1c">dews</label></dd>
+					<dd><input type="radio" name="choose1" id="choose1d" value="choose" /> <label for="choose1d">dews</label></dd>
+				</dl>
+
 			</li>
 			<li>
-				<ol id="branch">
-					<li></li>
-					<li></li>
-					<li></li>
-					<li></li>
-				</ol>
+				<dl>
+					<dd><input type="radio" name="choose2" id="choose2a" value="choose" /> <label for="choose2a">dews</label></dd>
+					<dd><input type="radio" name="choose2" id="choose2b" value="choose" /> <label for="choose2b">dews</label></dd>
+					<dd><input type="radio" name="choose2" id="choose2c" value="choose" /> <label for="choose2c">dews</label></dd>
+					<dd><input type="radio" name="choose2" id="choose2d" value="choose" /> <label for="choose2d">dews</label></dd>
+				</dl>
 			</li>
 			<li>
-				<ol id="branch">
-					<li></li>
-					<li></li>
-					<li></li>
-					<li></li>
-				</ol>
+				<dl>
+					<dd><input type="radio" name="choose3" id="choose3a" value="choose" /> <label for="choose3a">dews</label></dd>
+					<dd><input type="radio" name="choose3" id="choose3b" value="choose" /> <label for="choose3b">dews</label></dd>
+					<dd><input type="radio" name="choose3" id="choose3c" value="choose" /> <label for="choose3c">dews</label></dd>
+					<dd><input type="radio" name="choose3" id="choose3d" value="choose" /> <label for="choose3d">dews</label></dd>
+				</dl>
 			</li>
 			<li>
-				<ol id="branch">
-					<li></li>
-					<li></li>
-					<li></li>
-					<li></li>
-				</ol>
+				<dl>
+					<dd><input type="radio" name="choose4" id="choose4a" value="choose" /> <label for="choose4a">dews</label></dd>
+					<dd><input type="radio" name="choose4" id="choose4b" value="choose" /> <label for="choose4b">dews</label></dd>
+					<dd><input type="radio" name="choose4" id="choose4c" value="choose" /> <label for="choose4c">dews</label></dd>
+					<dd><input type="radio" name="choose4" id="choose4d" value="choose" /> <label for="choose4d">dews</label></dd>
+				</dl>
 			</li>
 			<li>
-				<ol id="branch">
-					<li></li>
-					<li></li>
-					<li></li>
-					<li></li>
-				</ol>
+				<dl>
+					<dd><input type="radio" name="choose5" id="choose5a" value="choose" /> <label for="choose5a">dews</label></dd>
+					<dd><input type="radio" name="choose5" id="choose5b" value="choose" /> <label for="choose5b">dews</label></dd>
+					<dd><input type="radio" name="choose5" id="choose5c" value="choose" /> <label for="choose5c">dews</label></dd>
+					<dd><input type="radio" name="choose5" id="choose5d" value="choose" /> <label for="choose5d">dews</label></dd>
+				</dl>
 			</li>
 			<li>
-				<ol id="branch">
-					<li></li>
-					<li></li>
-					<li></li>
-					<li></li>
-				</ol>
+				<dl>
+					<dd><input type="radio" name="choose6" id="choose6a" value="choose" /> <label for="choose6a">dews</label></dd>
+					<dd><input type="radio" name="choose6" id="choose6b" value="choose" /> <label for="choose6b">dews</label></dd>
+					<dd><input type="radio" name="choose6" id="choose6c" value="choose" /> <label for="choose6c">dews</label></dd>
+					<dd><input type="radio" name="choose6" id="choose6d" value="choose" /> <label for="choose6d">dews</label></dd>
+				</dl>
 			</li>
 			<li>
-				<ol id="branch">
-					<li></li>
-					<li></li>
-					<li></li>
-					<li></li>
-				</ol>
+				<dl>
+					<dd><input type="radio" name="choose7" id="choose7a" value="choose" /> <label for="choose7a">dews</label></dd>
+					<dd><input type="radio" name="choose7" id="choose7b" value="choose" /> <label for="choose7b">dews</label></dd>
+					<dd><input type="radio" name="choose7" id="choose7c" value="choose" /> <label for="choose7c">dews</label></dd>
+					<dd><input type="radio" name="choose7" id="choose7d" value="choose" /> <label for="choose7d">dews</label></dd>
+				</dl>
 			</li>
 			<li>
-				<ol id="branch">
-					<li></li>
-					<li></li>
-					<li></li>
-					<li></li>
-				</ol>
+				<dl>
+					<dd><input type="radio" name="choose8" id="choose8a" value="choose" /> <label for="choose8a">dews</label></dd>
+					<dd><input type="radio" name="choose8" id="choose8b" value="choose" /> <label for="choose8b">dews</label></dd>
+					<dd><input type="radio" name="choose8" id="choose8c" value="choose" /> <label for="choose8c">dews</label></dd>
+					<dd><input type="radio" name="choose8" id="choose8d" value="choose" /> <label for="choose8d">dews</label></dd>
+				</dl>
 			</li>
 			<li>
-				<ol id="branch">
-					<li></li>
-					<li></li>
-					<li></li>
-					<li></li>
-				</ol>
+				<dl>
+					<dd><input type="radio" name="choose9" id="choose9a" value="choose" /> <label for="choose9a">dews</label></dd>
+					<dd><input type="radio" name="choose9" id="choose9b" value="choose" /> <label for="choose9b">dews</label></dd>
+					<dd><input type="radio" name="choose9" id="choose9c" value="choose" /> <label for="choose9c">dews</label></dd>
+					<dd><input type="radio" name="choose9" id="choose9d" value="choose" /> <label for="choose9d">dews</label></dd>
+				</dl>
 			</li>
 			<li>
-				<ol id="branch">
-					<li></li>
-					<li></li>
-					<li></li>
-					<li></li>
-				</ol>
+				<dl>
+					<dd><input type="radio" name="choose10" id="choose10a" value="choose" /> <label for="choose10a">dews</label></dd>
+					<dd><input type="radio" name="choose10" id="choose10b" value="choose" /> <label for="choose10b">dews</label></dd>
+					<dd><input type="radio" name="choose10" id="choose10c" value="choose" /> <label for="choose10c">dews</label></dd>
+					<dd><input type="radio" name="choose10" id="choose10d" value="choose" /> <label for="choose10d">dews</label></dd>
+				</dl>
 			</li>
 		</ol>
+		<button id="submit" name="submit" value="交卷">交卷</button>
+		<p id="leftTime"></p>
 	</body>
 </html>
