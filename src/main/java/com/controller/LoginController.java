@@ -22,21 +22,23 @@ public class LoginController {
 	
 	//@ApiOperation(nickname = "login", value = "登录", notes = "测试swagger")  
 	@RequestMapping(value="/",method=RequestMethod.POST)
-	public String login1(User user){
-		if(user.getIdentity().equals("Teacher") ){
+	public String login1(User user) throws Exception{
+		if(user.getIdentity().equals("Teacher") ){	
 			if(user.getPassword().equals(teacherService.getPassword(user.getAccount()))){
 				if(teacherService.getTeacher(user.getAccount()).getRole().equals("admin")) 
+					
 					return "manager/admin";//密码正确
 				else return "teacher/在线考试1";
 			}else{
+				
 				//账号或者密码不正确
-				return "login";
+				return "redirect:/";
 			}
 		}else{
 			if(user.getPassword().equals(studentService.getPassword(user.getAccount()))){
 				return "student/在线考试1";
 			}else{
-				return "login";
+				return "redirect:/";
 			}
 			
 		}

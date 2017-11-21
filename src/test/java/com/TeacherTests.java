@@ -45,7 +45,7 @@ public class TeacherTests {
 	}
 	
 	@Test
-	public void teacherFindOne(){
+	public void teacherFindOne() throws Exception{
 		Teacher t=teacherDao.findByTeacherId(10000);
 		System.out.println(t.getRole());
 	}

@@ -21,10 +21,10 @@ public class TeacherServiceImpl implements TeacherService{
 	@Autowired
 	TeacherCourseDao tcDao;
 
-	public String getPassword(String id) {
-		Teacher t=teacherDao.getOne(Integer.valueOf(id));
-		
-		return t.getPassword();
+	public String getPassword(String id) throws Exception {
+		Teacher t=teacherDao.findByTeacherId(Integer.valueOf(id));
+		if(t==null) return null;
+		else return t.getPassword();
 	}
 	
 	@Override

@@ -7,4 +7,5 @@ import com.entity.Student;
 
 public interface StudentDao extends JpaRepository<Student, Integer>,JpaSpecificationExecutor<Student>{
 
+	Student findByStudentId(int id);
 }

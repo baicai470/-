@@ -14,10 +14,10 @@ public class StudentServiceImpl implements StudentService{
 	@Autowired
 	StudentDao studentDao;
 	
-	public String getPassword(String id) {
-		Student s=studentDao.getOne(Integer.valueOf(id));
-		
-		return s.getPassword();
+	public String getPassword(String id) throws Exception {
+		Student s=studentDao.findByStudentId(Integer.valueOf(id));
+		if(s==null) return null;
+		else return s.getPassword();
 	}
 	
 	
