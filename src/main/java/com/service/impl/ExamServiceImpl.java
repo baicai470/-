@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.dao.ChoiceQuestionDao;
@@ -38,7 +41,7 @@ public class ExamServiceImpl implements ExamService{
 		int count=choiceQuestions.size();
 		int temp=0;
 		Random random=new Random();
-		for(int i=0;i<20;i++){
+		for(int i=0;i<10;i++){
 			temp=random.nextInt(count);
 			if(!tempList.contains(temp)){
 				tempList.add(temp);
@@ -99,5 +102,12 @@ public class ExamServiceImpl implements ExamService{
 			}
 		}	
 		return null;
+	}
+
+	@Override
+	public Page<ChoiceQuestion> CQs(String CourseId) {
+		Pageable pageable=new PageRequest(0, 1);
+		Page<ChoiceQuestion > pages=choiceQuestionDao.findByCourseId(CourseId, pageable);
+		return pages;
 	}
 }

@@ -54,4 +54,5 @@ public class TeacherController {
 		
 		return "teacher/footer";
 	}
+	
 }
