@@ -7,50 +7,50 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class TeacherController {
 	
-	@RequestMapping(value="/index1",method=RequestMethod.GET)
-	public String index1(){
+	@RequestMapping(value="/teacher_index1",method=RequestMethod.GET)
+	public String teacher_index1(){
 		
 		return "teacher/index1";
 	}
 
-	@RequestMapping(value="/index2",method=RequestMethod.GET)
-	public String index2(){
+	@RequestMapping(value="/teacher_index2",method=RequestMethod.GET)
+	public String teacher_index2(){
 		
 		return "teacher/index2";
 	}
 	
-	@RequestMapping(value="/index3",method=RequestMethod.GET)
-	public String index3(){
+	@RequestMapping(value="/teacher_index3",method=RequestMethod.GET)
+	public String teacher_index3(){
 		
 		return "teacher/index3";
 	}
 	
-	@RequestMapping(value="/index4",method=RequestMethod.GET)
-	public String index4(){
+	@RequestMapping(value="/teacher_index4",method=RequestMethod.GET)
+	public String teacher_index4(){
 		
 		return "teacher/index4";
 	}
 	
-	@RequestMapping(value="/index5",method=RequestMethod.GET)
-	public String index5(){
+	@RequestMapping(value="/teacher_index5",method=RequestMethod.GET)
+	public String teacher_index5(){
 		
 		return "teacher/index5";
 	}
 	
-	@RequestMapping(value="/top",method=RequestMethod.GET)
-	public String top(){
+	@RequestMapping(value="/teacher_top",method=RequestMethod.GET)
+	public String teacher_top(){
 		
 		return "teacher/top";
 	}
 	
-	@RequestMapping(value="/button",method=RequestMethod.GET)
-	public String button(){
+	@RequestMapping(value="/teacher_button",method=RequestMethod.GET)
+	public String teacher_button(){
 		
 		return "teacher/button";
 	}
 	
-	@RequestMapping(value="/footer",method=RequestMethod.GET)
-	public String footer(){
+	@RequestMapping(value="/teacher_footer",method=RequestMethod.GET)
+	public String teacher_footer(){
 		
 		return "teacher/footer";
 	}

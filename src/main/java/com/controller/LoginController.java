@@ -34,7 +34,7 @@ public class LoginController {
 			}
 		}else{
 			if(user.getPassword().equals(studentService.getPassword(user.getAccount()))){
-				return "student/student";
+				return "student/在线考试1";
 			}else{
 				return "login";
 			}
