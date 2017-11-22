@@ -19,6 +19,13 @@ public class StudentServiceImpl implements StudentService{
 		if(s==null) return null;
 		else return s.getPassword();
 	}
+
+	public Student getStudent(String id) {
+		Student s=studentDao.getOne(Integer.valueOf(id));
+		return s;
+	}
+	
+	
 	
 	
 
