@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 	<head>
 	<meta charset="UTF-8"/>
 	<title></title>
@@ -7,8 +7,8 @@
 	<body>
 		<div>
 			<div id="Info">
-				<div>昵称:  </div>
-				<div>姓名：  </div>
+				<div>昵称:   <span  th:text="${studentModel.student.name}"   >    </span>  </div> 	
+				<div>姓名： <span  th:text="${studentModel.student.name}"   >    </span> </div>
 				<div>性别：  </div>
 				<div>学号：  </div>
 				<div>学校：  </div>
