@@ -51,7 +51,7 @@ public class ExamScores implements java.io.Serializable {
 	private String compreehensiveScore;
 	
 	@Column(name = "score")
-	private Byte score;
+	private int score;
 	
 	@Column(name = "time_cost")
 	private Byte timeCost;
@@ -68,7 +68,7 @@ public class ExamScores implements java.io.Serializable {
 
 	public ExamScores(int id, Exam exam, Student student, String choiceQuestionAnswerset,
 			String shortanswerQuestionAnswerset, Serializable comprehensiveQuestionAnswerset, String choiceQuestionScore,
-			String shortanswerQuestionScore, String compreehensiveScore, Byte score, Byte timeCost, Boolean marked) {
+			String shortanswerQuestionScore, String compreehensiveScore, int score, Byte timeCost, Boolean marked) {
 		this.id = id;
 		this.exam = exam;
 		this.student = student;
@@ -158,11 +158,11 @@ public class ExamScores implements java.io.Serializable {
 		this.compreehensiveScore = compreehensiveScore;
 	}
 
-	public Byte getScore() {
+	public int getScore() {
 		return this.score;
 	}
 
-	public void setScore(Byte score) {
+	public void setScore(int score) {
 		this.score = score;
 	}
 

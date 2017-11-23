@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.dao.ChoiceQuestionDao;
 import com.dao.ComprehensiveQuestionDao;
+import com.dao.ExamDao;
 import com.dao.ShortanswerQuestionDao;
 import com.entity.ChoiceQuestion;
 import com.entity.ComprehensiveQuestion;
@@ -25,11 +26,15 @@ public class ExamServiceImpl implements ExamService{
 	@Autowired
 	private ChoiceQuestionDao choiceQuestionDao;
 	
-	@Autowired	private ComprehensiveQuestionDao comprehensiveQuestionDao;
+	@Autowired	
+	private ComprehensiveQuestionDao comprehensiveQuestionDao;
 	
 	@Autowired
 	private ShortanswerQuestionDao shortanswerQuestionDao;
 	
+	@Autowired
+	private ExamDao examDao;
+
 	@Override
 	public List<ChoiceQuestion> CQtest(String CourseId) {
 		//取出所有
@@ -54,7 +59,12 @@ public class ExamServiceImpl implements ExamService{
 	}
 
 	@Override
-	public List<Exam> getPaper(String CourseId, int CQnum, int SQnum, int CphQnum) {
+	public Exam getPaper(String CourseId, int CQnum, int SQnum, int CphQnum) {
+		Exam exam=new Exam();
+		exam.setCourseId(CourseId);
+		String cQString=new String();
+		String sQString=new String();
+		String CphQString=new String();
 		//获取
 		List<ChoiceQuestion> choiceQuestions=choiceQuestionDao.findByCourseId(CourseId);
 		List<ComprehensiveQuestion> comprehensiveQuestions=comprehensiveQuestionDao.findByCourseId(CourseId);
@@ -72,7 +82,9 @@ public class ExamServiceImpl implements ExamService{
 			temp=random.nextInt(count);
 			if(!tempList.contains(temp)){
 				tempList.add(temp);
-				CQ.add(choiceQuestions.get(temp));
+				ChoiceQuestion CQtemp=choiceQuestions.get(temp);
+				cQString+=CQtemp.getId()+"/";
+				CQ.add(CQtemp);
 			}else {
 				i--;
 			}
@@ -84,7 +96,9 @@ public class ExamServiceImpl implements ExamService{
 			temp=random.nextInt(count);
 			if(!tempList.contains(temp)){
 				tempList.add(temp);
-				SAQ.add(shortanswerQuestions.get(temp));
+				ShortanswerQuestion SQtemp=shortanswerQuestions.get(temp);
+				sQString+=SQtemp.getId()+"/";
+				SAQ.add(SQtemp);
 			}else {
 				i--;
 			}
@@ -96,12 +110,17 @@ public class ExamServiceImpl implements ExamService{
 			temp=random.nextInt(count);
 			if(!tempList.contains(temp)){
 				tempList.add(temp);
-				CphQ.add(comprehensiveQuestions.get(temp));
+				ComprehensiveQuestion CphQtemp=comprehensiveQuestions.get(temp);
+				CphQString+=CphQtemp.getId()+"/";
+				CphQ.add(CphQtemp);
 			}else {
-				i--;
+			i--;
 			}
 		}	
-		return null;
+		exam.setChoiceQuestionSet(cQString);
+		exam.setShortanswerQuestionSet(sQString);
+		exam.setComprehensiveQuestionSet(CphQString);
+		return exam;
 	}
 
 	@Override
@@ -110,4 +129,44 @@ public class ExamServiceImpl implements ExamService{
 		Page<ChoiceQuestion > pages=choiceQuestionDao.findByCourseId(CourseId, pageable);
 		return pages;
 	}
+
+	@Override
+	public List<ChoiceQuestion> getListCQ(String CQString) {
+		List<ChoiceQuestion> choiceQuestions=new ArrayList<>();
+		String[] temp=CQString.split("/");
+		for(int i=0;i<temp.length;i++){
+			ChoiceQuestion cq=choiceQuestionDao.getOne(Integer.valueOf(temp[i]));
+			choiceQuestions.add(cq);
+		}
+		return choiceQuestions;
+	}
+
+	@Override
+	public List<ShortanswerQuestion> getListSQ(String SQString) {
+		List<ShortanswerQuestion> shortanswerQuestions=new ArrayList<>();
+		String[] temp=SQString.split("/");
+		for(int i=0;i<temp.length;i++){
+			ShortanswerQuestion sq=shortanswerQuestionDao.getOne(Integer.valueOf(temp[i]));
+			shortanswerQuestions.add(sq);
+		}
+		return shortanswerQuestions;
+	}
+
+	@Override
+	public List<ComprehensiveQuestion> getListCphQ(String CphQString) {
+		List<ComprehensiveQuestion> comprehensiveQuestions=new ArrayList<>();
+		String[] temp=CphQString.split("/");
+		for(int i=0;i<temp.length;i++){
+			ComprehensiveQuestion CphQ=comprehensiveQuestionDao.getOne(Integer.valueOf(temp[i]));
+			comprehensiveQuestions.add(CphQ);
+		}
+		return comprehensiveQuestions;
+	}
+
+	@Override
+	public void savePaper(Exam exam) {
+		examDao.save(exam);
+	}
+
+
 }
