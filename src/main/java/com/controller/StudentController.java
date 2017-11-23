@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.entity.Student;
+import com.model.User;
 import com.service.StudentService;
 import com.service.impl.StudentServiceImpl;
 
@@ -28,9 +29,9 @@ public class StudentController {
 	
 	@GetMapping("/student_StudentInfo")
 	public ModelAndView student_StudentInfo(HttpServletRequest request,Model model){
-		String id = request.getParameter("id");
-		//System.out.println(id);
-		Student student = studentserviceimpl.getStudent(id);
+		//String id = request.getParameter("id");
+		User user= (User) request.getSession().getAttribute("user");  
+		Student student = studentserviceimpl.getStudent(user.getAccount());
 		model.addAttribute("student", student);
 		return new ModelAndView("student/StudentInfo","studentModel",model);
 	}

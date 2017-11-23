@@ -26,14 +26,17 @@ public class LoginController {
 	StudentService studentService;
 	
 	@RequestMapping(value="/",method=RequestMethod.POST)
-	public String login1(User user,RedirectAttributes Ra) throws Exception{
+	public String login1(User user,RedirectAttributes Ra,HttpServletRequest servletRequest) throws Exception{
 		if(user.getIdentity().equals("Teacher") ){	
 			if(user.getPassword().equals(teacherService.getPassword(user.getAccount()))){
 				Teacher t=teacherService.getTeacher(user.getAccount());
+				servletRequest.getSession(true).setAttribute("user", user); 
 				if(t.getRole().equals("admin")) {					
+					
 					return "manager/admin";//密码正确
 				}
 				else {
+					
 					return "teacher/在线考试1";
 				}
 			}else{
@@ -45,6 +48,8 @@ public class LoginController {
 			if(user.getPassword().equals(studentService.getPassword(user.getAccount()))){
 				Student s=studentService.getStudent(user.getAccount());
 				Ra.addAttribute("id", s.getStudentId());
+				
+				servletRequest.getSession(true).setAttribute("user", user); 
 				return "redirect:/student";
 			}else{
 				return "redirect:/";
