@@ -1,15 +1,18 @@
 package com.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.entity.Student;
 import com.entity.Teacher;
 import com.model.User;
-import com.nimbusds.oauth2.sdk.Request;
 import com.service.StudentService;
 import com.service.TeacherService;
 
@@ -17,6 +20,7 @@ import com.service.TeacherService;
 
 @Controller
 public class LoginController {
+	
 	@Autowired
 	TeacherService teacherService;
 	
@@ -24,7 +28,7 @@ public class LoginController {
 	StudentService studentService;
 	
 	@RequestMapping(value="/",method=RequestMethod.POST)
-	public String login1(User user) throws Exception{
+	public String login1(User user,RedirectAttributes Ra) throws Exception{
 		if(user.getIdentity().equals("Teacher") ){	
 			if(user.getPassword().equals(teacherService.getPassword(user.getAccount()))){
 				Teacher t=teacherService.getTeacher(user.getAccount());
@@ -42,7 +46,8 @@ public class LoginController {
 		}else{
 			if(user.getPassword().equals(studentService.getPassword(user.getAccount()))){
 				Student s=studentService.getStudent(user.getAccount());
-				return "redirect:/"+s.getStudentId();
+				Ra.addAttribute("id", s.getStudentId());
+				return "redirect:/student";
 			}else{
 				return "redirect:/";
 			}
@@ -55,9 +60,11 @@ public class LoginController {
 		return "login";
 	}
 	
-	@RequestMapping(value="{id}",method=RequestMethod.GET)
-	public String student(){
+	@RequestMapping(value="/student",method=RequestMethod.GET)
+	public String student(HttpServletRequest request){
+		//request.getAttribute("id", id);
 		
+		System.out.println(request.getParameter("id"));
 		return "student/在线考试1";
 	}
 }
