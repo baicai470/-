@@ -25,34 +25,31 @@ public class LoginController {
 	@Autowired
 	StudentService studentService;
 	
-	@RequestMapping(value="/",method=RequestMethod.POST)
+	@RequestMapping(value="/login",method=RequestMethod.POST)
 	public String login1(User user,RedirectAttributes Ra,HttpServletRequest servletRequest) throws Exception{
 		if(user.getIdentity().equals("Teacher") ){	
 			if(user.getPassword().equals(teacherService.getPassword(user.getAccount()))){
 				Teacher t=teacherService.getTeacher(user.getAccount());
 				servletRequest.getSession(true).setAttribute("user", user); 
+				//密码正确则判断身份，返回对应页面
 				if(t.getRole().equals("admin")) {					
-					
-					return "manager/admin";//密码正确
+					return "manager/admin";
 				}
 				else {
-					
 					return "teacher/在线考试1";
 				}
 			}else{
-				
 				//账号或者密码不正确
-				return "redirect:/";
+				return "redirect:/login";
 			}
 		}else{
 			if(user.getPassword().equals(studentService.getPassword(user.getAccount()))){
 				Student s=studentService.getStudent(user.getAccount());
-				Ra.addAttribute("id", s.getStudentId());
-				
+				Ra.addAttribute("id", s.getStudentId());			
 				servletRequest.getSession(true).setAttribute("user", user); 
 				return "redirect:/student";
 			}else{
-				return "redirect:/";
+				return "redirect:/login";
 			}
 			
 		}
@@ -65,7 +62,6 @@ public class LoginController {
 	
 	@RequestMapping(value="/student",method=RequestMethod.GET)
 	public String student(HttpServletRequest request){
-		//request.getAttribute("id", id);
 		
 		System.out.println(request.getParameter("id"));
 		return "student/在线考试1";
