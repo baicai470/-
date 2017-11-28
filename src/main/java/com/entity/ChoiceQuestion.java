@@ -26,7 +26,7 @@ public class ChoiceQuestion implements java.io.Serializable {
 	private int id;
 
 	@Column(name = "descript")
-	private Serializable descript;
+	private String descript;
 
 	@Column(name = "Answer", length = 1)
 	private Character answer;
@@ -62,7 +62,7 @@ public class ChoiceQuestion implements java.io.Serializable {
 		this.id = id;
 	}
 
-	public ChoiceQuestion(int id, Serializable descript, Character answer, String a, String b, String c, String d,
+	public ChoiceQuestion(int id, String descript, Character answer, String a, String b, String c, String d,
 			String degree, String knowlegePoint, String courseId, Set<ErrorSet> errorSets) {
 		this.id = id;
 		this.descript = descript;
@@ -85,11 +85,11 @@ public class ChoiceQuestion implements java.io.Serializable {
 		this.id = id;
 	}
 
-	public Serializable getDescript() {
+	public String getDescript() {
 		return this.descript;
 	}
 
-	public void setDescript(Serializable descript) {
+	public void setDescript(String descript) {
 		this.descript = descript;
 	}
 

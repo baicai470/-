@@ -1,6 +1,8 @@
 package com.controller;
 
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +11,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.entity.ChoiceQuestion;
 import com.entity.Student;
 import com.model.User;
+import com.service.ExamService;
 import com.service.StudentService;
 
 
@@ -22,7 +26,9 @@ public class StudentController {
 	
 	@Autowired
 	StudentService studentService;
-
+	
+	@Autowired
+	ExamService examService;
 
 	
 	@GetMapping("/student_StudentInfo")
@@ -52,8 +58,10 @@ public class StudentController {
 		return new ModelAndView("student/ChoosedCourse");
 	}
 	@GetMapping("/student_SelfTest")
-	public ModelAndView student_SelfTest(){
-		return new ModelAndView("student/SelfTest");
+	public ModelAndView student_SelfTest(Model model){
+		List<ChoiceQuestion> choiceQuestions=examService.CQtest("数据库");
+		model.addAttribute("CQList", choiceQuestions);
+		return new ModelAndView("student/SelfTest","CQs",model);
 	}
 	@GetMapping("/student_demo_iframe")
 	public ModelAndView student_demo_iframe(){

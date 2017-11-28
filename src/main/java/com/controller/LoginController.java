@@ -58,6 +58,11 @@ public class LoginController {
 	@RequestMapping(value="/",method=RequestMethod.GET)
 	public String login1(){		
 		return "login";
+	}   
+	
+	@RequestMapping(value="/login",method=RequestMethod.GET)
+	public String login2(){		
+		return "login";
 	}
 	
 	@RequestMapping(value="/student",method=RequestMethod.GET)

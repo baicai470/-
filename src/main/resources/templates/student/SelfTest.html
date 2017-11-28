@@ -30,12 +30,13 @@
 
 	<body>
 		<ol id="stem">
-			<li>desw
-				<dl>
-					<dd><input type="radio" name="choose1" id="choose1a" value="choose" /> <label for="choose1a">dews</label></dd>
-					<dd><input type="radio" name="choose1" id="choose1b" value="choose" /> <label for="choose1b">dews</label></dd>
-					<dd><input type="radio" name="choose1" id="choose1c" value="choose" /> <label for="choose1c">dews</label></dd>
-					<dd><input type="radio" name="choose1" id="choose1d" value="choose" /> <label for="choose1d">dews</label></dd>
+			<li th:each="CQ :${CQs.CQList}">
+				<span th:text="${CQ.descript}"/>
+				<dl >
+					<dd><input type="radio" name="choose1" id="choose1a" value="choose" /> A.<span th:text="${CQ.a}"></span></dd>
+					<dd><input type="radio" name="choose1" id="choose1b" value="choose" /> B.<span th:text="${CQ.b}"></span></dd>
+					<dd><input type="radio" name="choose1" id="choose1c" value="choose" /> C.<span th:text="${CQ.c}"></span></dd>
+					<dd><input type="radio" name="choose1" id="choose1d" value="choose" /> D.<span th:text="${CQ.d}"></span></dd>
 				</dl>
 
 			</li>
