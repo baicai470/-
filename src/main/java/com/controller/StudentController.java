@@ -36,6 +36,9 @@ public class StudentController {
 	
 	@GetMapping("/student_button")
 	public ModelAndView student_button(){
+		
+		
+		
 		return new ModelAndView("student/button");
 	}
 
