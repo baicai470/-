@@ -22,10 +22,10 @@ public class ComprehensiveQuestion implements java.io.Serializable {
 	private int id;
 
 	@Column(name = "Descript")
-	private Serializable descript;
+	private String descript;
 
 	@Column(name = "Answer")
-	private Serializable answer;
+	private String answer;
 
 	@Column(name = "images", length = 10)
 	private String images;
@@ -46,7 +46,7 @@ public class ComprehensiveQuestion implements java.io.Serializable {
 		this.id = id;
 	}
 
-	public ComprehensiveQuestion(int id, Serializable descript, Serializable answer, String images, String degree,
+	public ComprehensiveQuestion(int id, String descript, String answer, String images, String degree,
 			String knowlegePoint, String courseId) {
 		this.id = id;
 		this.descript = descript;
@@ -65,19 +65,19 @@ public class ComprehensiveQuestion implements java.io.Serializable {
 		this.id = id;
 	}
 
-	public Serializable getDescript() {
+	public String getDescript() {
 		return this.descript;
 	}
 
-	public void setDescript(Serializable descript) {
+	public void setDescript(String descript) {
 		this.descript = descript;
 	}
 
-	public Serializable getAnswer() {
+	public String getAnswer() {
 		return this.answer;
 	}
 
-	public void setAnswer(Serializable answer) {
+	public void setAnswer(String answer) {
 		this.answer = answer;
 	}
 

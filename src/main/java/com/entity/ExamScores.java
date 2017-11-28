@@ -39,7 +39,7 @@ public class ExamScores implements java.io.Serializable {
 	private String shortanswerQuestionAnswerset;
 	
 	@Column(name = "comprehensive_question_answerset")
-	private Serializable comprehensiveQuestionAnswerset;
+	private String comprehensiveQuestionAnswerset;
 	
 	@Column(name = "choice_question_score", length = 200)
 	private String choiceQuestionScore;
@@ -67,7 +67,7 @@ public class ExamScores implements java.io.Serializable {
 	}
 
 	public ExamScores(int id, Exam exam, Student student, String choiceQuestionAnswerset,
-			String shortanswerQuestionAnswerset, Serializable comprehensiveQuestionAnswerset, String choiceQuestionScore,
+			String shortanswerQuestionAnswerset, String comprehensiveQuestionAnswerset, String choiceQuestionScore,
 			String shortanswerQuestionScore, String compreehensiveScore, int score, Byte timeCost, Boolean marked) {
 		this.id = id;
 		this.exam = exam;
@@ -126,11 +126,11 @@ public class ExamScores implements java.io.Serializable {
 		this.shortanswerQuestionAnswerset = shortanswerQuestionAnswerset;
 	}
 
-	public Serializable getComprehensiveQuestionAnswerset() {
+	public String getComprehensiveQuestionAnswerset() {
 		return this.comprehensiveQuestionAnswerset;
 	}
 
-	public void setComprehensiveQuestionAnswerset(Serializable comprehensiveQuestionAnswerset) {
+	public void setComprehensiveQuestionAnswerset(String comprehensiveQuestionAnswerset) {
 		this.comprehensiveQuestionAnswerset = comprehensiveQuestionAnswerset;
 	}
 
