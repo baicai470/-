@@ -22,7 +22,7 @@ public class ShortanswerQuestion implements java.io.Serializable {
 	private int id;
 	
 	@Column(name = "Descript")
-	private Serializable descript;
+	private String descript;
 	
 	@Column(name = "Answer", length = 50)
 	private String answer;
@@ -43,7 +43,7 @@ public class ShortanswerQuestion implements java.io.Serializable {
 		this.id = id;
 	}
 
-	public ShortanswerQuestion(int id, Serializable descript, String answer, String degree, String knowlegePoint,
+	public ShortanswerQuestion(int id, String descript, String answer, String degree, String knowlegePoint,
 			String courseId) {
 		this.id = id;
 		this.descript = descript;
@@ -63,11 +63,11 @@ public class ShortanswerQuestion implements java.io.Serializable {
 	}
 
 	
-	public Serializable getDescript() {
+	public String getDescript() {
 		return this.descript;
 	}
 
-	public void setDescript(Serializable descript) {
+	public void setDescript(String descript) {
 		this.descript = descript;
 	}
 
