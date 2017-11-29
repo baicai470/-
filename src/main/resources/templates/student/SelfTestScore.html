@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<title>SelfTest Score</title>
+</head>
+<body>
+	<h2>Error List</h2>
+	<div th:unless="${#lists.isEmpty(ESet.errorSet)}">
+			<li th:each="CQ :${ESet.errorSet.errorCQuestions}" >
+				<span th:text="${CQ.descript}" />
+				<dl >
+					<dd>A.<span th:text="${CQ.a}"></span></dd>
+					<dd>B.<span th:text="${CQ.b}"></span></dd>
+					<dd>C.<span th:text="${CQ.c}"></span></dd>
+					<dd>D.<span th:text="${CQ.d}"></span></dd>
+					<dd style="color: red;">正确答案:<span th:text="${CQ.answer}"></span></dd> 
+				</dl>   
+			</li>
+	</div>
+	<div th:if="${#lists.isEmpty(errorSet)}">
+	<p>There is no error in your list.</p>
+	</div>
+	您的自测分数:<span th:text="${ESet.errorSet.Scores}"></span>
+</body>
+</html>

@@ -1,6 +1,11 @@
 package com.service;
 
+import java.util.List;
+
+import com.entity.ChoiceQuestion;
 import com.entity.ExamScores;
+import com.model.Choose;
+import com.model.SelfTestESet;
 
 public interface ExamScoresService {
 
@@ -16,4 +21,11 @@ public interface ExamScoresService {
 	 * @return 分数 如果为0则说明未批改完
 	 */
 	public int getScore(int id); 
+	/**
+	 * 
+	 * @param CQs 自测的题目
+	 * @param ch 自测的题号与答案
+	 * @return
+	 */
+	public  SelfTestESet getErrorSet(List<ChoiceQuestion> CQs,Choose ch);
 }

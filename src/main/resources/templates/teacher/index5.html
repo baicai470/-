@@ -5,6 +5,24 @@
 		<title></title>
 	</head>
 	<body>
-		试卷管理
+	<h2>Exam List</h2>
+	<div th:unless="${#lists.isEmpty(Exams)}">
+		<dl th:each="exam :${Exams}">
+			<dt class="examHeadline">
+				试卷id:<span th:text="${exam.id}"></span>
+				考试时间:<span th:text="${exam.beginTime}"></span>
+			</dt>
+		</dl>
+		
+	</div>
+	<div th:if="${#lists.isEmpty(Exams)}">
+	<p>no exam in your list</p>
+	</div>
+		<form method="post" action="/createExam">
+			输入试卷选择题数目:<input type="text" name="CQnum"/>
+			输入试卷填空题数目:<input type="text" name="SQnum"/>
+			输入试卷综合题数目:<input type="text" name="CphQnum"/>
+			<input type="submit" value="生成试卷"></input>
+		</form> 
 	</body>
 </html>

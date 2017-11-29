@@ -3,7 +3,6 @@ package com.controller;
 
 import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +15,9 @@ import org.springframework.web.servlet.ModelAndView;
 import com.entity.ChoiceQuestion;
 import com.entity.Student;
 import com.model.Choose;
+import com.model.SelfTestESet;
 import com.model.User;
+import com.service.ExamScoresService;
 import com.service.ExamService;
 import com.service.StudentService;
 
@@ -32,6 +33,9 @@ public class StudentController {
 	
 	@Autowired
 	ExamService examService;
+	
+	@Autowired
+	ExamScoresService examScoresService;
 
 	
 	@GetMapping("/student_StudentInfo")
@@ -70,10 +74,13 @@ public class StudentController {
 	
 	@PostMapping("/student_SelfTest")
 	public ModelAndView student_SelfTest2(HttpServletRequest request,Choose choose,Model model ){
+		@SuppressWarnings("unchecked")
 		List<ChoiceQuestion> choiceQuestions=(List<ChoiceQuestion>) request.getSession(true).getAttribute("CQs");
-		System.out.println(choiceQuestions.size()+"");
+		System.out.println(choiceQuestions.size());
 		//return new ModelAndView("student/SelfTest","CQs",model);
-		return null;
+		SelfTestESet errorSet=examScoresService.getErrorSet(choiceQuestions, choose);
+		model.addAttribute("errorSet", errorSet);
+		return new ModelAndView("/student/SelfTestScore","ESet",model);
 	}
 	
 	@GetMapping("/student_demo_iframe")
