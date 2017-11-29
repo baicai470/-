@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<title>Insert title here</title>
+</head>
+<body>
+	<h2><span th:text="${paper.CourseId}"></span></h2>
+	<div th:unless="${#lists.isEmpty(paper.CQs)}">
+	<ol>
+		<li th:each="CQ :${paper.CQs}">
+			<span th:text="${CQ.descript}"></span>
+			<dl>
+					<dd>A.<span th:text="${CQ.a}"></span></dd>
+					<dd>B.<span th:text="${CQ.b}"></span></dd>
+					<dd>C.<span th:text="${CQ.c}"></span></dd>
+					<dd>D.<span th:text="${CQ.d}"></span></dd>
+					<dd>正确答案:<span th:text="${CQ.answer}"></span></dd>
+			</dl>
+		</li>
+		</ol>
+	</div>
+		<div th:unless="${#lists.isEmpty(paper.SQs)}">
+		<ol>
+		<li th:each="SQ :${paper.SQs}">
+			<span th:text="${SQ.descript}"></span>
+			<dl>
+					<dd>正确答案:<span th:text="${SQ.answer}"></span></dd>
+			</dl>
+		</li>
+		</ol>
+	</div>
+		<div th:unless="${#lists.isEmpty(paper.CphQs)}">
+		<ol>
+		<li th:each="CphQ :${paper.CphQs}">
+			<span th:text="${CphQ.descript}"></span>
+			<dl>
+					<dd>正确答案:<span th:text="${CphQ.answer}"></span></dd>
+			</dl>
+		</li>
+		</ol>
+	</div>
+</body>
+</html>

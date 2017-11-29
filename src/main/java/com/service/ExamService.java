@@ -31,12 +31,23 @@ public interface ExamService {
 	 * @param CphQnum
 	 * @return 通过课程ID返回指定数目的各种题目
 	 */
-	public Exam getPaper(String CourseId,int CQnum,int SQnum,int CphQnum); 
+	public Exam createPaper(String CourseId,int CQnum,int SQnum,int CphQnum); 
 	/**
 	 * 保存试卷
 	 * @param exam
 	 */
 	public void savePaper(Exam exam);
+	/**
+	 * 
+	 * @param paperId
+	 * @return 试卷
+	 */
+	public Exam getPaper(String paperId);
+	/**
+	 * 
+	 * @return
+	 */
+	public List<Exam> getAllPaper();
 	/**
 	 * 分割字符串查找题目
 	 * @param CQString Exam中的选择题集合

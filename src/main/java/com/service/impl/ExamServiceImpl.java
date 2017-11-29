@@ -59,7 +59,7 @@ public class ExamServiceImpl implements ExamService{
 	}
 
 	@Override
-	public Exam getPaper(String CourseId, int CQnum, int SQnum, int CphQnum) {
+	public Exam createPaper(String CourseId, int CQnum, int SQnum, int CphQnum) {
 		Exam exam=new Exam();
 		exam.setCourseId(CourseId);
 		String cQString=new String();
@@ -166,6 +166,18 @@ public class ExamServiceImpl implements ExamService{
 	@Override
 	public void savePaper(Exam exam) {
 		examDao.save(exam);
+	}
+
+
+	@Override
+	public Exam getPaper(String paperId) {	
+		return examDao.findOne(Integer.parseInt(paperId));
+	}
+
+	@Override
+	public List<Exam> getAllPaper() {
+		List<Exam> exams=examDao.findAll();
+		return exams;
 	}
 
 
