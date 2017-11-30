@@ -5,25 +5,40 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form method="post">
-		<ol id="stem">
-	
-			<li th:each="CQ :${CQs.CQList}" >
-				<span th:text="${CQ.descript}" />
-				<dl >
-					<dd><input type="radio"  th:name="choose+${CQStat.index}"  id="choose1a" value="A" /> A.<span th:text="${CQ.a}"></span></dd>
-					<dd><input type="radio" th:name="choose+${CQStat.index}" id="choose1b" value="B" /> B.<span th:text="${CQ.b}"></span></dd>
-					<dd><input type="radio" th:name="choose+${CQStat.index}" id="choose1c" value="C" /> C.<span th:text="${CQ.c}"></span></dd>
-					<dd><input type="radio" th:name="choose+${CQStat.index}" id="choose1d" value="D" /> D.<span th:text="${CQ.d}"></span></dd>
-				</dl>
-     
-			</li>
-			
-			<!-- <div th:each="CQ :${CQs.CQList}" th:if="${CQ.answer!=}"> -->
-		
-	
+<h2><span th:text="${paper.CourseId}"></span>考试</h2>
+	<div th:unless="${#lists.isEmpty(paper.CQs)}">
+	<h5>一.选择题</h5>
+	<ol>
+		<li th:each="CQ :${paper.CQs}">
+			<span th:text="${CQ.descript}"></span>
+			<dl>
+					<dd>A.<span th:text="${CQ.a}"></span></dd>
+					<dd>B.<span th:text="${CQ.b}"></span></dd>
+					<dd>C.<span th:text="${CQ.c}"></span></dd>
+					<dd>D.<span th:text="${CQ.d}"></span></dd>
+			</dl>
+		</li>
 		</ol>
-		<button id="submit" name="submit" value="交卷">交卷</button>
-		</form>
+	</div>
+		<div th:unless="${#lists.isEmpty(paper.SQs)}">
+		<h5>二.填空题</h5>
+		<ol>
+		<li th:each="SQ :${paper.SQs}">
+			<span th:text="${SQ.descript}"></span>
+			<dl>
+			</dl>
+		</li>
+		</ol>
+	</div>
+		<div th:unless="${#lists.isEmpty(paper.CphQs)}">
+		<h5>三.综合题</h5>
+		<ol>
+		<li th:each="CphQ :${paper.CphQs}">
+			<span th:text="${CphQ.descript}"></span>
+			<dl>
+			</dl>
+		</li>
+		</ol>
+	</div>
 </body>
 </html>
