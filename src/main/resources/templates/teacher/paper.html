@@ -7,7 +7,7 @@
 <body>
 	<h2><span th:text="${paper.CourseId}"></span></h2>
 	<div th:unless="${#lists.isEmpty(paper.CQs)}">
-	<ol>
+	<ol><h5>一.选择题</h5>
 		<li th:each="CQ :${paper.CQs}">
 			<span th:text="${CQ.descript}"></span>
 			<dl>
@@ -19,7 +19,7 @@
 			</dl>
 		</li>
 		</ol>
-	</div>
+	</div><h5>二.填空题</h5>
 		<div th:unless="${#lists.isEmpty(paper.SQs)}">
 		<ol>
 		<li th:each="SQ :${paper.SQs}">
@@ -29,7 +29,7 @@
 			</dl>
 		</li>
 		</ol>
-	</div>
+	</div><h5>三.综合题</h5>
 		<div th:unless="${#lists.isEmpty(paper.CphQs)}">
 		<ol>
 		<li th:each="CphQ :${paper.CphQs}">

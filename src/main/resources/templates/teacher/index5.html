@@ -13,8 +13,8 @@
 				试卷id:<span th:text="${exam.paperId}"></span><br /> 课程:<span
 					th:text="${exam.courseId}"></span><br /> 考试时间:<span
 					th:text="${exam.beginTime}"></span>
-					<input name="paper" type="hidden" th:value="${exam.paperId}" />
-				<button  type="submit" >查询</button>	
+					<!-- <input  type="hidden"  /> -->
+				<button  name="paper" type="submit" th:value="${exam.paperId}" >查询</button>	
 			</dt>
 		</dl>
 		</form>
