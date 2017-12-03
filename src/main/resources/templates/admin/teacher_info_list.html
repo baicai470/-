@@ -1,4 +1,4 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE html>
 <html>
 
 	<head>
@@ -17,7 +17,7 @@
     <link href="assets/js/dataTables/dataTables.bootstrap.css" rel="stylesheet" />
 	</head>
 
-	<body>
+
 		<style type="text/css">
 			.pCSS{  font-family: 'Open Sans', helvetica, arial, sans-serif;    color: #4d5b76;margin-left:30px ;}
 			#teainf1{
@@ -97,7 +97,7 @@
 
 		<body>
 			<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css" />
-			<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+			<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css"/>
 			<cenetr>
 				<!-- 过滤条件(搜索) -->
 				
@@ -116,8 +116,8 @@
 					<form action="" method="get">
 						<!--<input type="hidden" name="method" value="search">-->
 							<div>
-								<input type="text" class="form-control" style="width: 150PX;" id="exampleInputName2" placeholder="输入ID">
-						<input style="position: absolute;margin-left: 155px;margin-top: -34px;" class="btn btn-default" type="button"value="搜索" onclick="searchBtn();" />
+								<input type="text" class="form-control" style="width: 150PX;" id="exampleInputName2" placeholder="输入ID"/>
+						<input style="position: absolute;margin-left: 155px;margin-top: -34px;" class="btn btn-default" type="button" value="搜索" onclick="searchBtn();" />
 							
 							</div>
 						
@@ -151,11 +151,11 @@
 				<p style="font-family: 'Open Sans', helvetica, arial, sans-serif;color: #4d5b76;margin-left:100px ;font-size: 25px;">添加教师</p>
 				<!--添加action连接-->
 				<form id="myform" action="" method="post" onsubmit="return false;">	
-				<p class="pCSS">教师ID：<input style="border:black solid 1px"  class="input_into" id="input_into1" type="text"  onclick="selectText(event)"></p>
-				<p class="pCSS">姓&nbsp;&nbsp;&nbsp;&nbsp;名：<input style="border:black solid 1px"   class="input_into" id="input_into2" type="text"  onclick="selectText(event)"></p>
-				<p class="pCSS">邮&nbsp;&nbsp;&nbsp;&nbsp;箱：<input style="border:black solid 1px"   class="input_into" id="input_into3" type="text"  onclick="selectText(event)"></p>
-				<p class="pCSS">身份证：<input style="border:black solid 1px"   class="input_into" id="input_into4" type="text"  onclick="selectText(event)"></p>
-			    <p class="pCSS">电&nbsp;&nbsp;&nbsp;&nbsp;话：<input style="border:black solid 1px"   class="input_into" id="input_into5" type="text"  onclick="selectText(event)"></p>
+				<p class="pCSS">教师ID：<input style="border:black solid 1px"  class="input_into" id="input_into1" type="text"  onclick="selectText(event)"/></p>
+				<p class="pCSS">姓&nbsp;&nbsp;&nbsp;&nbsp;名：<input style="border:black solid 1px"   class="input_into" id="input_into2" type="text"  onclick="selectText(event)"/></p>
+				<p class="pCSS">邮&nbsp;&nbsp;&nbsp;&nbsp;箱：<input style="border:black solid 1px"   class="input_into" id="input_into3" type="text"  onclick="selectText(event)"/></p>
+				<p class="pCSS">身份证：<input style="border:black solid 1px"   class="input_into" id="input_into4" type="text"  onclick="selectText(event)"/></p>
+			    <p class="pCSS">电&nbsp;&nbsp;&nbsp;&nbsp;话：<input style="border:black solid 1px"   class="input_into" id="input_into5" type="text"  onclick="selectText(event)"/></p>
 				<div id="baocun" style="margin-left: 75px;">
 					
 					<input type="submit" class="btn btn-default" name="" id="" value="保存" onclick="saveTeainf();" />&nbsp;&nbsp;&nbsp;&nbsp;
@@ -169,15 +169,15 @@
 				<!--添加action和method-->
 				<form id="myform" action="" method="" onsubmit="return checkNumber();">	
 					<p style="font-family: 'Open Sans', helvetica, arial, sans-serif;color: #4d5b76;margin-left:100px ;font-size: 25px;">修改老师</p>
-				<p>教师ID：<input readonly="readonly" class="input_into" id="input_into1-1" type="text" value="" onclick="selectText(event)"></p>
-				<p>姓&nbsp;&nbsp;&nbsp;&nbsp;名：<input readonly="readonly" class="input_into" id="input_into2-1" type="text" value="" onclick="selectText(event)"></p>
-				<p>邮&nbsp;&nbsp;&nbsp;&nbsp;箱：<input readonly="readonly" class="input_into" id="input_into3-1" type="text" value="" onclick="selectText(event)"></p>
-				<p>身份证：<input readonly="readonly" class="input_into" id="input_into4-1" type="text" value="" onclick="selectText(event)"></p>
-				<p>电&nbsp;&nbsp;&nbsp;&nbsp;话：<input readonly="readonly" class="input_into" id="input_into5-1" type="text" value="" onclick="selectText(event)"></p>
+				<p>教师ID：<input readonly="readonly" class="input_into" id="input_into1-1" type="text" value="" onclick="selectText(event)"/></p>
+				<p>姓&nbsp;&nbsp;&nbsp;&nbsp;名：<input readonly="readonly" class="input_into" id="input_into2-1" type="text" value="" onclick="selectText(event)"/></p>
+				<p>邮&nbsp;&nbsp;&nbsp;&nbsp;箱：<input readonly="readonly" class="input_into" id="input_into3-1" type="text" value="" onclick="selectText(event)"/></p>
+				<p>身份证：<input readonly="readonly" class="input_into" id="input_into4-1" type="text" value="" onclick="selectText(event)"/></p>
+				<p>电&nbsp;&nbsp;&nbsp;&nbsp;话：<input readonly="readonly" class="input_into" id="input_into5-1" type="text" value="" onclick="selectText(event)"/></p>
 				<div id="baocun">
 					
-				<input type="button" id="change" class="btn btn-default"  value="修改" onclick="changeBtn();">
-				<input type="submit" id="save1" class="btn btn-default.shover"  value="保存" onclick="window.location.href='teacher_info_list.html'">
+				<input type="button" id="change" class="btn btn-default"  value="修改" onclick="changeBtn();"/>
+				<input type="submit" id="save1" class="btn btn-default.shover"  value="保存" onclick="window.location.href='teacher_info_list.html'"/>
 				</div>
 					</form>
 			</div>
@@ -211,7 +211,7 @@
         		{"tcID":"5","name":"五号","email":"五号邮箱号","id":"五号身份证","tel":"五号电话"}
         		];
         		//将数据导入表格中
-        		for(var i=0;i<teachers.length;i++){
+        		for(var i=0;i&lt;teachers.length;i++){
         	    var thisrow = teaTable.insertRow(teaTable.rows.length); //确定添加的行的索引位置
 				
 				var thiscell0 = thisrow.insertCell(0);
@@ -234,7 +234,7 @@
 				thiscell5.innerHTML = "<button class='btn btn-default' onclick='showCourse(event);'>查看课程</button>"
 				thiscell5.align = "center";
 				var thiscell6=thisrow.insertCell(6);
-				thiscell6.innerHTML = "<span onclick=\"changePoint(event);\" class=\"glyphicon glyphicon-pencil\" onmouseover=\"this.style.cursor='hand'\;this.style.color='blue'\" onmouseout=\"this.style.color='black'\"></span>&nbsp;&nbsp;&nbsp;&nbsp;<span onclick=\"deletePoint(event);\" class=\"glyphicon glyphicon-trash\" onmouseover=\"this.style.cursor='hand'\;this.style.color='blue'\" onmouseout=\"this.style.color='black'\"></span>";
+				thiscell6.innerHTML = "<span onclick='changePoint(event);' class='glyphicon glyphicon-pencil' onmouseover='this.style.cursor=&quot;hand&quot;;this.style.color=&quot;blue&quot;' onmouseout='this.style.color=&quot;black&quot;'></span>&nbsp;&nbsp;&nbsp;&nbsp;<span onclick='deletePoint(event);' class='glyphicon glyphicon-trash' onmouseover='this.style.cursor=&quot;hand&quot;;this.style.color=&quot;blue&quot;' onmouseout='this.style.color=&quot;black&quot;'></span>";
 				thiscell6.align = "center";
 				}
  
@@ -268,7 +268,7 @@
 				thiscell5.align = "center";
 				thiscell5.innerHTML="<button class='btn btn-default' onclick='showCourse(event);'>查看课程</button>";
 				var thiscell6=thisrow.insertCell(6);
-				thiscell6.innerHTML = "<span onclick=\"changePoint(event);\" class=\"glyphicon glyphicon-pencil\" onmouseover=\"this.style.cursor='hand'\;this.style.color='blue'\" onmouseout=\"this.style.color='black'\"></span>&nbsp;&nbsp;&nbsp;&nbsp;<span onclick=\"deletePoint(event);\" class=\"glyphicon glyphicon-trash\" onmouseover=\"this.style.cursor='hand'\;this.style.color='blue'\" onmouseout=\"this.style.color='black'\"></span>";
+				thiscell6.innerHTML = "<span onclick='changePoint(event);' class='glyphicon glyphicon-pencil' onmouseover='this.style.cursor=&quot;hand&quot;;this.style.color=&quot;blue&quot;' onmouseout='this.style.color=&quot;black&quot;'></span>&nbsp;&nbsp;&nbsp;&nbsp;<span onclick='deletePoint(event);' class='glyphicon glyphicon-trash' onmouseover='this.style.cursor=&quot;hand&quot;;this.style.color=&quot;blue&quot;' onmouseout='this.style.color=&quot;black&quot;'></span>";
 				thiscell6.align = "center";
 				document.getElementById("input_into1").value="";
 				document.getElementById("input_into2").value="";
@@ -298,7 +298,7 @@
 				var data={"tcID":"1","name":"一号","email":"一号邮箱号","id":"一号身份证","tel":"一号电话"};
 				var table=document.getElementById("teaTable");
 				var len=table.rows.length;  
-                for(var i=1;i<len;i++){  
+                for(var i=1;i&lt;len;i++){  
        			 table.deleteRow(1); 
   				  }
                 var thisrow = teaTable.insertRow(teaTable.rows.length); //确定添加的行的索引位置
@@ -322,7 +322,7 @@
 				thiscell5.align = "center";
 				thiscell5.innerHTML="<button class='btn btn-default' onclick='showCourse(event);'>查看课程</button>";
 				var thiscell6=thisrow.insertCell(6);
-				thiscell6.innerHTML = "<span onclick=\"changePoint(event);\" class=\"glyphicon glyphicon-pencil\" onmouseover=\"this.style.cursor='hand'\;this.style.color='blue'\" onmouseout=\"this.style.color='black'\"></span>&nbsp;&nbsp;&nbsp;&nbsp;<span onclick=\"deletePoint(event);\" class=\"glyphicon glyphicon-trash\" onmouseover=\"this.style.cursor='hand'\;this.style.color='blue'\" onmouseout=\"this.style.color='black'\"></span>";
+				thiscell6.innerHTML = "<span onclick='changePoint(event);' class='glyphicon glyphicon-pencil' onmouseover='this.style.cursor=&quot;hand&quot;;this.style.color=&quot;blue&quot;' onmouseout='this.style.color=&quot;black&quot;'></span>&nbsp;&nbsp;&nbsp;&nbsp;<span onclick='deletePoint(event);' class='glyphicon glyphicon-trash' onmouseover='this.style.cursor=&quot;hand&quot;;this.style.color=&quot;blue&quot;' onmouseout='this.style.color=&quot;black&quot;'></span>";
 				thiscell6.align = "center";
                 
 				
@@ -375,7 +375,7 @@
 				save.removeAttribute("disabled");
 				document.getElementById("input_into1").select();
 				var inputs=document.getElementsByClassName("input_into");
-				for(var a=0;a<inputs.length;a++){
+				for(var a=0;a&lt;inputs.length;a++){
 					inputs[a].style.border="1px solid black";
 				}
 			}
@@ -387,7 +387,7 @@
 				var course=[{"course":"课程一号"},{"course":"课程二号"},{"course":"课程三号"}];
 				courseTable.caption.innerHTML=evt.currentTarget.parentNode.parentNode.childNodes[1].innerHTML;
 				var thisrow1 = courseTable.insertRow(courseTable.rows.length);
-				for(var i=0;i<course.length;i++){		
+				for(var i=0;i&lt;course.length;i++){		
 					var thiscell1= thisrow1.insertCell(i);
 				    thiscell1.innerHTML =course[i].course;
 					thiscell1.align = "center";
@@ -399,7 +399,7 @@
 			}
 			function closeCourse(){
 				var len=courseTable.rows.length;  
-                for(var i=0;i<len;i++){  
+                for(var i=0;i&lt;len;i++){  
        			 courseTable.deleteRow(0); 
   				  }
 				document.getElementById("Course").style.display="none";
@@ -407,3 +407,4 @@
 			}
 		
 		</script>
+</html>
