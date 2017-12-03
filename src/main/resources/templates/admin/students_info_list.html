@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>在线考试系统 教师信息列表</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link href="assets/css/bootstrap.css" rel="stylesheet" />
+     <!-- FontAwesome Styles-->
+    <link href="assets/css/font-awesome.css" rel="stylesheet" />
+     <!-- Morris Chart Styles-->
+   
+        <!-- Custom Styles-->
+    <link href="assets/css/custom-styles.css" rel="stylesheet" />
+     <!-- Google Fonts-->
+   <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+     <!-- TABLE STYLES-->
+    <link href="assets/js/dataTables/dataTables.bootstrap.css" rel="stylesheet" />	
+	<style type="text/css">
+			.pCSS{  font-family: 'Open Sans', helvetica, arial, sans-serif;    color: #4d5b76;margin-left:30px ;}
+			#teainf1{
+				z-index: 2;
+			position: fixed;
+			background-color: white;
+				display: none;
+				border: 2px solid lightgrey;
+				font-family: lightgrey;
+				padding: 8px;
+				/*margin: 100px;*/
+				top: 30px;
+				left: 350px;
+				width:380px;
+				box-shadow:#666 0px 0px 5px;
+			}
+			#grade{
+				z-index: 2;
+			position: fixed;
+			background-color: white;
+				display: none;
+				border: 2px solid lightgrey;
+				font-family: lightgrey;
+				padding: 8px;
+				/*margin: 100px;*/
+				top: 100px;
+				left: 350px;
+				box-shadow:#666 0px 0px 5px;
+			}
+			#teainf2{
+				z-index: 2;
+			position: fixed;
+			background-color: white;
+				display: none;
+				border: 2px solid lightgrey;
+				font-family: lightgrey;
+				padding: 8px;
+				/*margin: 100px;*/
+				top: 30px;
+				left: 350px;
+				width:380px;
+				box-shadow:#666 0px 0px 5px;
+			}
+			.detail hover {
+				background-color: #0000FF
+			}
+			.baocun {
+				display: ruby-base-group;	
+			}
+			input.input_into {
+				font-family: "微软雅黑";
+				border:#91C0E3;
+				text-align:left;
+			/*	width: 40%;*/
+				padding: 0px;
+				
+				
+			}
+			#hideDiv{
+				display: none;
+				position: absolute;
+				width: 100%;
+				height:120% ;
+				background-color:#333;
+				opacity: 0.3;
+				margin-top: -500px;
+				z-index: 1;
+			}
+			button:.hover {
+			background-color: #ddd;}
+			
+			.xinxiSpan{
+				font-family:Helvetica,Arial,sans-serif;font-size:25px;
+			}	
+		</style>
+		<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css" />
+		<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css"/>
+		  <script>
+        	//test用的json数据
+        	var teachers=[
+        		{"tcID":"1","name":"一号","email":"一号邮箱号","tel":"一号电话","id":"一号身份证"},
+        		{"tcID":"2","name":"二号","email":"二号邮箱号","tel":"二号电话","id":"二号身份证"},
+        		{"tcID":"3","name":"三号","email":"三号邮箱号","tel":"三号电话","id":"三号身份证"},
+        		{"tcID":"4","name":"四号","email":"四号邮箱号","tel":"四号电话","id":"四号身份证"},
+        		{"tcID":"5","name":"五号","email":"五号邮箱号","tel":"五号电话","id":"五号身份证"}
+        		];
+        		//将数据导入表格中
+        		for(var i=0;i&lt;teachers.length;i++){
+        	    var thisrow = teaTable.insertRow(teaTable.rows.length); //确定添加的行的索引位置
+				var thiscell0 = thisrow.insertCell(0);
+				thiscell0.innerHTML = "<input type='checkbox' name='checkbox10' value='checkbox' />";
+				thiscell0.align = "center";
+				var thiscell1 = thisrow.insertCell(1);
+				thiscell1.innerHTML = teachers[i].tcID;
+				thiscell1.align = "center";
+				var thiscell2 = thisrow.insertCell(2);
+				thiscell2.innerHTML =teachers[i].name;
+				thiscell2.align = "center";
+				var thiscell3 = thisrow.insertCell(3);
+				
+				thiscell3.innerHTML =teachers[i].email;
+				thiscell3.align = "center";
+				var thiscell4 = thisrow.insertCell(4);
+				thiscell4.innerHTML =teachers[i].tel;
+				thiscell4.align = "center";
+				var thiscell5 = thisrow.insertCell(5);
+				thiscell5.innerHTML = teachers[i].id;
+				thiscell5.align = "center";
+				var thiscell6=thisrow.insertCell(6);
+				thiscell6.innerHTML="<button class='btn btn-default' onclick='showGrade(event);'>查看成绩</button>";
+				thiscell6.align = "center";
+				var thiscell7=thisrow.insertCell(7);
+				thiscell7.innerHTML = "<span onclick='changePoint(event);' class='glyphicon glyphicon-pencil' onmouseover='this.style.cursor=&quot;hand&quot;;this.style.color=&quot;blue&quot;' onmouseout='this.style.color=&quot;black&quot;'></span>&nbsp;&nbsp;&nbsp;&nbsp;<span onclick='deletePoint(event);' class='glyphicon glyphicon-trash' onmouseover='this.style.cursor=&quot;hand&quot;;this.style.color=&quot;blue&quot;' onmouseout='this.style.color=&quot;black&quot;'></span>";
+				thiscell7.align = "center";
+				}
+ 
+        
+			function selectText(evt){
+				if(evt.currentTarget.focus){
+					evt.currentTarget.select();
+				}
+			}
+//			保存到表里面
+			function saveTeainf(){
+				//添加信息到列表里面
+				var thisrow = teaTable.insertRow(teaTable.rows.length); //确定添加的行的索引位置
+				var thiscell0 = thisrow.insertCell(0);
+				thiscell0.innerHTML = "<input type='checkbox' name='checkbox10' value='checkbox' />";
+				thiscell0.align = "center";
+				var thiscell1 = thisrow.insertCell(1);
+				thiscell1.innerHTML = document.getElementById("input_into1").value; //定义每个单元格的默认值
+				thiscell1.align = "center";
+				var thiscell2 = thisrow.insertCell(2);
+				thiscell2.innerHTML =document.getElementById("input_into2").value;
+				thiscell2.align = "center";
+				var thiscell3 = thisrow.insertCell(3);
+				
+				thiscell3.innerHTML = document.getElementById("input_into3").value;
+				thiscell3.align = "center";
+				var thiscell4 = thisrow.insertCell(4);
+				thiscell4.innerHTML =document.getElementById("input_into4").value;
+				thiscell4.align = "center";
+				var thiscell5 = thisrow.insertCell(5);
+				thiscell5.innerHTML = document.getElementById("input_into5").value;
+				thiscell5.align = "center";
+				var thiscell6=thisrow.insertCell(6);
+				thiscell6.innerHTML="<button class='btn btn-default' onclick='showGrade(event);'>查看成绩</button>";
+				thiscell6.align = "center";
+				var thiscell7=thisrow.insertCell(7);
+				thiscell7.align = "center";
+				thiscell7.innerHTML="<span onclick='changePoint(event);' class='glyphicon glyphicon-pencil' onmouseover='this.style.cursor=&quot;hand&quot;;this.style.color=&quot;blue&quot;' onmouseout='this.style.color=&quot;black&quot;'></span>&nbsp;&nbsp;&nbsp;&nbsp;<span onclick='deletePoint(event);' class='glyphicon glyphicon-trash' onmouseover='this.style.cursor=&quot;hand&quot;;this.style.color=&quot;blue&quot;' onmouseout='this.style.color=&quot;black&quot;'></span>";
+				document.getElementById("input_into1").value="";
+				document.getElementById("input_into2").value="";
+				document.getElementById("input_into3").value="";
+				document.getElementById("input_into4").value="";
+				document.getElementById("input_into5").value="";
+				document.getElementById("teainf1").style.display="none";
+				document.getElementById("hideDiv").style.display="none";
+			}
+			//关闭弹出框
+			function closeTeainf(){
+				document.getElementById("input_into1").value="";
+				document.getElementById("input_into2").value="";
+				document.getElementById("input_into3").value="";
+				document.getElementById("input_into4").value="";
+				document.getElementById("input_into5").value="";
+				document.getElementById("teainf1").style.display="none";
+				document.getElementById("hideDiv").style.display="none";
+			}
+			//打开弹出框
+			function openTeainf(){
+				document.getElementById("teainf1").style.display="block";
+				document.getElementById("hideDiv").style.display="block";
+			}
+			function searchBtn() {
+				//要传递的ID参数
+				var IDNum=document.getElementById("exampleInputName2").value
+				
+				
+				//ajax获得json返回值
+				var data={"tcID":"1","name":"一号","email":"一号邮箱号","tel":"一号电话","id":"一号身份证"};
+				var table=document.getElementById("teaTable");
+				var len=table.rows.length;  
+                for(var i=1;i&lt;len;i++){  
+       			 table.deleteRow(1); 
+  				  }
+                var thisrow = teaTable.insertRow(teaTable.rows.length); //确定添加的行的索引位置
+				var thiscell0 = thisrow.insertCell(0);
+				thiscell0.innerHTML = "<input type='checkbox' name='checkbox10' value='checkbox' />";
+				thiscell0.align = "center";
+				var thiscell1 = thisrow.insertCell(1);
+				thiscell1.innerHTML =data.tcID;
+				thiscell1.align = "center";
+				var thiscell2 = thisrow.insertCell(2);
+				thiscell2.innerHTML =data.name;
+				thiscell2.align = "center";
+				var thiscell3 = thisrow.insertCell(3);			
+				thiscell3.innerHTML =data.email;
+				thiscell3.align = "center";
+				var thiscell4 = thisrow.insertCell(4);
+				thiscell4.innerHTML =data.id;
+				thiscell4.align = "center";
+				var thiscell5 = thisrow.insertCell(5);
+				thiscell5.innerHTML = data.tel;
+				thiscell5.align = "center";
+				var thiscell6=thisrow.insertCell(6);
+				thiscell6.innerHTML="<button class='btn btn-default' onclick='showGrade(event);'>查看成绩</button>";
+				thiscell6.align = "center";
+				var thiscell7=thisrow.insertCell(7);
+				thiscell7.innerHTML = "<span onclick='changePoint(event);' class='glyphicon glyphicon-pencil' onmouseover='this.style.cursor=&quot;hand&quot;;this.style.color=&quot;blue&quot;' onmouseout='this.style.color=&quot;black&quot;'></span>&nbsp;&nbsp;&nbsp;&nbsp;<span onclick='deletePoint(event);' class='glyphicon glyphicon-trash' onmouseover='this.style.cursor=&quot;hand&quot;;this.style.color=&quot;blue&quot;' onmouseout='this.style.color=&quot;black&quot;'></span>";
+				thiscell7.align = "center";
+                
+				
+				}
+				
+			
+			function deletePoint(evt)
+			{
+ 
+       			 //利用对话框返回的值 （true 或者 false）
+    			if(confirm("是否删除该行"))
+  				{
+ 
+            		//如果是true ，那么就删除  
+					var fPoint=evt.currentTarget.parentNode.parentNode;
+					var childs=fPoint.childNodes;
+					for(var i=childs.length-1;i>=0;i--){
+						fPoint.removeChild(childs[i]);
+					}			 
+			    }else{}
+			}
+						
+	
+	
+			//对修改弹出框的操作
+			function changePoint(evt){
+				var fPoint=evt.currentTarget.parentNode.parentNode;
+				var childs=fPoint.childNodes;
+				document.getElementById("input_into1-1").value=childs[1].innerHTML;
+				document.getElementById("input_into2-1").value=childs[2].innerHTML;
+				document.getElementById("input_into3-1").value=childs[3].innerHTML;
+				document.getElementById("input_into4-1").value=childs[4].innerHTML;
+				document.getElementById("input_into5-1").value=childs[5].innerHTML;				
+				document.getElementById("teainf2").style.display="block";
+				document.getElementById("hideDiv").style.display="block";					
+			}
+
+			var checkNumber=function() {
+			return true;
+			}
+
+			function changeBtn(){
+				//修改
+				document.getElementById("input_into1-1").readOnly=false;		
+				document.getElementById("input_into2-1").readOnly=false;
+				document.getElementById("input_into3-1").readOnly=false;
+				document.getElementById("input_into4-1").readOnly=false;
+				document.getElementById("input_into5-1").readOnly=false;
+				var save=document.getElementById("save1");
+				var classes=save.className.split(".");
+				save.className=classes[0];
+				save.removeAttribute("disabled");
+				document.getElementById("input_into1").select();
+				var inputs=document.getElementsByClassName("input_into");
+				for(var a=0;a&lt;inputs.length;a++){
+					inputs[a].style.border="1px solid #84A5C6";
+				}
+			}
+			function showGrade(evt){
+				//要传递的参数
+				var IDNum=evt.currentTarget.parentNode.parentNode.childNodes[1].innerHTML;
+				//。。。			
+				//ajax获得成绩信息
+				var grades=[
+				{"course":"课程一","grade":"分数一"},
+				{"course":"课程二","grade":"分数二"},
+				{"course":"课程三","grade":"分数三"}
+				];
+				gradeTable.caption.innerHTML=evt.currentTarget.parentNode.parentNode.childNodes[2].innerHTML;
+				var thisrow1 = gradeTable.insertRow(gradeTable.rows.length);
+				var thisrow2 = gradeTable.insertRow(gradeTable.rows.length);
+				for(var i=0;i&lt;3;i++){		
+					var thiscell1= thisrow1.insertCell(i);
+				    thiscell1.innerHTML =grades[i].course;
+					thiscell1.align = "center";
+					var thiscell2= thisrow2.insertCell(i);
+					thiscell2.innerHTML=grades[i].grade;
+					thiscell2.align="center";
+					
+				}
+				document.getElementById("Grade").style.display="block";
+				document.getElementById("hideDiv").style.display="block";		
+				
+			}
+			function closeGrade(){
+				var len=gradeTable.rows.length;  
+                for(var i=0;i&lt;len;i++){  
+       			 gradeTable.deleteRow(0); 
+  				  }
+				document.getElementById("Grade").style.display="none";
+				document.getElementById("hideDiv").style.display="none";		
+			}
+		
+		</script>
+</head>
+		<body>
+			
+				<!-- 过滤条件(搜索) -->
+				
+				<!-- 教师信息内容区域（数据列） -->
+			<div class="panel panel-default" >
+                        <div class="panel-heading">
+                        <span class="xinxiSpan" >学生信息</span>
+			                <div id="addbutton" style="float: right;margin-right: 30px;margin-top: auto;">
+								<!--连接到添加页面-->
+								<button class="btn btn-default" onclick="openTeainf();">添加学生</button>
+							</div>
+							
+                        
+				</div>
+				<div id="serach">
+					<form action="" method="get">
+							<div>
+								<input type="text" class="form-control" style="width: 150PX;" id="exampleInputName2" placeholder="输入学生ID"/>
+								<input style="position: absolute;margin-left: 155px;margin-top: -34px;" class="btn btn-default" type="button" value="搜索" onclick="searchBtn();"/>
+							</div>
+					</form>
+                        </div>
+                   <!--表格-->
+                        <div class="panel-body" style="width: 95%;">
+                            <div class="table-responsive">
+                                <table name="teaTable" class="table table-striped table-bordered table-hover" id="teaTable">
+						<!-- 表头-->
+						<tr align="center" valign="middle" id="TableTitle">
+							
+							<td width="2%" align="center">选择</td>
+							<td width="10%" align="center">学号</td>
+							<td width="7%" align="center">姓名</td>
+							<td width="10%" align="center">邮箱</td>
+							<td width="7%" align="center">电话</td>
+							<td width="10%" align="center">身份证</td>
+							<td width="4%" align="center">查看成绩</td>
+							<td width="10%" align="center">操作</td>
+						</tr>
+					</table>
+				</div>
+				</div>
+				 
+			</div>
+			<!--隐藏框-->
+			<div id="hideDiv"></div>
+			<!--添加弹出列表-->
+			<div id="teainf1">	
+				<p style="font-family: 'Open Sans', helvetica, arial, sans-serif;color: #4d5b76;margin-left:100px ;font-size: 25px;">添加学生</p>
+				<!--添加action连接-->
+				<form id="myform" action="" method="post" onsubmit="return false;">	
+				<p class="pCSS">学&nbsp;&nbsp;&nbsp;&nbsp;号：<input style="border: 1px solid #84A5C6;"  class="input_into" id="input_into1" type="text"  onclick="selectText(event)"/></p>
+				<p class="pCSS">姓&nbsp;&nbsp;&nbsp;&nbsp;名：<input style="border: 1px solid #84A5C6;"   class="input_into" id="input_into2" type="text"  onclick="selectText(event)"/></p>
+				<p class="pCSS">邮&nbsp;&nbsp;&nbsp;&nbsp;箱：<input style="border: 1px solid #84A5C6;"   class="input_into" id="input_into3" type="text"  onclick="selectText(event)"/></p>
+				<p class="pCSS">电&nbsp;&nbsp;&nbsp;&nbsp;话：<input style="border: 1px solid #84A5C6;"   class="input_into" id="input_into4" type="text"  onclick="selectText(event)"/></p>
+				<p class="pCSS">身份证：<input style="border: 1px solid #84A5C6;" class="input_into" id="input_into5" type="text"  onclick="selectText(event)"/></p>
+			    
+				<div id="baocun" style="margin-left: 75px;">
+					
+					<input type="submit" class="btn btn-default" name="" id="" value="保存" onclick="saveTeainf();" />&nbsp;&nbsp;&nbsp;&nbsp;
+					<button class="btn btn-default" onclick="closeTeainf();">退出</button>
+				
+				</div>
+					</form>
+			</div>
+			<!--修改弹出列表-->
+			<div id="teainf2">	
+				<!--添加action和method-->
+				<form id="myform" action="" method="post" onsubmit="return checkNumber();">	
+					<p style="font-family: 'Open Sans', helvetica, arial, sans-serif;color: #4d5b76;margin-left:100px ;font-size: 25px;">修改学生</p>
+				<p>学&nbsp;&nbsp;&nbsp;&nbsp;号：<input readonly="readonly" class="input_into" id="input_into1-1" type="text" value="" onclick="selectText(event)"/></p>
+				<p>姓&nbsp;&nbsp;&nbsp;&nbsp;名：<input readonly="readonly" class="input_into" id="input_into2-1" type="text" value="" onclick="selectText(event)"/></p>
+				<p>邮&nbsp;&nbsp;&nbsp;&nbsp;箱：<input readonly="readonly" class="input_into" id="input_into3-1" type="text" value="" onclick="selectText(event)"/></p>
+				<p>电&nbsp;&nbsp;&nbsp;&nbsp;话：<input readonly="readonly" class="input_into" id="input_into4-1" type="text" value="" onclick="selectText(event)"/></p>
+				<p>身份证：<input readonly="readonly" class="input_into" id="input_into5-1" type="text" value="" onclick="selectText(event)"/></p>
+				<div id="baocun">
+					
+				<input type="button" id="change" class="btn btn-default"  value="修改" onclick="changeBtn();"/>
+				<input type="submit" id="save1" class="btn btn-default.shover"  value="保存" onclick="window.location.href='students_info_list.html'"/>
+				</div>
+					</form>
+			</div>
+			<div id="Grade">
+				<div class="panel-body" >
+                            <div class="table-responsive">
+                                <table name="teaTable" class="table table-striped table-bordered table-hover" id="gradeTable">
+                                	<caption name="gradeCaption" id="gradeCaption"></caption>
+  								</table>
+						<center>
+							<button onclick="closeGrade();" class="btn btn-default">关闭</button>
+						</center>	
+							</div>
+				</div>
+			</div>	
+			<!--弹出添加教师的信息框-->
+		</body>
+</html>

@@ -33,7 +33,7 @@ public class LoginController {
 				servletRequest.getSession(true).setAttribute("user", user); 
 				//密码正确则判断身份，返回对应页面
 				if(t.getRole().equals("admin")) {					
-					return "manager/admin";
+					return "admin/admin";
 				}
 				else {
 					return "teacher/在线考试1";
@@ -69,7 +69,6 @@ public class LoginController {
 	@RequestMapping(value="/student",method=RequestMethod.GET)
 	public String student(HttpServletRequest request){
 		
-		System.out.println(request.getParameter("id"));
 		return "student/在线考试1";
 	}
 }
