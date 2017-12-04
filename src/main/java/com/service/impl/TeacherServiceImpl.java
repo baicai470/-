@@ -44,6 +44,21 @@ public class TeacherServiceImpl implements TeacherService{
 		return courses;
 	}
 
+	@Override
+	public void saveTeacher(Teacher teacher) {
+		teacherDao.save(teacher);
+	}
+
+	@Override
+	public void deleteTeacher(String id) {
+		teacherDao.delete(Integer.valueOf(id));
+	}
+
+	@Override
+	public List<Teacher> findAll() {
+		return teacherDao.findAll();
+	}
+
 
 
 
