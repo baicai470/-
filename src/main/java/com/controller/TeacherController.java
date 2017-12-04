@@ -78,6 +78,9 @@ public class TeacherController {
 		int CphQnum=Integer.valueOf(request.getParameter("CphQnum"));
 		Exam ex=examService.createPaper("数据库", CQnum, SQnum, CphQnum);
 		ex.setBeginTime(getTime());
+		ex.setCQScore(Integer.parseInt(request.getParameter("CQscore")));
+		ex.setSQScore(Integer.parseInt(request.getParameter("SQscore")));
+		ex.setCphQScore(Integer.parseInt(request.getParameter("CphQscore")));
 		examService.savePaper(ex);
 		return new ModelAndView("teacher/index5");
 	}

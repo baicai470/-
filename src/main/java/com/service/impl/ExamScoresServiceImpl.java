@@ -12,6 +12,7 @@ import com.entity.ExamScores;
 import com.model.Choose;
 import com.model.SelfTestESet;
 import com.service.ExamScoresService;
+import com.service.ExamService;
 
 @Service("ExamScore")
 public class ExamScoresServiceImpl implements ExamScoresService{
@@ -19,10 +20,25 @@ public class ExamScoresServiceImpl implements ExamScoresService{
 	@Autowired
 	private ExamScoreDao examScoreDao;
 	
+	@Autowired
+	ExamService examService;
+	
 	@Override
 	public String saveExamScore(ExamScores es) {
 		//TODO 批改试卷还没写
-		
+		List<ChoiceQuestion> choiceQuestions=examService.getListCQ(es.getExam().getChoiceQuestionSet());
+		String CQScoresSet=new String();
+		String[] CQlist =es.getChoiceQuestionAnswerset().split("/");
+		double score=es.getExam().getCQScore()/choiceQuestions.size();
+		for(int i=0;i<CQlist.length;i++){
+			ChoiceQuestion cQuestion=choiceQuestions.get(i);
+			if(CQlist[i].charAt(0)!=cQuestion.getAnswer()) {
+				CQScoresSet+="0/";
+			}else{
+				CQScoresSet+=score+"/";
+			}
+		}
+		es.setChoiceQuestionScore(CQScoresSet);
 		examScoreDao.save(es);
 		return "保存成功";
 	}
@@ -50,5 +66,16 @@ public class ExamScoresServiceImpl implements ExamScoresService{
 		selfTestESet.setErrorCQuestions(errorSet);
 		selfTestESet.setScores(Score);
 		return selfTestESet;
+	}
+
+	@Override
+	public List<ExamScores> getAllPaperByPaperId(String paperId) {
+		
+		return examScoreDao.findByExamPaperId(Integer.valueOf(paperId));
+	}
+
+	@Override
+	public ExamScores getExamScoresById(String Id) {
+		return examScoreDao.findOne(Integer.valueOf(Id));
 	}
 }

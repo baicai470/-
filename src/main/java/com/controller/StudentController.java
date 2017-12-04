@@ -76,8 +76,6 @@ public class StudentController {
 	public ModelAndView student_SelfTest2(HttpServletRequest request,Choose choose,Model model ){
 		@SuppressWarnings("unchecked")
 		List<ChoiceQuestion> choiceQuestions=(List<ChoiceQuestion>) request.getSession(true).getAttribute("CQs");
-		System.out.println(choiceQuestions.size());
-		//return new ModelAndView("student/SelfTest","CQs",model);
 		SelfTestESet errorSet=examScoresService.getErrorSet(choiceQuestions, choose);
 		model.addAttribute("errorSet", errorSet);
 		return new ModelAndView("/student/SelfTestScore","ESet",model);
@@ -88,7 +86,7 @@ public class StudentController {
 		return new ModelAndView("student/demo_iframe");
 	}
 	@GetMapping("/student_index5")
-	public ModelAndView student_index5(){
+	public ModelAndView student_index5(HttpServletRequest request){
 		return new ModelAndView("student/index5");
 	}
 

@@ -28,4 +28,16 @@ public interface ExamScoresService {
 	 * @return
 	 */
 	public  SelfTestESet getErrorSet(List<ChoiceQuestion> CQs,Choose ch);
+	/**
+	 * 根据考试id查询所有答题卡
+	 * @param paperId
+	 * @return
+	 */
+	public List<ExamScores> getAllPaperByPaperId(String paperId);
+	/**
+	 * 根据ExamScores Id查看答题卡
+	 * @param Id
+	 * @return
+	 */
+	public ExamScores getExamScoresById(String Id);
 }

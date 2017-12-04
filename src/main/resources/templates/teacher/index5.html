@@ -23,9 +23,15 @@
 		<p>no exam in your list</p>
 	</div>
 	<form method="post" action="/createExam">
-		输入试卷选择题数目:<input type="text" name="CQnum" /> <r/> 
-		输入试卷填空题数目:<input type="text" name="SQnum" /> <br/>
-		输入试卷综合题数目:<input type="text" name="CphQnum" /> <br/>
+		输入试卷选择题数目:<input type="text" name="CQnum" /> 
+		输入选择题总分:<input type="text" name="CQscore" />
+		<br/> 
+		输入试卷填空题数目:<input type="text" name="SQnum" /> 
+		输入填空题总分:<input type="text" name="SQscore" />
+		<br/>
+		输入试卷综合题数目:<input type="text" name="CphQnum" /> 
+		输入综合题总分:<input type="text" name="CphQscore" />
+		<br/>
 		<input type="submit" value="生成试卷"></input>
 	</form>
 </body>

@@ -203,7 +203,8 @@
 		</body>
 		
     
-        <script>
+         <script th:inline="javascript">
+         /*<![CDATA[*/
         	//test用的json数据
         	var teachers=[
         		{"tcID":"1","name":"一号","email":"一号邮箱号","tel":"一号电话","id":"一号身份证"},
@@ -213,10 +214,10 @@
         		{"tcID":"5","name":"五号","email":"五号邮箱号","tel":"五号电话","id":"五号身份证"}
         		];
         		//将数据导入表格中
-        		for(var i=0;i&lt;teachers.length;i++){
+        		for(var i=0;i<teachers.length;i++){
         	    var thisrow = teaTable.insertRow(teaTable.rows.length); //确定添加的行的索引位置
 				var thiscell0 = thisrow.insertCell(0);
-				thiscell0.innerHTML = "<input type='checkbox' name='checkbox10' value='checkbox' />";
+				thiscell0.innerHTML = "<input type=\"checkbox\" name=\"checkbox10\" value=\"checkbox\" />";
 				thiscell0.align = "center";
 				var thiscell1 = thisrow.insertCell(1);
 				thiscell1.innerHTML = teachers[i].tcID;
@@ -238,7 +239,7 @@
 				thiscell6.innerHTML="<button class='btn btn-default' onclick='showGrade(event);'>查看成绩</button>";
 				thiscell6.align = "center";
 				var thiscell7=thisrow.insertCell(7);
-				thiscell7.innerHTML = "<span onclick='changePoint(event);' class='glyphicon glyphicon-pencil' onmouseover='this.style.cursor=&quot;hand&quot;;this.style.color=&quot;blue&quot;' onmouseout='this.style.color=&quot;black&quot;'></span>&nbsp;&nbsp;&nbsp;&nbsp;<span onclick='deletePoint(event);' class='glyphicon glyphicon-trash' onmouseover='this.style.cursor=&quot;hand&quot;;this.style.color=&quot;blue&quot;' onmouseout='this.style.color=&quot;black&quot;'></span>";
+				thiscell7.innerHTML = "<span onclick=\"changePoint(event);\" class=\"glyphicon glyphicon-pencil\" onmouseover=\"this.style.cursor='hand'\;this.style.color='blue'\" onmouseout=\"this.style.color='black'\"></span>&nbsp;&nbsp;&nbsp;&nbsp;<span onclick=\"deletePoint(event);\" class=\"glyphicon glyphicon-trash\" onmouseover=\"this.style.cursor='hand'\;this.style.color='blue'\" onmouseout=\"this.style.color='black'\"></span>";
 				thiscell7.align = "center";
 				}
  
@@ -253,7 +254,7 @@
 				//添加信息到列表里面
 				var thisrow = teaTable.insertRow(teaTable.rows.length); //确定添加的行的索引位置
 				var thiscell0 = thisrow.insertCell(0);
-				thiscell0.innerHTML = "<input type='checkbox' name='checkbox10' value='checkbox' />";
+				thiscell0.innerHTML = "<input type=\"checkbox\" name=\"checkbox10\" value=\"checkbox\" />";
 				thiscell0.align = "center";
 				var thiscell1 = thisrow.insertCell(1);
 				thiscell1.innerHTML = document.getElementById("input_into1").value; //定义每个单元格的默认值
@@ -276,7 +277,7 @@
 				thiscell6.align = "center";
 				var thiscell7=thisrow.insertCell(7);
 				thiscell7.align = "center";
-				thiscell7.innerHTML="<span onclick='changePoint(event);' class='glyphicon glyphicon-pencil' onmouseover='this.style.cursor=&quot;hand&quot;;this.style.color=&quot;blue&quot;' onmouseout='this.style.color=&quot;black&quot;'></span>&nbsp;&nbsp;&nbsp;&nbsp;<span onclick='deletePoint(event);' class='glyphicon glyphicon-trash' onmouseover='this.style.cursor=&quot;hand&quot;;this.style.color=&quot;blue&quot;' onmouseout='this.style.color=&quot;black&quot;'></span>";
+				thiscell7.innerHTML="<span onclick=\"changePoint(event);\" class=\"glyphicon glyphicon-pencil\" onmouseover=\"this.style.cursor='hand'\;this.style.color='blue'\" onmouseout=\"this.style.color='black'\"></span>&nbsp;&nbsp;&nbsp;&nbsp;<span onclick=\"deletePoint(event);\" class=\"glyphicon glyphicon-trash\" onmouseover=\"this.style.cursor='hand'\;this.style.color='blue'\" onmouseout=\"this.style.color='black'\"></span>";
 				document.getElementById("input_into1").value="";
 				document.getElementById("input_into2").value="";
 				document.getElementById("input_into3").value="";
@@ -309,12 +310,12 @@
 				var data={"tcID":"1","name":"一号","email":"一号邮箱号","tel":"一号电话","id":"一号身份证"};
 				var table=document.getElementById("teaTable");
 				var len=table.rows.length;  
-                for(var i=1;i&lt;len;i++){  
+                for(var i=1;i<len;i++){  
        			 table.deleteRow(1); 
   				  }
                 var thisrow = teaTable.insertRow(teaTable.rows.length); //确定添加的行的索引位置
 				var thiscell0 = thisrow.insertCell(0);
-				thiscell0.innerHTML = "<input type='checkbox' name='checkbox10' value='checkbox' />";
+				thiscell0.innerHTML = "<input type=\"checkbox\" name=\"checkbox10\" value=\"checkbox\" />";
 				thiscell0.align = "center";
 				var thiscell1 = thisrow.insertCell(1);
 				thiscell1.innerHTML =data.tcID;
@@ -335,7 +336,7 @@
 				thiscell6.innerHTML="<button class='btn btn-default' onclick='showGrade(event);'>查看成绩</button>";
 				thiscell6.align = "center";
 				var thiscell7=thisrow.insertCell(7);
-				thiscell7.innerHTML = "<span onclick='changePoint(event);' class='glyphicon glyphicon-pencil' onmouseover='this.style.cursor=&quot;hand&quot;;this.style.color=&quot;blue&quot;' onmouseout='this.style.color=&quot;black&quot;'></span>&nbsp;&nbsp;&nbsp;&nbsp;<span onclick='deletePoint(event);' class='glyphicon glyphicon-trash' onmouseover='this.style.cursor=&quot;hand&quot;;this.style.color=&quot;blue&quot;' onmouseout='this.style.color=&quot;black&quot;'></span>";
+				thiscell7.innerHTML = "<span onclick=\"changePoint(event);\" class=\"glyphicon glyphicon-pencil\" onmouseover=\"this.style.cursor='hand'\;this.style.color='blue'\" onmouseout=\"this.style.color='black'\"></span>&nbsp;&nbsp;&nbsp;&nbsp;<span onclick=\"deletePoint(event);\" class=\"glyphicon glyphicon-trash\" onmouseover=\"this.style.cursor='hand'\;this.style.color='blue'\" onmouseout=\"this.style.color='black'\"></span>";
 				thiscell7.align = "center";
                 
 				
@@ -391,7 +392,7 @@
 				save.removeAttribute("disabled");
 				document.getElementById("input_into1").select();
 				var inputs=document.getElementsByClassName("input_into");
-				for(var a=0;a&lt;inputs.length;a++){
+				for(var a=0;a<inputs.length;a++){
 					inputs[a].style.border="1px solid #84A5C6";
 				}
 			}
@@ -408,7 +409,7 @@
 				gradeTable.caption.innerHTML=evt.currentTarget.parentNode.parentNode.childNodes[2].innerHTML;
 				var thisrow1 = gradeTable.insertRow(gradeTable.rows.length);
 				var thisrow2 = gradeTable.insertRow(gradeTable.rows.length);
-				for(var i=0;i&lt;3;i++){		
+				for(var i=0;i<3;i++){		
 					var thiscell1= thisrow1.insertCell(i);
 				    thiscell1.innerHTML =grades[i].course;
 					thiscell1.align = "center";
@@ -423,12 +424,12 @@
 			}
 			function closeGrade(){
 				var len=gradeTable.rows.length;  
-                for(var i=0;i&lt;len;i++){  
+                for(var i=0;i<len;i++){  
        			 gradeTable.deleteRow(0); 
   				  }
 				document.getElementById("Grade").style.display="none";
 				document.getElementById("hideDiv").style.display="none";		
 			}
-		
-		</script>
+			/*]]>*/
+			</script>
 </html>
