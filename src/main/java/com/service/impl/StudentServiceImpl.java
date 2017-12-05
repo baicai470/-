@@ -1,6 +1,8 @@
 package com.service.impl;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +25,21 @@ public class StudentServiceImpl implements StudentService{
 	public Student getStudent(String id) {
 		Student s=studentDao.getOne(Integer.valueOf(id));
 		return s;
+	}
+
+	@Override
+	public void saveStudent(Student student) {
+		studentDao.save(student);
+	}
+
+	@Override
+	public void deleteStudent(String id) {
+		studentDao.delete(Integer.valueOf(id));
+	}
+
+	@Override
+	public List<Student> findAll() {
+		return studentDao.findAll();
 	}
 	
 	

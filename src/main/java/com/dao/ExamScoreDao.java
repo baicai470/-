@@ -1,5 +1,7 @@
 package com.dao;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
@@ -10,4 +12,5 @@ public interface ExamScoreDao extends JpaRepository<ExamScores, Integer>,JpaSpec
 
 	ExamScores findByStudentStudentId(int id);
 
+	List<ExamScores> findByExamPaperId(int id);
 }

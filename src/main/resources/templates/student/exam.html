@@ -6,6 +6,7 @@
 </head>
 <body>
 <h2><span th:text="${paper.CourseId}"></span>考试</h2>
+	<form method="post" action="/examAnswer">
 	<div th:unless="${#lists.isEmpty(paper.CQs)}">
 	<h5>一.选择题</h5>
 	<ol>
@@ -37,10 +38,13 @@
 		<ol>
 		<li th:each="CphQ :${paper.CphQs}">
 			<span th:text="${CphQ.descript}"></span>
+			答案: <input type="text" th:name="CphQanswer+${SQStat.index}"/><br/>
 			<dl>
 			</dl>
 		</li>
 		</ol>
 	</div>
+	<button id="submit" name="submit" value="交卷">交卷</button>
+	</form>
 </body>
 </html>

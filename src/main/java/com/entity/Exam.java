@@ -30,11 +30,20 @@ public class Exam implements java.io.Serializable {
 	@Column(name = "choice_question_set", length = 200)
 	private String choiceQuestionSet;
 	
+	@Column(name="choice_question_score")
+	private Integer CQScore;
+	
 	@Column(name = "shortanswer_question_set", length = 100)
 	private String shortanswerQuestionSet;
 	
+	@Column(name="shortanswer_question_score")
+	private Integer SQScore;
+	
 	@Column(name = "comprehensive_question_set", length = 100)
 	private String comprehensiveQuestionSet;
+	
+	@Column(name="comprehensive_question_score")
+	private Integer CphQScore;
 	
 	@Column(name = "begin_time", length = 20)
 	private String beginTime;
@@ -82,6 +91,30 @@ public class Exam implements java.io.Serializable {
 		this.examScoreses = examScoreses;
 	}
 
+
+	public Integer getCQScore() {
+		return CQScore;
+	}
+
+	public void setCQScore(Integer cQScore) {
+		CQScore = cQScore;
+	}
+
+	public Integer getSQScore() {
+		return SQScore;
+	}
+
+	public void setSQScore(Integer sQScore) {
+		SQScore = sQScore;
+	}
+
+	public Integer getCphQScore() {
+		return CphQScore;
+	}
+
+	public void setCphQScore(Integer cphQScore) {
+		CphQScore = cphQScore;
+	}
 
 	public int getPaperId() {
 		return this.paperId;

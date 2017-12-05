@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>课程信息</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link href="assets/css/bootstrap.css" rel="stylesheet" />
+		<!-- FontAwesome Styles-->
+		<link href="assets/css/font-awesome.css" rel="stylesheet" />
+		<!-- Morris Chart Styles-->
+		<!-- Custom Styles-->
+		<link href="assets/css/custom-styles.css" rel="stylesheet" />
+		<!-- Google Fonts-->
+		<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+		<!-- TABLE STYLES-->
+		<link href="assets/js/dataTables/dataTables.bootstrap.css" rel="stylesheet" />
+	</head>
+		<style type="text/css">
+			.pCSS {
+				font-family: 'Open Sans', helvetica, arial, sans-serif;
+				color: #4d5b76;
+				margin-left: 30px;
+			}
+		
+			#teainf1 {
+				z-index: 2;
+				position: fixed;
+				background-color: white;
+				display: none;
+				border: 2px solid lightgrey;
+				font-family: lightgrey;
+				padding: 8px;
+				/*margin: 100px;*/
+				top: 30px;
+				left: 350px;
+				width: 380px;
+				box-shadow: #666 0px 0px 5px;
+			}
+			
+			
+			#teainf2 {
+				z-index: 2;
+				position: fixed;
+				background-color: white;
+				display: none;
+				border: 2px solid lightgrey;
+				font-family: lightgrey;
+				padding: 8px;
+				/*margin: 100px;*/
+				top: 30px;
+				left: 350px;
+				width: 380px;
+				box-shadow: #666 0px 0px 5px;
+			}
+			
+			input.input_into {
+				font-family: "微软雅黑";
+				border: inherit;
+				text-align: left;
+				/*	width: 40%;*/
+				padding: 0px;
+			}
+			
+			button:.hover {
+				background-color: #ddd;
+			}	
+			.FunctionButton {
+				background-color: lightgray float: left;
+				height: 16px;
+				font-size: 12px;
+				border: 1px solid #84A5C6;
+				margin: 0;
+				margin-left: 8px;
+				padding-left: 5px;
+				padding-right: 5px;
+				padding-top: 3px;
+			}
+		</style>
+		<body>
+			<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css" />
+			<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css"/>
+			<cenetr>
+				<!-- 过滤条件(搜索) -->
+
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<span style="font-size: 25px;">所教课程</span>
+					</div>
+					<!--表格-->
+					<div class="panel-body" style="width: 80%;">
+						<div class="table-responsive">
+							<table name="course_Table" class="table table-striped table-bordered table-hover" id="course_Table">
+								<!-- 表头-->
+								<tr align="center" valign="middle" id="TableTitle">	
+									<td width="2%" align="center">课程号</td>
+									<td width="5%" align="center">课程名</td>
+									<td width="7%" align="center">专业班级</td>
+									<td width="2%" align="center">学生人数</td>
+								</tr>
+							</table>
+						</div>
+						</div>
+						</div>
+			</cenetr>
+<!-- 			<form action=''class='testpage'>
+			<table><tr>
+			</table>
+			</form> -->
+		</body>
+		<script th:inline="javascript">
+		 /*<![CDATA[*/
+			//test用的json数据
+			var course = [{
+					"c_number": "1",
+					"c_name": "一号课程名",
+					"major": "一号班级",
+					"s_count":"数量1"
+				},
+				{
+				"c_number": "2",
+					"c_name": "二号课程名",
+					"major": "二号班级",
+					"s_count":"数量2"
+				},
+				{
+					"c_number": "3",
+					"c_name": "三号课程名",
+					"major": "三号班级",
+					"s_count":"数量3"
+				},
+			];
+			//将数据导入表格中
+			for(var i = 0; i <course.length; i++) {
+				var thisrow = course_Table.insertRow(course_Table.rows.length); //确定添加的行的索引位置
+				//var thiscell0 = thisrow.insertCell(0);
+				//thiscell0.innerHTML = "<input type=\"checkbox\" name=\"checkbox10\" value=\"checkbox\" />";
+				//thiscell0.align = "center";
+				var thiscell0 = thisrow.insertCell(0);
+				thiscell0.innerHTML = course[i].c_number;
+				thiscell0.align = "center";
+				var thiscell1 = thisrow.insertCell(1);
+				thiscell1.innerHTML = course[i].c_name;
+				thiscell1.align = "center";
+				var thiscell2 = thisrow.insertCell(2);
+				thiscell2.innerHTML = course[i].major;
+				thiscell2.align = "center";
+				var thiscell3 = thisrow.insertCell(3);
+				thiscell3.innerHTML = course[i].s_count;
+				thiscell3.align = "center";
+			}
+
+			function selectText(evt) {
+				if(evt.currentTarget.focus) {
+					evt.currentTarget.select();
+				}
+			}
+			function deletePoint(evt) {
+
+				//利用对话框返回的值 （true 或者 false）
+				if(confirm("是否删除该行")) {
+
+					//如果是true ，那么就删除  
+					var fPoint = evt.currentTarget.parentNode.parentNode;
+					var childs = fPoint.childNodes;
+					for(var i = childs.length - 1; i >= 0; i--) {
+						fPoint.removeChild(childs[i]);
+					}
+				} else {}
+			}
+			var checkNumber = function() {
+				return true;
+			}
+			function getTestpage()
+			{
+				
+			}
+			/*]]>*/
+		</script>
+</html>
