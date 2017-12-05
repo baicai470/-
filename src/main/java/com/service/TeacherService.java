@@ -15,4 +15,6 @@ public interface TeacherService {
 	//通过教师id获得教师类
 	public Teacher getTeacher(String id);
 	
+	//获得全部教师信息s's
+	public List<Teacher> getAllTeachers();
 }

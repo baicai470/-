@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 	<head>
 		<meta charset="UTF-8"/>
 		<title>湖大教育  专注在线考试  专注高校教育</title>
@@ -19,7 +19,7 @@
 		
 	</style> 
             <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css" />
-			<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+			<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css"/>
 			
 		
                     <div class="panel panel-default" >
@@ -51,59 +51,58 @@
                         </div>
                     </div>
                 
-    <script src="assets/js/jquery-1.10.2.js"></script>
+    <script src="assets/js/jquery-1.10.2.js">   /*<![CDATA[*//*]]>*/</script>
       <!-- Bootstrap Js -->
-    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/bootstrap.min.js">   /*<![CDATA[*//*]]>*/</script>
     <!-- Metis Menu Js -->
-    <script src="assets/js/jquery.metisMenu.js"></script>
-    <script>
-		var questions={
-		"CHOICE":[
-		{"ID":"1","desc":"（）是按照一定的数据模型组织的、长期存储在计算机内，可为多个用户共享的数据的集合。","A":"数据库系统","B":"数据库","C":"关系数据库","D":"数据库管理系统","trueAns":"B"},
-		{"ID":"2","desc":"数据库系统的基础是（）。","A":"数据结构","B":"数据库管理系统","C":"操作系统","D":"数据模型","trueAns":"D"}
-		],
-		"SHORTANSWER":[
-		{"ID":"1","desc":"数据模型通常由 （）（）和（）3要素组成","trueAns":"数据结构.关系操作.完整性约束"},
-		{"ID":"2","desc":"当前数据库系统的主流是（）","trueAns":"数据结构"}
-		],
-		"COMPREHENSIVE":[]
-		};
-		//添加选择题到选择题div中
-		var CHOICEul = document.getElementById("CHOICE-ol");
-		//要添加的题目li变量
-        var CHOICEli; 
-        //要添加的
-　　　　//添加 li
-       for(var i=0;i<questions.CHOICE.length;i++){
-       	//设置 li 属性，如 id
-       	CHOICEli= document.createElement("li");
-　　　　CHOICEli.setAttribute("id", "CHOICE"+(i+1));
- 
-　　　　CHOICEli.innerHTML = "<ul><li>"+questions.CHOICE[i].desc+"</li><br/><li>A: "+questions.CHOICE[i].A+"</li><li>B: "+questions.CHOICE[i].B+"</li><li>C: "+questions.CHOICE[i].C+"</li><li>D: "+questions.CHOICE[i].D+"</li><br/><li class=\"answer\">正确答案："+questions.CHOICE[i].trueAns+"</li></ul><hr/>";
-　　　　CHOICEul.appendChild(CHOICEli);
-       }
-       //添加填空题
-       var SHORTANSWERul = document.getElementById("SHORTANSWER-ol");
-		//要添加的题目li变量
-        var SHORTANSWERli; 
-        //要添加的
-　　　　//添加 li
-       for(var i=0;i<questions.SHORTANSWER.length;i++){
-       	//设置 li 属性，如 id
-       	SHORTANSWERli= document.createElement("li");
-　　　　SHORTANSWERli.setAttribute("id", "SHORTANSWER"+(i+1));
- 
-　　　　SHORTANSWERli.innerHTML = "<ul><li>"+questions.SHORTANSWER[i].desc+"</li><br/><li></li><br/><li class=\"answer\">正确答案："+questions.SHORTANSWER[i].trueAns+"</li></ul><hr/>";
-　　　　SHORTANSWERul.appendChild(SHORTANSWERli);
-       }
+    <script src="assets/js/jquery.metisMenu.js">   /*<![CDATA[*//*]]>*/</script>
+    <script th:inline="javascript">
+    /*<![CDATA[*/
+    var questions={
+    		"CHOICE":[
+    		{"ID":"1","desc":"（）是按照一定的数据模型组织的、长期存储在计算机内，可为多个用户共享的数据的集合。","A":"数据库系统","B":"数据库","C":"关系数据库","D":"数据库管理系统","trueAns":"B"},
+    		{"ID":"2","desc":"数据库系统的基础是（）。","A":"数据结构","B":"数据库管理系统","C":"操作系统","D":"数据模型","trueAns":"D"}
+    		],
+    		"SHORTANSWER":[
+    		{"ID":"1","desc":"数据模型通常由 （）（）和（）3要素组成","trueAns":"数据结构.关系操作.完整性约束"},
+    		{"ID":"2","desc":"当前数据库系统的主流是（）","trueAns":"数据结构"}
+    		],
+    		"COMPREHENSIVE":[]
+    		};
+    		//添加选择题到选择题div中
+    		var CHOICEul = document.getElementById("CHOICE-ol");
+    		//要添加的题目li变量
+            var CHOICEli; 
+            //要添加的
+    　　　　//添加 li
+           for(var i=0;i<questions.CHOICE.length;i++){
+           	//设置 li 属性，如 id
+           	CHOICEli= document.createElement("li");
+    　　　　CHOICEli.setAttribute("id", "CHOICE"+(i+1));
+     
+    　　　　CHOICEli.innerHTML = "<ul><li>"+questions.CHOICE[i].desc+"</li><br/><li>A: "+questions.CHOICE[i].A+"</li><li>B: "+questions.CHOICE[i].B+"</li><li>C: "+questions.CHOICE[i].C+"</li><li>D: "+questions.CHOICE[i].D+"</li><br/><li class=\"answer\">正确答案："+questions.CHOICE[i].trueAns+"</li></ul><hr/>";
+    　　　　CHOICEul.appendChild(CHOICEli);
+           }
+           //添加填空题
+           var SHORTANSWERul = document.getElementById("SHORTANSWER-ol");
+    		//要添加的题目li变量
+            var SHORTANSWERli; 
+            //要添加的
+    　　　　//添加 li
+           for(var i=0;i<questions.SHORTANSWER.length;i++){
+           	//设置 li 属性，如 id
+           	SHORTANSWERli= document.createElement("li");
+    　　　　SHORTANSWERli.setAttribute("id", "SHORTANSWER"+(i+1));
+     
+    　　　　SHORTANSWERli.innerHTML = "<ul><li>"+questions.SHORTANSWER[i].desc+"</li><br/><li></li><br/><li class=\"answer\">正确答案："+questions.SHORTANSWER[i].trueAns+"</li></ul><hr/>";
+    　　　　SHORTANSWERul.appendChild(SHORTANSWERli);
+           }
+
 　　　　
- 
-　　　　
-		
-			
+           /*]]>*/
 		
 	</script>
 	
-	</body>
+	<body></body>
 	
 </html>

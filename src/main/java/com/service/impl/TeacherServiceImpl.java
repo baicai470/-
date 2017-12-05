@@ -44,6 +44,11 @@ public class TeacherServiceImpl implements TeacherService{
 		return courses;
 	}
 
+	@Override
+	public List<Teacher> getAllTeachers() {
+		return teacherDao.findAll();
+	}
+
 
 
 

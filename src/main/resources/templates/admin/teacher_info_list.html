@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 
 	<head>
 		<title>在线考试系统 教师信息列表</title>
@@ -16,7 +16,6 @@
      <!-- TABLE STYLES-->
     <link href="assets/js/dataTables/dataTables.bootstrap.css" rel="stylesheet" />
 	</head>
-
 
 		<style type="text/css">
 			.pCSS{  font-family: 'Open Sans', helvetica, arial, sans-serif;    color: #4d5b76;margin-left:30px ;}
@@ -113,10 +112,10 @@
                         
 				</div>
 				<div id="serach">
-					<form action="" method="get">
+					<form action="/findTeacher" method="post">
 						<!--<input type="hidden" name="method" value="search">-->
 							<div>
-								<input type="text" class="form-control" style="width: 150PX;" id="exampleInputName2" placeholder="输入ID"/>
+								<input type="text" class="form-control" name="TeacherId" style="width: 150PX;" id="exampleInputName2" placeholder="输入ID"/>
 						<input style="position: absolute;margin-left: 155px;margin-top: -34px;" class="btn btn-default" type="button" value="搜索" onclick="searchBtn();" />
 							
 							</div>
@@ -199,212 +198,217 @@
 			<!--弹出添加教师的信息框-->
 			
 		</body>
-		
+		<!--  -->
     
-        <script>
-        	//test用的json数据
-        	var teachers=[
-        		{"tcID":"1","name":"一号","email":"一号邮箱号","id":"一号身份证","tel":"一号电话"},
-        		{"tcID":"2","name":"二号","email":"二号邮箱号","id":"二号身份证","tel":"二号电话"},
-        		{"tcID":"3","name":"三号","email":"三号邮箱号","id":"三号身份证","tel":"三号电话"},
-        		{"tcID":"4","name":"四号","email":"四号邮箱号","id":"四号身份证","tel":"四号电话"},
-        		{"tcID":"5","name":"五号","email":"五号邮箱号","id":"五号身份证","tel":"五号电话"}
-        		];
-        		//将数据导入表格中
-        		for(var i=0;i&lt;teachers.length;i++){
-        	    var thisrow = teaTable.insertRow(teaTable.rows.length); //确定添加的行的索引位置
-				
-				var thiscell0 = thisrow.insertCell(0);
-				thiscell0.innerHTML = teachers[i].tcID;
-				thiscell0.align = "center";
-				var thiscell1 = thisrow.insertCell(1);
-				thiscell1.innerHTML =teachers[i].name;
-				thiscell1.align = "center";
-				var thiscell2 = thisrow.insertCell(2);
-				
-				thiscell2.innerHTML =teachers[i].email;
-				thiscell2.align = "center";
-				var thiscell3 = thisrow.insertCell(3);
-				thiscell3.innerHTML =teachers[i].id;
-				thiscell3.align = "center";
-				var thiscell4 = thisrow.insertCell(4);
-				thiscell4.innerHTML = teachers[i].tel;
-				thiscell4.align = "center";
-				var thiscell5=thisrow.insertCell(5);
-				thiscell5.innerHTML = "<button class='btn btn-default' onclick='showCourse(event);'>查看课程</button>"
-				thiscell5.align = "center";
-				var thiscell6=thisrow.insertCell(6);
-				thiscell6.innerHTML = "<span onclick='changePoint(event);' class='glyphicon glyphicon-pencil' onmouseover='this.style.cursor=&quot;hand&quot;;this.style.color=&quot;blue&quot;' onmouseout='this.style.color=&quot;black&quot;'></span>&nbsp;&nbsp;&nbsp;&nbsp;<span onclick='deletePoint(event);' class='glyphicon glyphicon-trash' onmouseover='this.style.cursor=&quot;hand&quot;;this.style.color=&quot;blue&quot;' onmouseout='this.style.color=&quot;black&quot;'></span>";
-				thiscell6.align = "center";
-				}
- 
-        
-			function selectText(evt){
-				if(evt.currentTarget.focus){
-					evt.currentTarget.select();
-				}
-			}
-//			保存到表里面
-			function saveTeainf(){
-				//添加信息到列表里面
-				var thisrow = teaTable.insertRow(teaTable.rows.length); //确定添加的行的索引位置
-				var thiscell0 = thisrow.insertCell(0);
-				thiscell0.innerHTML = document.getElementById("input_into1").value; //定义每个单元格的默认值
-				thiscell0.align = "center";
-				var thiscell1 = thisrow.insertCell(1);
-				thiscell1.innerHTML =document.getElementById("input_into2").value;
-				thiscell1.align = "center";
-				var thiscell2 = thisrow.insertCell(2);
-				
-				thiscell2.innerHTML = document.getElementById("input_into3").value;
-				thiscell2.align = "center";
-				var thiscell3 = thisrow.insertCell(3);
-				thiscell3.innerHTML =document.getElementById("input_into4").value;
-				thiscell3.align = "center";
-				var thiscell4 = thisrow.insertCell(4);
-				thiscell4.innerHTML = document.getElementById("input_into5").value;
-				thiscell4.align = "center";
-				var thiscell5=thisrow.insertCell(5);
-				thiscell5.align = "center";
-				thiscell5.innerHTML="<button class='btn btn-default' onclick='showCourse(event);'>查看课程</button>";
-				var thiscell6=thisrow.insertCell(6);
-				thiscell6.innerHTML = "<span onclick='changePoint(event);' class='glyphicon glyphicon-pencil' onmouseover='this.style.cursor=&quot;hand&quot;;this.style.color=&quot;blue&quot;' onmouseout='this.style.color=&quot;black&quot;'></span>&nbsp;&nbsp;&nbsp;&nbsp;<span onclick='deletePoint(event);' class='glyphicon glyphicon-trash' onmouseover='this.style.cursor=&quot;hand&quot;;this.style.color=&quot;blue&quot;' onmouseout='this.style.color=&quot;black&quot;'></span>";
-				thiscell6.align = "center";
-				document.getElementById("input_into1").value="";
-				document.getElementById("input_into2").value="";
-				document.getElementById("input_into3").value="";
-				document.getElementById("input_into4").value="";
-				document.getElementById("input_into5").value="";
-				document.getElementById("teainf1").style.display="none";
-				document.getElementById("hideDiv").style.display="none";
-			}
-			//关闭弹出框
-			function closeTeainf(){
-				document.getElementById("input_into1").value="";
-				document.getElementById("input_into2").value="";
-				document.getElementById("input_into3").value="";
-				document.getElementById("input_into4").value="";
-				document.getElementById("input_into5").value="";
-				document.getElementById("teainf1").style.display="none";
-				document.getElementById("hideDiv").style.display="none";
-			}
-			//打开弹出框
-			function openTeainf(){
-				document.getElementById("teainf1").style.display="block";
-				document.getElementById("hideDiv").style.display="block";
-			}
-			function searchBtn() {
-				//ajax获得json数据
-				var data={"tcID":"1","name":"一号","email":"一号邮箱号","id":"一号身份证","tel":"一号电话"};
-				var table=document.getElementById("teaTable");
-				var len=table.rows.length;  
-                for(var i=1;i&lt;len;i++){  
-       			 table.deleteRow(1); 
-  				  }
-                var thisrow = teaTable.insertRow(teaTable.rows.length); //确定添加的行的索引位置
-				var thiscell0 = thisrow.insertCell(0);
-				thiscell0.innerHTML =data.tcID;
-				thiscell0.align = "center";
-				var thiscell1 = thisrow.insertCell(1);
-				thiscell1.innerHTML =data.name;
-				thiscell1.align = "center";
-				var thiscell2 = thisrow.insertCell(2);
-				
-				thiscell2.innerHTML =data.email;
-				thiscell2.align = "center";
-				var thiscell3 = thisrow.insertCell(3);
-				thiscell3.innerHTML =data.id;
-				thiscell3.align = "center";
-				var thiscell4 = thisrow.insertCell(4);
-				thiscell4.innerHTML = data.tel;
-				thiscell4.align = "center";
-				var thiscell5=thisrow.insertCell(5);
-				thiscell5.align = "center";
-				thiscell5.innerHTML="<button class='btn btn-default' onclick='showCourse(event);'>查看课程</button>";
-				var thiscell6=thisrow.insertCell(6);
-				thiscell6.innerHTML = "<span onclick='changePoint(event);' class='glyphicon glyphicon-pencil' onmouseover='this.style.cursor=&quot;hand&quot;;this.style.color=&quot;blue&quot;' onmouseout='this.style.color=&quot;black&quot;'></span>&nbsp;&nbsp;&nbsp;&nbsp;<span onclick='deletePoint(event);' class='glyphicon glyphicon-trash' onmouseover='this.style.cursor=&quot;hand&quot;;this.style.color=&quot;blue&quot;' onmouseout='this.style.color=&quot;black&quot;'></span>";
-				thiscell6.align = "center";
-                
-				
-				}
-				
+        <script th:inline="javascript">
+        /*<![CDATA[*/
+      //test用的json数据
+    	var teachers=[[${teacherModel.teacherTest}]];
+    	<!-- 
+		[
+		{"tcID":"1","name":"一号","email":"一号邮箱号","id":"一号身份证","tel":"一号电话"},
+		{"tcID":"2","name":"二号","email":"二号邮箱号","id":"二号身份证","tel":"二号电话"},
+		{"tcID":"3","name":"三号","email":"三号邮箱号","id":"三号身份证","tel":"三号电话"},
+		{"tcID":"4","name":"四号","email":"四号邮箱号","id":"四号身份证","tel":"四号电话"},
+		{"tcID":"5","name":"五号","email":"五号邮箱号","id":"五号身份证","tel":"五号电话"}
+		]; 
+    -->
+    		//将数据导入表格中
+    		for(var i=0;i<teachers.length;i++){
+    	    var thisrow = teaTable.insertRow(teaTable.rows.length); //确定添加的行的索引位置
 			
-			function deletePoint(evt){
-				 //利用对话框返回的值 （true 或者 false）
-    			if(confirm("是否删除该行"))
-  				{
- 
-            		//如果是true ，那么就删除  
-					var fPoint=evt.currentTarget.parentNode.parentNode;
-					var childs=fPoint.childNodes;
-					for(var i=childs.length-1;i>=0;i--){
-						fPoint.removeChild(childs[i]);
-					}			 
-			    }else{}
+			var thiscell0 = thisrow.insertCell(0);
+			thiscell0.innerHTML =   teachers[i].tcID;  <!-- teachers[i].TcID; -->
+			thiscell0.align = "center";
+			var thiscell1 = thisrow.insertCell(1);
+			thiscell1.innerHTML =teachers[i].name;
+			thiscell1.align = "center";
+			var thiscell2 = thisrow.insertCell(2);
+			
+			thiscell2.innerHTML =teachers[i].email;
+			thiscell2.align = "center";
+			var thiscell3 = thisrow.insertCell(3);
+			thiscell3.innerHTML =teachers[i].id;
+			thiscell3.align = "center";
+			var thiscell4 = thisrow.insertCell(4);
+			thiscell4.innerHTML = teachers[i].tel;
+			thiscell4.align = "center";
+			var thiscell5=thisrow.insertCell(5);
+			thiscell5.innerHTML = "<button class='btn btn-default' onclick='showCourse(event);'>查看课程</button>"
+			thiscell5.align = "center";
+			var thiscell6=thisrow.insertCell(6);
+			thiscell6.innerHTML = "<span onclick=\"changePoint(event);\" class=\"glyphicon glyphicon-pencil\" onmouseover=\"this.style.cursor='hand'\;this.style.color='blue'\" onmouseout=\"this.style.color='black'\"></span>&nbsp;&nbsp;&nbsp;&nbsp;<span onclick=\"deletePoint(event);\" class=\"glyphicon glyphicon-trash\" onmouseover=\"this.style.cursor='hand'\;this.style.color='blue'\" onmouseout=\"this.style.color='black'\"></span>";
+			thiscell6.align = "center";
 			}
-	
-	
-			//对修改弹出框的操作
-			function changePoint(evt){
+
+    
+		function selectText(evt){
+			if(evt.currentTarget.focus){
+				evt.currentTarget.select();
+			}
+		}
+//		保存到表里面
+		function saveTeainf(){
+			//添加信息到列表里面
+			var thisrow = teaTable.insertRow(teaTable.rows.length); //确定添加的行的索引位置
+			var thiscell0 = thisrow.insertCell(0);
+			thiscell0.innerHTML = document.getElementById("input_into1").value; //定义每个单元格的默认值
+			thiscell0.align = "center";
+			var thiscell1 = thisrow.insertCell(1);
+			thiscell1.innerHTML =document.getElementById("input_into2").value;
+			thiscell1.align = "center";
+			var thiscell2 = thisrow.insertCell(2);
+			
+			thiscell2.innerHTML = document.getElementById("input_into3").value;
+			thiscell2.align = "center";
+			var thiscell3 = thisrow.insertCell(3);
+			thiscell3.innerHTML =document.getElementById("input_into4").value;
+			thiscell3.align = "center";
+			var thiscell4 = thisrow.insertCell(4);
+			thiscell4.innerHTML = document.getElementById("input_into5").value;
+			thiscell4.align = "center";
+			var thiscell5=thisrow.insertCell(5);
+			thiscell5.align = "center";
+			thiscell5.innerHTML="<button class='btn btn-default' onclick='showCourse(event);'>查看课程</button>";
+			var thiscell6=thisrow.insertCell(6);
+			thiscell6.innerHTML = "<span onclick=\"changePoint(event);\" class=\"glyphicon glyphicon-pencil\" onmouseover=\"this.style.cursor='hand'\;this.style.color='blue'\" onmouseout=\"this.style.color='black'\"></span>&nbsp;&nbsp;&nbsp;&nbsp;<span onclick=\"deletePoint(event);\" class=\"glyphicon glyphicon-trash\" onmouseover=\"this.style.cursor='hand'\;this.style.color='blue'\" onmouseout=\"this.style.color='black'\"></span>";
+			thiscell6.align = "center";
+			document.getElementById("input_into1").value="";
+			document.getElementById("input_into2").value="";
+			document.getElementById("input_into3").value="";
+			document.getElementById("input_into4").value="";
+			document.getElementById("input_into5").value="";
+			document.getElementById("teainf1").style.display="none";
+			document.getElementById("hideDiv").style.display="none";
+		}
+		//关闭弹出框
+		function closeTeainf(){
+			document.getElementById("input_into1").value="";
+			document.getElementById("input_into2").value="";
+			document.getElementById("input_into3").value="";
+			document.getElementById("input_into4").value="";
+			document.getElementById("input_into5").value="";
+			document.getElementById("teainf1").style.display="none";
+			document.getElementById("hideDiv").style.display="none";
+		}
+		//打开弹出框
+		function openTeainf(){
+			document.getElementById("teainf1").style.display="block";
+			document.getElementById("hideDiv").style.display="block";
+		}
+		function searchBtn() {
+			//ajax获得json数据
+			var data={"tcID":"1","name":"一号","email":"一号邮箱号","id":"一号身份证","tel":"一号电话"}	;
+			var table=document.getElementById("teaTable");
+			var len=table.rows.length;  
+            for(var i=1;i<len;i++){  
+   			 table.deleteRow(1); 
+				  }
+            var thisrow = teaTable.insertRow(teaTable.rows.length); //确定添加的行的索引位置
+			var thiscell0 = thisrow.insertCell(0);
+			thiscell0.innerHTML =data.tcID;
+			thiscell0.align = "center";
+			var thiscell1 = thisrow.insertCell(1);
+			thiscell1.innerHTML =data.name;
+			thiscell1.align = "center";
+			var thiscell2 = thisrow.insertCell(2);
+			
+			thiscell2.innerHTML =data.email;
+			thiscell2.align = "center";
+			var thiscell3 = thisrow.insertCell(3);
+			thiscell3.innerHTML =data.id;
+			thiscell3.align = "center";
+			var thiscell4 = thisrow.insertCell(4);
+			thiscell4.innerHTML = data.tel;
+			thiscell4.align = "center";
+			var thiscell5=thisrow.insertCell(5);
+			thiscell5.align = "center";
+			thiscell5.innerHTML="<button class='btn btn-default' onclick='showCourse(event);'>查看课程</button>";
+			var thiscell6=thisrow.insertCell(6);
+			thiscell6.innerHTML = "<span onclick=\"changePoint(event);\" class=\"glyphicon glyphicon-pencil\" onmouseover=\"this.style.cursor='hand'\;this.style.color='blue'\" onmouseout=\"this.style.color='black'\"></span>&nbsp;&nbsp;&nbsp;&nbsp;<span onclick=\"deletePoint(event);\" class=\"glyphicon glyphicon-trash\" onmouseover=\"this.style.cursor='hand'\;this.style.color='blue'\" onmouseout=\"this.style.color='black'\"></span>";
+			thiscell6.align = "center";
+            
+			
+			}
+			
+		
+		function deletePoint(evt){
+			 //利用对话框返回的值 （true 或者 false）
+			if(confirm("是否删除该行"))
+				{
+
+        		//如果是true ，那么就删除  
 				var fPoint=evt.currentTarget.parentNode.parentNode;
 				var childs=fPoint.childNodes;
-				document.getElementById("input_into1-1").value=childs[0].innerHTML;
-				document.getElementById("input_into2-1").value=childs[1].innerHTML;
-				document.getElementById("input_into3-1").value=childs[2].innerHTML;
-				document.getElementById("input_into4-1").value=childs[3].innerHTML;
-				document.getElementById("input_into5-1").value=childs[4].innerHTML;
-				document.getElementById("teainf2").style.display="block";
-				document.getElementById("hideDiv").style.display="block";					
-			}
+				for(var i=childs.length-1;i>=0;i--){
+					fPoint.removeChild(childs[i]);
+				}			 
+		    }else{}
+		}
 
-			var checkNumber=function() {
-			return true;
-			}
 
-			function changeBtn(){
-				//修改
+		//对修改弹出框的操作
+		function changePoint(evt){
+			var fPoint=evt.currentTarget.parentNode.parentNode;
+			var childs=fPoint.childNodes;
+			document.getElementById("input_into1-1").value=childs[0].innerHTML;
+			document.getElementById("input_into2-1").value=childs[1].innerHTML;
+			document.getElementById("input_into3-1").value=childs[2].innerHTML;
+			document.getElementById("input_into4-1").value=childs[3].innerHTML;
+			document.getElementById("input_into5-1").value=childs[4].innerHTML;
+			document.getElementById("teainf2").style.display="block";
+			document.getElementById("hideDiv").style.display="block";					
+		}
+
+		var checkNumber=function() {
+		return true;
+		}
+
+		function changeBtn(){
+			//修改
+			
+			document.getElementById("input_into1-1").readOnly=false;		
+			document.getElementById("input_into2-1").readOnly=false;
+			document.getElementById("input_into3-1").readOnly=false;
+			document.getElementById("input_into4-1").readOnly=false;
+			document.getElementById("input_into5-1").readOnly=false;
+			var save=document.getElementById("save1");
+			var classes=save.className.split(".");
+			save.className=classes[0];
+			save.removeAttribute("disabled");
+			document.getElementById("input_into1").select();
+			var inputs=document.getElementsByClassName("input_into");
+			for(var a=0;a<inputs.length;a++){
+				inputs[a].style.border="1px solid black";
+			}
+		}
+		function showCourse(evt){
+			//要传递的参数
+			var IDNum=evt.currentTarget.parentNode.parentNode.childNodes[1].innerHTML;
+			//。。。			
+			//ajax获得成绩信息
+			var course=[{"course":"课程一号"},{"course":"课程二号"},{"course":"课程三号"}];
+			courseTable.caption.innerHTML=evt.currentTarget.parentNode.parentNode.childNodes[1].innerHTML;
+			var thisrow1 = courseTable.insertRow(courseTable.rows.length);
+			for(var i=0;i<course.length;i++){		
+				var thiscell1= thisrow1.insertCell(i);
+			    thiscell1.innerHTML =course[i].course;
+				thiscell1.align = "center";
 				
-				document.getElementById("input_into1-1").readOnly=false;		
-				document.getElementById("input_into2-1").readOnly=false;
-				document.getElementById("input_into3-1").readOnly=false;
-				document.getElementById("input_into4-1").readOnly=false;
-				document.getElementById("input_into5-1").readOnly=false;
-				var save=document.getElementById("save1");
-				var classes=save.className.split(".");
-				save.className=classes[0];
-				save.removeAttribute("disabled");
-				document.getElementById("input_into1").select();
-				var inputs=document.getElementsByClassName("input_into");
-				for(var a=0;a&lt;inputs.length;a++){
-					inputs[a].style.border="1px solid black";
-				}
 			}
-			function showCourse(evt){
-				//要传递的参数
-				var IDNum=evt.currentTarget.parentNode.parentNode.childNodes[1].innerHTML;
-				//。。。			
-				//ajax获得成绩信息
-				var course=[{"course":"课程一号"},{"course":"课程二号"},{"course":"课程三号"}];
-				courseTable.caption.innerHTML=evt.currentTarget.parentNode.parentNode.childNodes[1].innerHTML;
-				var thisrow1 = courseTable.insertRow(courseTable.rows.length);
-				for(var i=0;i&lt;course.length;i++){		
-					var thiscell1= thisrow1.insertCell(i);
-				    thiscell1.innerHTML =course[i].course;
-					thiscell1.align = "center";
-					
-				}
-				document.getElementById("Course").style.display="block";
-				document.getElementById("hideDiv").style.display="block";		
-				
-			}
-			function closeCourse(){
-				var len=courseTable.rows.length;  
-                for(var i=0;i&lt;len;i++){  
-       			 courseTable.deleteRow(0); 
-  				  }
-				document.getElementById("Course").style.display="none";
-				document.getElementById("hideDiv").style.display="none";		
-			}
-		
+			document.getElementById("Course").style.display="block";
+			document.getElementById("hideDiv").style.display="block";		
+			
+		}
+		function closeCourse(){
+			var len=courseTable.rows.length;  
+            for(var i=0;i<len;i++){  
+   			 courseTable.deleteRow(0); 
+				  }
+			document.getElementById("Course").style.display="none";
+			document.getElementById("hideDiv").style.display="none";		
+		}
+
+		/*]]>*/
 		</script>
 </html>
