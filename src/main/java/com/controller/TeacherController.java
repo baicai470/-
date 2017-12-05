@@ -63,11 +63,11 @@ public class TeacherController {
 		return new ModelAndView("teacher/course_info");
 	}
 
-	@GetMapping("/teacher_index5")
+	@GetMapping("/paperManage")
 	public ModelAndView teacher_index5(HttpServletRequest request,Model model){
 		List<Exam> exams=examService.getAllPaper();
 		model.addAttribute("Exams", exams);
-		return new ModelAndView("teacher/index5");
+		return new ModelAndView("teacher/paperManage");
 	}
 	@GetMapping("/teacher_top")
 	public ModelAndView teacher_top(){
@@ -81,15 +81,29 @@ public class TeacherController {
 	public ModelAndView teacher_footer(){
 		return new ModelAndView("teacher/footer");
 	}
+	@GetMapping("/paperCreate")
+	public ModelAndView paperCreate(){
+		return new ModelAndView("teacher/paperCreate");
+	}
+	@GetMapping("/paperMes")
+	public ModelAndView paperMes(){
+		
+		return new ModelAndView("teacher/paperMes");
+	}
 	@PostMapping("/createExam")
 	public ModelAndView createExam(HttpServletRequest request,Model model){
 		int CQnum=Integer.valueOf(request.getParameter("CQnum"));
 		int SQnum=Integer.valueOf(request.getParameter("SQnum"));
-		int CphQnum=Integer.valueOf(request.getParameter("CphQnum"));
+		int CphQnum=0;//Integer.valueOf(request.getParameter("CphQnum"));
 		Exam ex=examService.createPaper("数据库", CQnum, SQnum, CphQnum);
 		ex.setCQScore(Integer.parseInt(request.getParameter("CQscore")));
 		ex.setSQScore(Integer.parseInt(request.getParameter("SQscore")));
-		ex.setCphQScore(Integer.parseInt(request.getParameter("CphQscore")));
+		//ex.setCphQScore(Integer.parseInt(request.getParameter("CphQscore")));
+		String ymd=request.getParameter("ymd");
+		String BeginTime=request.getParameter("BeginTime");
+		String EndTime=request.getParameter("EndTime");
+		ex.setBeginTime(ymd+" "+BeginTime);
+		ex.setEndTime(ymd+" "+EndTime);
 		examService.savePaper(ex);
 		List<Exam> exams=examService.getAllPaper();
 		model.addAttribute("Exams", exams);

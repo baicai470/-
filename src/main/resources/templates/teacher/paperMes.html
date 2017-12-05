@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript" src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="assets/js/bootstrap-datetimepicker.js"></script> 
+  </head>
+  <style type="text/css">
+  	#contain{margin-top: 30px;margin-left: 30px;}
+  	.pCSS{font-family:'Open Sans',helvetica, arial,sans-serif;color: #4d5b76;font-size: 25px;margin-left:30px ;}
+   
+	.btn{
+		display:inline-block;padding:6px 12px;margin-bottom:0;font-size:14px;font-weight:400;line-height:1.42857143;text-align:center;white-space:nowrap;vertical-align:middle;-ms-touch-action:manipulation;touch-action:manipulation;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;background-image:none;border:1px solid transparent;border-radius:4px;
+		height: 40px;
+		}
+  </style>
+  <body> 
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/bootstrap-datetimepicker.min.css"/>
+    
+       
+    	
+    	
+    		
+    	<form>
+    		
+    		<h3 style="margin-left: 210px;" id="courseName"></h3>
+		    <div style="margin-left: 30px;" id="setTimeAndQuestion">
+	    		
+		    	<h3>设置考试时间   <span style="margin-left: 125px;">设置试卷内容</span></h3>
+		        <div id="datetimepicker1" class="input-append date">
+		        <input id="testDate" name="" data-format="yyyy-MM-dd" type="text" placeholder="考试日期"></input>
+		        <span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span>
+		        </div>
+		        <input id="num1" name="" style="margin-left: 80px;margin-right: 0;width: 170px;" type="text" maxlength="2" pattern="^[0-9]*[1-9][0-9]*$" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" placeholder="选择题数"/>
+		        <br/>
+		        <div id="datetimepicker2" class="input-append">
+		       	<input id="startTime" name="" data-format="hh:mm:ss" type="text" placeholder="考试开始时间"/>
+		       	<span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span>		 
+		        </div>
+		        <input id="num2" name="" style="margin-left: 80px;width: 170px;" type="text" maxlength="2" pattern="^[0-9]*[1-9][0-9]*$" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" placeholder="填空题数"/><br/> 
+		       
+		        <div id="datetimepicker3" class="input-append">
+		       	<input id="endTime" name="" data-format="hh:mm:ss" type="text" placeholder="考试结束时间"></input>
+		       	<span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span>
+		        </div>
+		        <input id="num3" name="" style="margin-left: 80px;width: 170px;" type="text" maxlength="2" pattern="^[0-9]*[1-9][0-9]*$" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" placeholder="主观题数"/><br/>
+	      		 </div>     
+	       
+		    <div style="margin-left: 170px;margin-top: 60px;" id="buttons">		
+		    	<input style="width: 90px;font-size: 20px;" class="btn " type="reset" value="提交"  />
+		    	<input style="width: 90px;font-size: 20px;" class="btn " type="submit" value="重置"  />
+		    </div>
+	    </form>
+  </body>
+   <script th:inline="javascript" type="text/javascript">
+  /*<![CDATA[*/
+      $(function() {
+        $('#datetimepicker1').datetimepicker({
+          pickTime: false
+        });
+      });
+      $(function() {
+    $('#datetimepicker2').datetimepicker({
+      pickDate: false
+    });
+  });
+  $(function() {
+    $('#datetimepicker3').datetimepicker({
+      pickDate: false
+    });
+  });
+    /*]]>*/
+    </script> 
+</html>
