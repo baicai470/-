@@ -1,9 +1,7 @@
 package com.controller;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
+
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -33,26 +31,38 @@ public class TeacherController {
 	@Autowired
 	ExamService examService;
 	
-	@GetMapping("/teacher_index2")
-	public ModelAndView teacher_index2(HttpServletRequest request,Model model){
-		
+	@GetMapping("/check_grade")
+	public ModelAndView check_grade(){
+		return new ModelAndView("teacher/check_grade");
+	}
+	@GetMapping("/getpage")
+	public ModelAndView getpage(){
+		return new ModelAndView("teacher/getpage");
+	}
+	@GetMapping("/test_library")
+	public ModelAndView test_library(){
+		return new ModelAndView("teacher/test_library");
+	}
+	@GetMapping("/teacher_info")
+	public ModelAndView teacher_index2(HttpServletRequest request,Model model){	
 		User user= (User) request.getSession().getAttribute("user");  
 		Teacher teacher = teacherService.getTeacher(user.getAccount());
 		model.addAttribute("teacher",teacher);
-		return new ModelAndView("teacher/index2","teacherModel",model);
+		return new ModelAndView("teacher/teacher_info","teacherModel",model);
 	}
 	@GetMapping("/teacher_index1")
 	public ModelAndView teacher_index1(){
 		return new ModelAndView("teacher/index1");
 	}
-	@GetMapping("/teacher_index3")
+	@GetMapping("/students_info_list")
+	public ModelAndView students_info_list(){
+		return new ModelAndView("teacher/students_info_list");
+	}
+ 	@GetMapping("/course_info")
 	public ModelAndView teacher_index3(){
-		return new ModelAndView("teacher/index3");
+		return new ModelAndView("teacher/course_info");
 	}
-	@GetMapping("/teacher_index4")
-	public ModelAndView teacher_index4(){
-		return new ModelAndView("teacher/index4");
-	}
+
 	@GetMapping("/teacher_index5")
 	public ModelAndView teacher_index5(HttpServletRequest request,Model model){
 		List<Exam> exams=examService.getAllPaper();
@@ -77,11 +87,12 @@ public class TeacherController {
 		int SQnum=Integer.valueOf(request.getParameter("SQnum"));
 		int CphQnum=Integer.valueOf(request.getParameter("CphQnum"));
 		Exam ex=examService.createPaper("数据库", CQnum, SQnum, CphQnum);
-		ex.setBeginTime(getTime());
 		ex.setCQScore(Integer.parseInt(request.getParameter("CQscore")));
 		ex.setSQScore(Integer.parseInt(request.getParameter("SQscore")));
 		ex.setCphQScore(Integer.parseInt(request.getParameter("CphQscore")));
 		examService.savePaper(ex);
+		List<Exam> exams=examService.getAllPaper();
+		model.addAttribute("Exams", exams);
 		return new ModelAndView("teacher/index5");
 	}
 	@PostMapping("/findPaper")
@@ -103,11 +114,4 @@ public class TeacherController {
 		model.addAttribute("CphQs", comprehensiveQuestions);
 		return new ModelAndView("teacher/paper","paper", model);
 	}
-	private String getTime() {
-		Date date=new Date();
-		DateFormat format=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		return format.format(date);
-		
-	}
-
 }

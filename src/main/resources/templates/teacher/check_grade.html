@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>在线考试系统 教师信息列表</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link href="assets/css/bootstrap.css" rel="stylesheet" />
+		<!-- FontAwesome Styles-->
+		<link href="assets/css/font-awesome.css" rel="stylesheet" />
+		<!-- Morris Chart Styles-->
+		<!-- Custom Styles-->
+		<link href="assets/css/custom-styles.css" rel="stylesheet" />
+		<!-- Google Fonts-->
+		<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+		<!-- TABLE STYLES-->
+		<link href="assets/js/dataTables/dataTables.bootstrap.css" rel="stylesheet" />
+	</head>
+
+		<style type="text/css">
+			.pCSS {
+				font-family: 'Open Sans', helvetica, arial, sans-serif;
+				color: #4d5b76;
+				margin-left: 30px;
+			}
+		
+			#teainf1 {
+				z-index: 2;
+				position: fixed;
+				background-color: white;
+				display: none;
+				border: 2px solid lightgrey;
+				font-family: lightgrey;
+				padding: 8px;
+				/*margin: 100px;*/
+				top: 30px;
+				left: 350px;
+				width: 380px;
+				box-shadow: #666 0px 0px 5px;
+			}
+			
+			
+			#teainf2 {
+				z-index: 2;
+				position: fixed;
+				background-color: white;
+				display: none;
+				border: 2px solid lightgrey;
+				font-family: lightgrey;
+				padding: 8px;
+				/*margin: 100px;*/
+				top: 30px;
+				left: 350px;
+				width: 380px;
+				box-shadow: #666 0px 0px 5px;
+			}
+			
+			input.input_into {
+				font-family: "微软雅黑";
+				border: inherit;
+				text-align: left;
+				/*	width: 40%;*/
+				padding: 0px;
+			}
+			
+			button:.hover {
+				background-color: #ddd;
+			}	
+			.FunctionButton {
+				background-color: lightgray float: left;
+				height: 16px;
+				font-size: 12px;
+				border: 1px solid #84A5C6;
+				margin: 0;
+				margin-left: 8px;
+				padding-left: 5px;
+				padding-right: 5px;
+				padding-top: 3px;
+			}
+		</style>
+		<body>
+			<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css" />
+			<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css"/>
+			<cenetr>
+				<!-- 过滤条件(搜索) -->
+
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<span style="font-size: 25px;">批改试卷</span>
+					</div>
+					<div id="serach">
+						<form action="" method="get">
+							<!--<input type="hidden" name="method" value="search">-->
+							<div>
+								<input type="text" class="form-control" style="width: 150PX;" id="exampleInputName2" placeholder="输入试卷ID"/>
+								<input style="position: absolute;margin-left: 155px;margin-top: -34px;" class="btn btn-default" type="button" value="搜索" onclick="searchBtn();" />
+							</div>
+						</form>
+					</div>
+					<!--表格-->
+					<div class="panel-body" style="width: 90%;">
+						<div class="table-responsive">
+							<table name="studentgrade" class="table table-striped table-bordered table-hover" id="studentTable">
+								<!-- 表头-->
+								<tr align="center" valign="middle" id="TableTitle">
+									<td width="2%" align="center">选择</td>
+									<td width="10%" align="center">学号</td>
+									<td width="7%" align="center">姓名</td>
+									<td width="10%" align="center">专业</td>
+									<td width="10%" align="center">操作</td>
+								</tr>
+							</table>
+						</div>
+						</div>
+						</div>
+			</cenetr>
+		<!-- 	<form action=''class='testpage'>
+			<table id="testpage"><tr><td></td></tr>
+			</table>
+			</form> -->
+		</body>
+		<script th:inline="javascript">
+		/*<![CDATA[*/
+			//test用的json数据
+			var students = [{
+					"s_number": "1",
+					"s_name": "一号学生",
+					"major": "专业班级"
+				},
+				{
+					"s_number": "2",
+					"s_name": "二号学生",
+					"major": "专业班级"
+				},
+				{
+						"s_number": "3",
+					"s_name": "三号学生",
+					"major": "专业班级"
+				},
+				{
+						"s_number": "4",
+					"s_name": "四号学生",
+					"major": "专业班级"
+				},
+				{
+						"s_number": "5",
+					"s_name": "五号学生",
+					"major": "专业班级"
+				}
+			];
+			//将数据导入表格中
+			for(var i = 0; i < students.length; i++) {
+				var thisrow = studentTable.insertRow(studentTable.rows.length); //确定添加的行的索引位置
+				var thiscell0 = thisrow.insertCell(0);
+				thiscell0.innerHTML = "<input type=\"checkbox\" name=\"checkbox10\" value=\"checkbox\" />";
+				thiscell0.align = "center";
+				var thiscell1 = thisrow.insertCell(1);
+				thiscell1.innerHTML = students[i].s_number;
+				thiscell1.align = "center";
+				var thiscell2 = thisrow.insertCell(2);
+				thiscell2.innerHTML = students[i].s_name;
+				thiscell2.align = "center";
+				var thiscell3 = thisrow.insertCell(3);
+				thiscell3.innerHTML = students[i].major;
+				thiscell3.align = "center";
+				var thiscell4=thisrow.insertCell(4);
+				thiscell4.innerHTML="<button class='btn btn-default' onclick='getpage();'>批改试卷</button>";
+				thiscell4.align = "center";
+			}
+			function selectText(evt) {
+				if(evt.currentTarget.focus) {
+					evt.currentTarget.select();
+				}
+			}
+			//定位查找的学生
+			function searchBtn() {
+				//要传递的ID参数
+				var IDNum = document.getElementById("exampleInputName2").value
+				//ajax获得json返回值
+				var data = {
+					"tcID": "1",
+					"name": "一号",
+					"email": "一号邮箱号"
+				};
+				var table = document.getElementById("studentTable");
+				var len = table.rows.length;
+				for(var i = 1; i < len; i++) {
+					table.deleteRow(1);
+				}
+				//由ID定位具体学生
+				var thisrow = studentTable.insertRow(studentTable.rows.length); //确定添加的行的索引位置
+				var thiscell0 = thisrow.insertCell(0);
+				thiscell0.innerHTML = "<input type=\"checkbox\" name=\"checkbox10\" value=\"checkbox\" />";
+				thiscell0.align = "center";
+				var thiscell1 = thisrow.insertCell(1);
+				thiscell1.innerHTML = data.tcID;
+				thiscell1.align = "center";
+				var thiscell2 = thisrow.insertCell(2);
+				thiscell2.innerHTML = data.name;
+				thiscell2.align = "center";
+				var thiscell3 = thisrow.insertCell(3);
+				thiscell3.innerHTML = data.email;
+				thiscell3.align = "center";
+				var thiscell4=thisrow.insertCell(4);
+				thiscell4.innerHTML="<button class='btn btn-default' onclick='getTestpage();'>批改试卷</button>";
+				thiscell4.align = "center";
+			}
+			function deletePoint(evt) {
+				//利用对话框返回的值 （true 或者 false）
+				if(confirm("是否删除该行")) {
+
+					//如果是true ，那么就删除  
+					var fPoint = evt.currentTarget.parentNode.parentNode;
+					var childs = fPoint.childNodes;
+					for(var i = childs.length - 1; i >= 0; i--) {
+						fPoint.removeChild(childs[i]);
+					}
+				} else {}
+			}
+			var checkNumber = function() {
+				return true;
+			}
+		//获取没给学生的期末试卷		
+	function getpage()
+	{
+		window.location.href='getpage';
+	
+	}
+		/*]]>*/
+		</script>
+</html>
