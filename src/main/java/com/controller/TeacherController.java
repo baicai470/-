@@ -1,6 +1,7 @@
 package com.controller;
 
 
+import java.lang.ProcessBuilder.Redirect;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -107,7 +108,7 @@ public class TeacherController {
 		examService.savePaper(ex);
 		List<Exam> exams=examService.getAllPaper();
 		model.addAttribute("Exams", exams);
-		return new ModelAndView("teacher/index5");
+		return new ModelAndView("teacher/paperManage");
 	}
 	@PostMapping("/findPaper")
 	public ModelAndView findPaper(HttpServletRequest request,Model model){	 

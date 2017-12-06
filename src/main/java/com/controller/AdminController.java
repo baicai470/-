@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.TeacherTests;
+import com.entity.Student;
 import com.entity.Teacher;
 import com.entity.TeacherTest;
+import com.service.StudentService;
 import com.service.TeacherService;
 
 @Controller
@@ -22,6 +24,9 @@ public class AdminController {
 	
 	@Autowired
 	TeacherService teacherService;
+	
+	@Autowired
+	StudentService studentService;
 	
 	@GetMapping("/admin_button")
 	public ModelAndView button(){
@@ -31,37 +36,24 @@ public class AdminController {
 	@GetMapping("/admin_teacher")
 	public ModelAndView teacher(Model model){
 		
-		List<TeacherTest> teacherTests = new ArrayList<>();	
-		teacherTests.add(new TeacherTest(11,"11hao","4545448756",2012,4125555));
-		teacherTests.add(new TeacherTest(12,"11hao","4525448756",2013,5125555));
-		teacherTests.add(new TeacherTest(13,"11hao","4525448756",2013,5125555));
 		
+//		List<TeacherTest> teacherTests = new ArrayList<>();	
+//		teacherTests.add(new TeacherTest(11,"11hao","4545448756",2012,4125555));
+//		teacherTests.add(new TeacherTest(12,"11hao","4525448756",2013,5125555));
+//		teacherTests.add(new TeacherTest(13,"11hao","4525448756",2013,5125555));
 		
-		model.addAttribute("teacherTest", teacherTests);
+		List<Teacher> teachers= teacherService.findAll();
+		
+		model.addAttribute("teachers", teachers);
 		return new ModelAndView("admin/teacher_info_list","teacherModel",model);
 	}
-//	@PostMapping("/findTeacher")
-//	public ModelAndView findTeacher(HttpServletRequest request,Model model){
-//		//return  teacherService.getTeacher(request.getParameter("TeacherId"));
-//		List<TeacherTest> teacherTests = new ArrayList<>();	
-//		TeacherTest teacherTest=new TeacherTest(11,"11hao","4545448756",2012,4125555);
-//		teacherTests.add(teacherTest);
-//		model.addAttribute("teacherfind", teacherTests);
-//		System.out.println(teacherService.getTeacher(request.getParameter("TeacherId")));
-//		return new ModelAndView("admin/teacher_info_list","teacherModel1",model);
-//	}
-
 	
 	@GetMapping("/admin_student")
 	public ModelAndView student(Model model){
 		
-		List<TeacherTest> teacherTests = new ArrayList<>();	
-		teacherTests.add(new TeacherTest(11,"11hao","4545448756",2012,4125555));
-		teacherTests.add(new TeacherTest(12,"11hao","4525448756",2013,5125555));
-		teacherTests.add(new TeacherTest(13,"11hao","4525448756",2013,5125555));
+	  List<Student> students= studentService.findAll();
 		
-		
-		model.addAttribute("studentTest", teacherTests);
+		model.addAttribute("students", students);
 		return new ModelAndView("admin/students_info_list","studentModel",model);
 	}
 	
