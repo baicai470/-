@@ -84,7 +84,6 @@
 		<body>
 			<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css" />
 			<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css"/>
-			
 				<!-- 过滤条件(搜索) -->
 				
 				<!-- 教师信息内容区域（数据列） -->
@@ -150,23 +149,22 @@
         <script th:inline="javascript">
         /*<![CDATA[*/
 //        	test用的json数据
-            var paperManage=[
-            {"id":"1","course":"数据库","startTime":"2017/12/12 12:12:12","endTime":"2017/12/12 13:12:12"},
-            {"id":"2","course":"数据库","startTime":"2017/12/13 12:12:12","endTime":"2017/12/13 13:12:12"}
-            ]
+			
+            var paperManage=[[${EX.Exams}]];
+           
             for(var i=0;i<paperManage.length;i++){
             	var insertrow=paperTable.insertRow(paperTable.rows.length);
             	var cell0=insertrow.insertCell(0);
-            	cell0.innerHTML=paperManage[i].id;
+            	cell0.innerHTML=paperManage[i].paperId;
             	cell0.align="center";
             	var cell1=insertrow.insertCell(1);
-            	cell1.innerHTML=paperManage[i].course;
+            	cell1.innerHTML=paperManage[i].courseId;
             	cell1.align="center";
             	var cell2=insertrow.insertCell(2);
             	cell2.innerHTML="<button class=\"btn btn-default add\" onclick=\"window.location.href='findPaper'\">查看</button>"
             	cell2.align="center";
             	var cell3=insertrow.insertCell(3);
-            	cell3.innerHTML=paperManage[i].startTime;
+            	cell3.innerHTML=paperManage[i].beginTime;
             	cell3.align="center";
             	var cell4=insertrow.insertCell(4);
             	cell4.innerHTML=paperManage[i].endTime;
@@ -174,7 +172,6 @@
             	var thiscell5=insertrow.insertCell(5);
 				thiscell5.innerHTML = "<span onclick=\"changePoint(event);\" class=\"glyphicon glyphicon-pencil\" onmouseover=\"this.style.cursor='hand'\;this.style.color='blue'\" onmouseout=\"this.style.color='black'\"></span>&nbsp;&nbsp;&nbsp;&nbsp;<span onclick=\"deletePoint(event);\" class=\"glyphicon glyphicon-trash\" onmouseover=\"this.style.cursor='hand'\;this.style.color='blue'\" onmouseout=\"this.style.color='black'\"></span>";
 				thiscell5.align = "center";
-            	
             }
 
 			//关闭弹出框

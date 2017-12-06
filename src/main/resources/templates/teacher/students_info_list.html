@@ -269,13 +269,7 @@
         <script th:inline="javascript">
         /*<![CDATA[*/
         	//test用的json数据
-        	var teachers=[
-        		{"tcID":"1","name":"一号","email":"一号邮箱号","tel":"一号电话","id":"一号身份证"},
-        		{"tcID":"2","name":"二号","email":"二号邮箱号","tel":"二号电话","id":"二号身份证"},
-        		{"tcID":"3","name":"三号","email":"三号邮箱号","tel":"三号电话","id":"三号身份证"},
-        		{"tcID":"4","name":"四号","email":"四号邮箱号","tel":"四号电话","id":"四号身份证"},
-        		{"tcID":"5","name":"五号","email":"五号邮箱号","tel":"五号电话","id":"五号身份证"}
-        		];
+        	var teachers=[[${students}]];
         		//将数据导入表格中
         		for(var i=0;i<teachers.length;i++){
         	    var thisrow = teaTable.insertRow(teaTable.rows.length); //确定添加的行的索引位置
@@ -283,20 +277,19 @@
 				thiscell0.innerHTML = "<input type=\"checkbox\" name=\"checkbox10\" value=\"checkbox\" />";
 				thiscell0.align = "center";
 				var thiscell1 = thisrow.insertCell(1);
-				thiscell1.innerHTML = teachers[i].tcID;
+				thiscell1.innerHTML = teachers[i].studentId;
 				thiscell1.align = "center";
 				var thiscell2 = thisrow.insertCell(2);
 				thiscell2.innerHTML =teachers[i].name;
 				thiscell2.align = "center";
 				var thiscell3 = thisrow.insertCell(3);
-				
-				thiscell3.innerHTML =teachers[i].email;
+				thiscell3.innerHTML =teachers[i].mailbox;
 				thiscell3.align = "center";
 				var thiscell4 = thisrow.insertCell(4);
-				thiscell4.innerHTML =teachers[i].tel;
+				thiscell4.innerHTML =teachers[i].phone;
 				thiscell4.align = "center";
 				var thiscell5 = thisrow.insertCell(5);
-				thiscell5.innerHTML = teachers[i].id;
+				thiscell5.innerHTML = teachers[i].identityCard;
 				thiscell5.align = "center";
 				var thiscell6=thisrow.insertCell(6);
 				thiscell6.innerHTML="<button class='btn btn-default' onclick='showGrade(event);'>查看成绩</button>";

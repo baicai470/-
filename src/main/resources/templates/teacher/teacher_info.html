@@ -58,14 +58,12 @@
 		</body>
 		<script th:inline="javascript">
         /*<![CDATA[*/
-
-			//test用的json数据
-			var teacher={"ID":"一号","name":"一号姓名","email":"一号邮箱","id":"一号身份证","tel":"一号电话"}
-			document.getElementById("input_into1").value=teacher.ID;
+			var teacher=[[${teacherModel.teacher}]];
+			document.getElementById("input_into1").value=teacher.teacherId;
 			document.getElementById("input_into2").value=teacher.name;
-			document.getElementById("input_into3").value=teacher.email;
-			document.getElementById("input_into4").value=teacher.id;
-			document.getElementById("input_into5").value=teacher.tel;
+			document.getElementById("input_into3").value=teacher.mailbox;
+			document.getElementById("input_into4").value=teacher.identityCard;
+			document.getElementById("input_into5").value=teacher.phone;
 
 			var form=document.getElementById("myform");
 			function selectText(evt){

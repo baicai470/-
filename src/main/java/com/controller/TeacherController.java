@@ -1,7 +1,7 @@
 package com.controller;
 
 
-import java.lang.ProcessBuilder.Redirect;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,16 +18,27 @@ import com.entity.ChoiceQuestion;
 import com.entity.ComprehensiveQuestion;
 import com.entity.Exam;
 import com.entity.ShortanswerQuestion;
+import com.entity.Student;
 import com.entity.Teacher;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonArrayFormatVisitor;
 import com.model.User;
 import com.service.ExamService;
+import com.service.StudentService;
 import com.service.TeacherService;
+import com.util.toJsonObject;
+
+
 
 @Controller
 public class TeacherController {
 	
 	@Autowired
 	TeacherService teacherService;
+	
+	@Autowired
+	StudentService studentService;
 	
 	@Autowired
 	ExamService examService;
@@ -45,10 +56,10 @@ public class TeacherController {
 		return new ModelAndView("teacher/test_library");
 	}
 	@GetMapping("/teacher_info")
-	public ModelAndView teacher_index2(HttpServletRequest request,Model model){	
+	public ModelAndView teacher_index2(HttpServletRequest request,Model model) throws IOException{	
 		User user= (User) request.getSession().getAttribute("user");  
 		Teacher teacher = teacherService.getTeacher(user.getAccount());
-		model.addAttribute("teacher",teacher);
+		model.addAttribute("teacher",toJsonObject.JsonObject(teacher));
 		return new ModelAndView("teacher/teacher_info","teacherModel",model);
 	}
 	@GetMapping("/teacher_index1")
@@ -56,7 +67,9 @@ public class TeacherController {
 		return new ModelAndView("teacher/index1");
 	}
 	@GetMapping("/students_info_list")
-	public ModelAndView students_info_list(){
+	public ModelAndView students_info_list(Model model) throws IOException{
+		List<Student> students= studentService.findAll();	
+		model.addAttribute("students", toJsonObject.JsonObject(students));
 		return new ModelAndView("teacher/students_info_list");
 	}
  	@GetMapping("/course_info")
@@ -65,10 +78,11 @@ public class TeacherController {
 	}
 
 	@GetMapping("/paperManage")
-	public ModelAndView teacher_index5(HttpServletRequest request,Model model){
+	public ModelAndView teacher_index5(HttpServletRequest request,Model model) throws IOException{
 		List<Exam> exams=examService.getAllPaper();
-		model.addAttribute("Exams", exams);
-		return new ModelAndView("teacher/paperManage");
+
+		model.addAttribute("Exams",toJsonObject.JsonObject(exams));
+		return new ModelAndView("teacher/paperManage","EX",model);
 	}
 	@GetMapping("/teacher_top")
 	public ModelAndView teacher_top(){

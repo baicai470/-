@@ -205,18 +205,7 @@
     
         <script th:inline="javascript">
         /*<![CDATA[*/
-        var teachers=[[${studentModel.students}]];
-        <!-- 
-        	[
-              		{"tcID":"1","name":"一号","email":"一号邮箱号","tel":"一号电话","id":"一号身份证"},
-              		{"tcID":"2","name":"二号","email":"二号邮箱号","tel":"二号电话","id":"二号身份证"},
-              		{"tcID":"3","name":"三号","email":"三号邮箱号","tel":"三号电话","id":"三号身份证"},
-              		{"tcID":"4","name":"四号","email":"四号邮箱号","tel":"四号电话","id":"四号身份证"},
-              		{"tcID":"5","name":"五号","email":"五号邮箱号","tel":"五号电话","id":"五号身份证"}
-              		]; 
-        -->
-              		
-              		
+        var teachers=[[${studentModel.students}]];       		
               		//将数据导入表格中
               		for(var i=0;i<teachers.length;i++){
               	    var thisrow = teaTable.insertRow(teaTable.rows.length); //确定添加的行的索引位置

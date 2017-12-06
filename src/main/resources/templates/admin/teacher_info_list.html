@@ -204,21 +204,12 @@
         /*<![CDATA[*/
       //test用的json数据
     	var teachers=[[${teacherModel.teachers}]];
-    	<!-- 
-		[
-		{"tcID":"1","name":"一号","email":"一号邮箱号","id":"一号身份证","tel":"一号电话"},
-		{"tcID":"2","name":"二号","email":"二号邮箱号","id":"二号身份证","tel":"二号电话"},
-		{"tcID":"3","name":"三号","email":"三号邮箱号","id":"三号身份证","tel":"三号电话"},
-		{"tcID":"4","name":"四号","email":"四号邮箱号","id":"四号身份证","tel":"四号电话"},
-		{"tcID":"5","name":"五号","email":"五号邮箱号","id":"五号身份证","tel":"五号电话"}
-		]; 
-    -->
     		//将数据导入表格中
     		for(var i=0;i<teachers.length;i++){
     	    var thisrow = teaTable.insertRow(teaTable.rows.length); //确定添加的行的索引位置
 			
 			var thiscell0 = thisrow.insertCell(0);
-			thiscell0.innerHTML =   teachers[i].teacherId;  <!-- teachers[i].TcID; -->
+			thiscell0.innerHTML =   teachers[i].teacherId;  
 			thiscell0.align = "center";
 			var thiscell1 = thisrow.insertCell(1);
 			thiscell1.innerHTML =teachers[i].name;
