@@ -16,8 +16,11 @@ import com.TeacherTests;
 import com.entity.Student;
 import com.entity.Teacher;
 import com.entity.TeacherTest;
+import com.mysql.jdbc.log.Log;
 import com.service.StudentService;
 import com.service.TeacherService;
+
+import groovy.util.logging.Log4j;
 
 @Controller
 public class AdminController {
@@ -43,7 +46,7 @@ public class AdminController {
 //		teacherTests.add(new TeacherTest(13,"11hao","4525448756",2013,5125555));
 		
 		List<Teacher> teachers= teacherService.findAll();
-		
+		System.out.println(teachers.size());
 		model.addAttribute("teachers", teachers);
 		return new ModelAndView("admin/teacher_info_list","teacherModel",model);
 	}
