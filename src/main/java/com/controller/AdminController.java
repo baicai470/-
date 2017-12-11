@@ -33,13 +33,13 @@ public class AdminController {
 	}
 
 	@GetMapping("/admin_teacher")
-	public ModelAndView teacher(@RequestParam(value="page",defaultValue="2") int page,
+	public ModelAndView teacher(@RequestParam(value="page",defaultValue="1") int page,
 			                                                   @RequestParam(value="size",defaultValue="3") int size,
 			                                                   Model model) throws IOException{
 		PageRequest  request=new PageRequest(page-1, size);
 		Page<Teacher> pageteacher =teacherService.pageTeacher(request);
 		List<Teacher> pagelist = pageteacher.getContent();
-		model.addAttribute("pages",pagelist );
+		model.addAttribute("pages", toJsonObject.JsonObject(pagelist) );
 		model.addAttribute("pageNumber",pageteacher.getTotalPages() );
 		model.addAttribute("currentPage", page);
 		System.out.println(pageteacher.getTotalPages());
@@ -61,7 +61,7 @@ public class AdminController {
 		PageRequest  request=new PageRequest(page-1, size);
 		Page<Student> pagestudent =studentService.pageStudent(request);
 		List<Student> pagelist = pagestudent.getContent();
-		model.addAttribute("pages",pagelist );
+		model.addAttribute("pages",toJsonObject.JsonObject(pagelist) );
 		model.addAttribute("pageNumber",pagestudent.getTotalPages() );
 		model.addAttribute("currentPage", page);
 	  List<Student> students= studentService.findAll();

@@ -212,7 +212,8 @@
 				 -->
 				 
 				 	<li th:each="i:${#numbers.sequence(1,studentModel.pageNumber)}">
-				<li> <a th:href="@{'/admin_student?page='+${i}+'&amp;size=3'}"><span th:text="${i}"></span></a></li>
+				<li th:if="${studentModel.currentPage eq i}"  class="disabled"> <a th:href="@{#}"><span th:text="${i}"></span></a></li>
+				<li th:if="${studentModel.currentPage ne i}" > <a th:href="@{'/admin_student?page='+${i}+'&amp;size=3'}"><span th:text="${i}"></span></a></li>
 				</li>
 				 
 				<li th:if="${studentModel.currentPage ge studentModel.pageNumber}"  class="disabled"><a th:href="@{#}">下一页</a></li>
