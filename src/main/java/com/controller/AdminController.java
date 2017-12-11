@@ -1,26 +1,22 @@
 package com.controller;
 
-import java.util.ArrayList;
+import java.io.IOException;
 import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.TeacherTests;
 import com.entity.Student;
 import com.entity.Teacher;
-import com.entity.TeacherTest;
-import com.mysql.jdbc.log.Log;
 import com.service.StudentService;
 import com.service.TeacherService;
+import com.util.toJsonObject;
 
-import groovy.util.logging.Log4j;
 
 @Controller
 public class AdminController {
@@ -37,26 +33,40 @@ public class AdminController {
 	}
 
 	@GetMapping("/admin_teacher")
-	public ModelAndView teacher(Model model){
-		
-		
-//		List<TeacherTest> teacherTests = new ArrayList<>();	
-//		teacherTests.add(new TeacherTest(11,"11hao","4545448756",2012,4125555));
-//		teacherTests.add(new TeacherTest(12,"11hao","4525448756",2013,5125555));
-//		teacherTests.add(new TeacherTest(13,"11hao","4525448756",2013,5125555));
+	public ModelAndView teacher(@RequestParam(value="page",defaultValue="2") int page,
+			                                                   @RequestParam(value="size",defaultValue="3") int size,
+			                                                   Model model) throws IOException{
+		PageRequest  request=new PageRequest(page-1, size);
+		Page<Teacher> pageteacher =teacherService.pageTeacher(request);
+		List<Teacher> pagelist = pageteacher.getContent();
+		model.addAttribute("pages",pagelist );
+		model.addAttribute("pageNumber",pageteacher.getTotalPages() );
+		model.addAttribute("currentPage", page);
+		System.out.println(pageteacher.getTotalPages());
 		
 		List<Teacher> teachers= teacherService.findAll();
-		System.out.println(teachers.size());
+	
 		model.addAttribute("teachers", teachers);
+
+		
+		model.addAttribute("teachers", toJsonObject.JsonObject(teachers));
+
 		return new ModelAndView("admin/teacher_info_list","teacherModel",model);
 	}
 	
 	@GetMapping("/admin_student")
-	public ModelAndView student(Model model){
-		
+	public ModelAndView student(@RequestParam(value="page",defaultValue="1") int page,
+                                                              @RequestParam(value="size",defaultValue="3") int size,    
+                                                               Model model) throws IOException{
+		PageRequest  request=new PageRequest(page-1, size);
+		Page<Student> pagestudent =studentService.pageStudent(request);
+		List<Student> pagelist = pagestudent.getContent();
+		model.addAttribute("pages",pagelist );
+		model.addAttribute("pageNumber",pagestudent.getTotalPages() );
+		model.addAttribute("currentPage", page);
 	  List<Student> students= studentService.findAll();
 		
-		model.addAttribute("students", students);
+		model.addAttribute("students", toJsonObject.JsonObject(students));
 		return new ModelAndView("admin/students_info_list","studentModel",model);
 	}
 	

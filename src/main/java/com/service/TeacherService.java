@@ -3,11 +3,19 @@ package com.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import com.entity.Student;
 import com.entity.Teacher;
 
 public interface TeacherService {
 
+	/*
+	 * 
+	 */
+	public Page<Teacher> pageTeacher(Pageable pageable);
+	
 	//通过教师id验证登录密码
 	public String getPassword(String id) throws Exception;
 	

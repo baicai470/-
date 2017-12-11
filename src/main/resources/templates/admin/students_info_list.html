@@ -199,24 +199,35 @@
 			</div>
 			</cenetr>
 			<!--弹出添加教师的信息框-->
-			
+			<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<ul class="pagination pull-right">
+				<li th:if="${studentModel.currentPage le 1}"  class="disabled"><a th:href="@{#}">上一页</a></li>
+				<li th:if="${studentModel.currentPage gt 1}"  > <a th:href="@{'/admin_student?page='+${studentModel.currentPage-1}+'&amp;size=3'}">上一页</a></li>
+				<!-- 
+				<li th:each="teacherpage:${studentModel.pages}">
+				<li> <a th:href="@{'/admin_student?page='+${teacherpageStat.index+1}+'&amp;size=3'}"><span th:text="${teacherpageStat.index+1}"></span></a></li>
+				</li>
+				 -->
+				 
+				 	<li th:each="i:${#numbers.sequence(1,studentModel.pageNumber)}">
+				<li> <a th:href="@{'/admin_student?page='+${i}+'&amp;size=3'}"><span th:text="${i}"></span></a></li>
+				</li>
+				 
+				<li th:if="${studentModel.currentPage ge studentModel.pageNumber}"  class="disabled"><a th:href="@{#}">下一页</a></li>
+				<li th:if="${studentModel.currentPage lt studentModel.pageNumber}"  > <a th:href="@{'/admin_student?page='+${studentModel.currentPage+1}+'&amp;size=3'}">下一页</a></li>
+				
+			</ul>
+		</div>
+	</div>
+</div>
 		</body>
 		
     
         <script th:inline="javascript">
         /*<![CDATA[*/
-        var teachers=[[${studentModel.students}]];
-        <!-- 
-        	[
-              		{"tcID":"1","name":"一号","email":"一号邮箱号","tel":"一号电话","id":"一号身份证"},
-              		{"tcID":"2","name":"二号","email":"二号邮箱号","tel":"二号电话","id":"二号身份证"},
-              		{"tcID":"3","name":"三号","email":"三号邮箱号","tel":"三号电话","id":"三号身份证"},
-              		{"tcID":"4","name":"四号","email":"四号邮箱号","tel":"四号电话","id":"四号身份证"},
-              		{"tcID":"5","name":"五号","email":"五号邮箱号","tel":"五号电话","id":"五号身份证"}
-              		]; 
-        -->
-              		
-              		
+        var teachers=[[${studentModel.pages}]];       		
               		//将数据导入表格中
               		for(var i=0;i<teachers.length;i++){
               	    var thisrow = teaTable.insertRow(teaTable.rows.length); //确定添加的行的索引位置
