@@ -161,7 +161,7 @@
             	cell1.innerHTML=paperManage[i].courseId;
             	cell1.align="center";
             	var cell2=insertrow.insertCell(2);
-            	cell2.innerHTML="<button class=\"btn btn-default add\" onclick=\"window.location.href='findPaper'\">查看</button>"
+            	cell2.innerHTML="<form method=\"post\" action=\"/findPaper\"><button name=\"paper\" value="+paperManage[i].paperId+" class=\"btn btn-default add\" type=\"submit\">查看</button></form>";
             	cell2.align="center";
             	var cell3=insertrow.insertCell(3);
             	cell3.innerHTML=paperManage[i].beginTime;

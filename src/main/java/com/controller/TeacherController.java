@@ -17,13 +17,12 @@ import org.springframework.web.servlet.ModelAndView;
 import com.entity.ChoiceQuestion;
 import com.entity.ComprehensiveQuestion;
 import com.entity.Exam;
+import com.entity.ExamScores;
 import com.entity.ShortanswerQuestion;
 import com.entity.Student;
 import com.entity.Teacher;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonArrayFormatVisitor;
 import com.model.User;
+import com.service.ExamScoresService;
 import com.service.ExamService;
 import com.service.StudentService;
 import com.service.TeacherService;
@@ -43,9 +42,19 @@ public class TeacherController {
 	@Autowired
 	ExamService examService;
 	
-	@GetMapping("/check_grade")
-	public ModelAndView check_grade(){
+	@Autowired
+	ExamScoresService examScoresService;
+	
+	@PostMapping("/check_grade")
+	public ModelAndView check_grade(HttpServletRequest request,Model model) throws IOException{
+		String paperId=request.getParameter("paperList");
+		List<ExamScores> examScores= examScoresService.getAllPaperByPaperId(paperId);	
+		model.addAttribute("Exam", toJsonObject.JsonObject(examScores));
 		return new ModelAndView("teacher/check_grade");
+	}
+	@GetMapping("/search_paper")
+	public ModelAndView search_paper() throws IOException{
+		return new ModelAndView("teacher/search_paper");
 	}
 	@GetMapping("/getpage")
 	public ModelAndView getpage(){

@@ -88,12 +88,12 @@
 						<span style="font-size: 25px;">批改试卷</span>
 					</div>
 					<div id="search">
-						<form action="" method="get">
+						<form action="/check_grade" method="post">
 							<!--<input type="hidden" name="method" value="search">-->
 							<div>
-								<input type="text" class="form-control" style="width: 150PX;" id="exampleInputName2" placeholder="输入试卷ID"/>
-								<input style="position: absolute;margin-left: 155px;margin-top: -34px;" class="btn btn-default" type="button" value="搜索" onclick="searchBtn();" />
-							</div>
+								<input type="text" name="paperList" class="form-control" style="width: 150PX;" id="exampleInputName2" placeholder="输入试卷ID"/>
+								<input style="position: absolute;margin-left: 155px;margin-top: -34px;" class="btn btn-default" type="submit" value="搜索" />						
+ 							</div>
 						</form>
 					</div>
 					<!--表格-->
@@ -120,65 +120,13 @@
 		</body>
 		<script th:inline="javascript">
 		/*<![CDATA[*/
-			//test用的json数据
-			var students = [[${Exam}]];
-			//将数据导入表格中
-			for(var i = 0; i < students.length; i++) {
-				var thisrow = studentTable.insertRow(studentTable.rows.length); //确定添加的行的索引位置
-				var thiscell0 = thisrow.insertCell(0);
-				thiscell0.innerHTML = "<input type=\"checkbox\" name=\"checkbox10\" value=\"checkbox\" />";
-				thiscell0.align = "center";
-				var thiscell1 = thisrow.insertCell(1);
-				thiscell1.innerHTML = students[i].student.studentId;
-				thiscell1.align = "center";
-				var thiscell2 = thisrow.insertCell(2);
-				thiscell2.innerHTML = students[i].student.name;
-				thiscell2.align = "center";
-				var thiscell3 = thisrow.insertCell(3);
-				thiscell3.innerHTML = students[i].exam.courseId;
-				thiscell3.align = "center";
-				var thiscell4=thisrow.insertCell(4);
-				thiscell4.innerHTML="<button class='btn btn-default' onclick='getpage();'>批改试卷</button>";
-				thiscell4.align = "center";
-			}
+			
 			function selectText(evt) {
 				if(evt.currentTarget.focus) {
 					evt.currentTarget.select();
 				}
 			}
-			//定位查找的学生
-			function searchBtn() {
-				//要传递的ID参数
-				var IDNum = document.getElementById("exampleInputName2").value
-				//ajax获得json返回值
-				var data = {
-					"tcID": "1",
-					"name": "一号",
-					"email": "一号邮箱号"
-				};
-				var table = document.getElementById("studentTable");
-				var len = table.rows.length;
-				for(var i = 1; i < len; i++) {
-					table.deleteRow(1);
-				}
-				//由ID定位具体学生
-				var thisrow = studentTable.insertRow(studentTable.rows.length); //确定添加的行的索引位置
-				var thiscell0 = thisrow.insertCell(0);
-				thiscell0.innerHTML = "<input type=\"checkbox\" name=\"checkbox10\" value=\"checkbox\" />";
-				thiscell0.align = "center";
-				var thiscell1 = thisrow.insertCell(1);
-				thiscell1.innerHTML = data.tcID;
-				thiscell1.align = "center";
-				var thiscell2 = thisrow.insertCell(2);
-				thiscell2.innerHTML = data.name;
-				thiscell2.align = "center";
-				var thiscell3 = thisrow.insertCell(3);
-				thiscell3.innerHTML = data.email;
-				thiscell3.align = "center";
-				var thiscell4=thisrow.insertCell(4);
-				thiscell4.innerHTML="<button class='btn btn-default' onclick='getTestpage();'>批改试卷</button>";
-				thiscell4.align = "center";
-			}
+		
 			function deletePoint(evt) {
 				//利用对话框返回的值 （true 或者 false）
 				if(confirm("是否删除该行")) {
