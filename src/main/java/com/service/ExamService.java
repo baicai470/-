@@ -11,12 +11,26 @@ import com.entity.ShortanswerQuestion;
 
 public interface ExamService {
 	/**
-	 * 分页
+	 * 根据课程Id查询所有选择题
 	 * @param CourseId
 	 * @return 所有选择题
 	 */
 	public Page<ChoiceQuestion> CQs(String CourseId);
-	
+	/**
+	 * 查询所有选择题
+	 * @return
+	 */
+	public List<ChoiceQuestion> getAllCQs();
+	/**
+	 * 查询所有填空题
+	 * @return
+	 */
+	public List<ShortanswerQuestion> getAllSQs();
+	/**
+	 * 查询所有综合题
+	 * @return
+	 */
+	public List<ComprehensiveQuestion> getAllCphQs();
 	/**
 	 * 
 	 * @param CourseId

@@ -127,7 +127,7 @@ public class TeacherController {
 		Exam ex=examService.createPaper("数据库", CQnum, SQnum, CphQnum);
 		ex.setCQScore(Integer.parseInt(request.getParameter("CQscore")));
 		ex.setSQScore(Integer.parseInt(request.getParameter("SQscore")));
-		ex.setCphQScore(Integer.parseInt(request.getParameter("CphQscore")));
+		ex.setCphQScore(Integer.parseInt(request.getParameter("CphQScore")));
 		String ymd=request.getParameter("ymd");
 		String BeginTime=request.getParameter("BeginTime");
 		String EndTime=request.getParameter("EndTime");
@@ -136,7 +136,7 @@ public class TeacherController {
 		examService.savePaper(ex);
 		List<Exam> exams=examService.getAllPaper();
 		model.addAttribute("Exams", exams);
-		return new ModelAndView("teacher/paperManage");
+		return new ModelAndView("teacher/success");
 	}
 	@PostMapping("/findPaper")
 	public ModelAndView findPaper(HttpServletRequest request,Model model){	 
