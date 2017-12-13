@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.entity.ChoiceQuestion;
 import com.entity.Student;
 import com.entity.Teacher;
 import com.service.ExamService;
@@ -70,8 +71,11 @@ public class AdminController {
 	
 	@GetMapping("/admin_SearchCourse")
 	public ModelAndView SearchCourse(Model model){
-		
-		return new ModelAndView("admin/SearchCourse");
+		List<ChoiceQuestion> choiceQuestion= examService.getAllCQs();
+	   model.addAttribute("choiceQuestion", choiceQuestion);
+	   model.addAttribute("shortanswerQuestion", examService.getAllSQs());
+	   model.addAttribute("comprehensiveQuestion", examService.getAllCphQs());
+		return new ModelAndView("admin/SearchCourse","searchModel",model);
 	}
 	
 	@GetMapping("/admin_top")

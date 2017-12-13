@@ -51,18 +51,6 @@
 					 <a href="#">1</a>
 				</li>
 				<li>
-					 <a href="#">2</a>
-				</li>
-				<li>
-					 <a href="#">3</a>
-				</li>
-				<li>
-					 <a href="#">4</a>
-				</li>
-				<li>
-					 <a href="#">5</a>
-				</li>
-				<li>
 					 <a href="#">Next</a>
 				</li>
 			</ul>
@@ -79,18 +67,6 @@
 				</li>
 				<li>
 					 <a href="#">1</a>
-				</li>
-				<li>
-					 <a href="#">2</a>
-				</li>
-				<li>
-					 <a href="#">3</a>
-				</li>
-				<li>
-					 <a href="#">4</a>
-				</li>
-				<li>
-					 <a href="#">5</a>
 				</li>
 				<li>
 					 <a href="#">Next</a>
@@ -112,17 +88,12 @@
     <script src="assets/js/jquery.metisMenu.js">   /*<![CDATA[*//*]]>*/</script>
     <script th:inline="javascript">
     /*<![CDATA[*/
-    var questions={
-    		"CHOICE":[
-    		{"ID":"1","desc":"（）是按照一定的数据模型组织的、长期存储在计算机内，可为多个用户共享的数据的集合。","A":"数据库系统","B":"数据库","C":"关系数据库","D":"数据库管理系统","trueAns":"B"},
-    		{"ID":"2","desc":"数据库系统的基础是（）。","A":"数据结构","B":"数据库管理系统","C":"操作系统","D":"数据模型","trueAns":"D"}
-    		],
-    		"SHORTANSWER":[
-    		{"ID":"1","desc":"数据模型通常由 （）（）和（）3要素组成","trueAns":"数据结构.关系操作.完整性约束"},
-    		{"ID":"2","desc":"当前数据库系统的主流是（）","trueAns":"数据结构"}
-    		],
-    		"COMPREHENSIVE":[]
-    		};
+   
+    		var questions={
+    	    		"CHOICE":[[${searchModel.choiceQuestion}]],
+    	    		"SHORTANSWER":[[${searchModel.shortanswerQuestion}]],
+    	    		"COMPREHENSIVE":[[${searchModel.comprehensiveQuestion}]]
+    	    		}; 
     		//添加选择题到选择题div中
     		var CHOICEul = document.getElementById("CHOICE-ol");
     		//要添加的题目li变量
@@ -134,7 +105,7 @@
            	CHOICEli= document.createElement("li");
     　　　　CHOICEli.setAttribute("id", "CHOICE"+(i+1));
      
-    　　　　CHOICEli.innerHTML = "<ul><li>"+questions.CHOICE[i].desc+"</li><br/><li>A: "+questions.CHOICE[i].A+"</li><li>B: "+questions.CHOICE[i].B+"</li><li>C: "+questions.CHOICE[i].C+"</li><li>D: "+questions.CHOICE[i].D+"</li><br/><li class=\"answer\">正确答案："+questions.CHOICE[i].trueAns+"</li></ul><hr/>";
+    　　　　CHOICEli.innerHTML = "<ul><li>"+questions.CHOICE[i].descript+"</li><br/><li>A: "+questions.CHOICE[i].a+"</li><li>B: "+questions.CHOICE[i].b+"</li><li>C: "+questions.CHOICE[i].c+"</li><li>D: "+questions.CHOICE[i].d+"</li><br/><li class=\"answer\">正确答案："+questions.CHOICE[i].answer+"</li></ul><hr/>";
     　　　　CHOICEul.appendChild(CHOICEli);
            }
            //添加填空题
@@ -148,7 +119,7 @@
            	SHORTANSWERli= document.createElement("li");
     　　　　SHORTANSWERli.setAttribute("id", "SHORTANSWER"+(i+1));
      
-    　　　　SHORTANSWERli.innerHTML = "<ul><li>"+questions.SHORTANSWER[i].desc+"</li><br/><li></li><br/><li class=\"answer\">正确答案："+questions.SHORTANSWER[i].trueAns+"</li></ul><hr/>";
+    　　　　SHORTANSWERli.innerHTML = "<ul><li>"+questions.SHORTANSWER[i].descript+"</li><br/><li></li><br/><li class=\"answer\">正确答案："+questions.SHORTANSWER[i].answer+"</li></ul><hr/>";
     　　　　SHORTANSWERul.appendChild(SHORTANSWERli);
            }
 
