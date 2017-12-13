@@ -21,6 +21,7 @@ import com.entity.ExamScores;
 import com.entity.ShortanswerQuestion;
 import com.entity.Student;
 import com.entity.Teacher;
+import com.model.MarkingPaper;
 import com.model.User;
 import com.service.ExamScoresService;
 import com.service.ExamService;
@@ -56,8 +57,12 @@ public class TeacherController {
 	public ModelAndView search_paper() throws IOException{
 		return new ModelAndView("teacher/search_paper");
 	}
-	@GetMapping("/getpage")
-	public ModelAndView getpage(){
+	@PostMapping("/getpage")
+	public ModelAndView getpage(HttpServletRequest request,Model model) throws IOException{
+		String paperId=request.getParameter("paperId");
+		ExamScores ex=examScoresService.getExamScoresById(paperId);
+		MarkingPaper mp=examScoresService.getMarkingPaperByExamScores(ex);
+		model.addAttribute("mp",toJsonObject.JsonObject(mp) );
 		return new ModelAndView("teacher/getpage");
 	}
 	@GetMapping("/test_library")
@@ -118,11 +123,11 @@ public class TeacherController {
 	public ModelAndView createExam(HttpServletRequest request,Model model){
 		int CQnum=Integer.valueOf(request.getParameter("CQnum"));
 		int SQnum=Integer.valueOf(request.getParameter("SQnum"));
-		int CphQnum=0;//Integer.valueOf(request.getParameter("CphQnum"));
+		int CphQnum=Integer.valueOf(request.getParameter("CphQnum"));
 		Exam ex=examService.createPaper("数据库", CQnum, SQnum, CphQnum);
 		ex.setCQScore(Integer.parseInt(request.getParameter("CQscore")));
 		ex.setSQScore(Integer.parseInt(request.getParameter("SQscore")));
-		//ex.setCphQScore(Integer.parseInt(request.getParameter("CphQscore")));
+		ex.setCphQScore(Integer.parseInt(request.getParameter("CphQscore")));
 		String ymd=request.getParameter("ymd");
 		String BeginTime=request.getParameter("BeginTime");
 		String EndTime=request.getParameter("EndTime");

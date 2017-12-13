@@ -8,8 +8,13 @@ import org.springframework.stereotype.Service;
 
 import com.dao.ExamScoreDao;
 import com.entity.ChoiceQuestion;
+import com.entity.ComprehensiveQuestion;
 import com.entity.ExamScores;
+import com.entity.ShortanswerQuestion;
 import com.model.Choose;
+import com.model.MarkingCphQ;
+import com.model.MarkingPaper;
+import com.model.MarkingSAQ;
 import com.model.SelfTestESet;
 import com.service.ExamScoresService;
 import com.service.ExamService;
@@ -77,5 +82,37 @@ public class ExamScoresServiceImpl implements ExamScoresService{
 	@Override
 	public ExamScores getExamScoresById(String Id) {
 		return examScoreDao.findOne(Integer.valueOf(Id));
+	}
+
+	@Override
+	public MarkingPaper getMarkingPaperByExamScores(ExamScores ex) {
+		List<ShortanswerQuestion> SAQs=examService.getListSQ(ex.getExam().getShortanswerQuestionSet());
+		List<ComprehensiveQuestion> CphQs=examService.getListCphQ(ex.getExam().getComprehensiveQuestionSet());
+		List<MarkingSAQ> MSAQs=new ArrayList<>();
+		List<MarkingCphQ> MCphQs=new ArrayList<>();
+		String[] SAQSet=ex.getShortanswerQuestionAnswerset().split("/");
+		String[] CphQSet=ex.getComprehensiveQuestionAnswerset().split("/");
+		if(SAQs!=null)for(int i=0;i<SAQs.size();i++){
+			MarkingSAQ s=new MarkingSAQ();
+			ShortanswerQuestion saq=SAQs.get(i);
+			s.setID(i);
+			s.setDesc(saq.getDescript());
+			s.setStuAns(SAQSet[i]);
+			s.setTrueAns(saq.getAnswer());
+			MSAQs.add(s);
+		}
+		if(CphQs!=null)for(int i=0;i<CphQs.size();i++){
+			MarkingCphQ c=new MarkingCphQ();
+			ComprehensiveQuestion cphq=new ComprehensiveQuestion();
+			c.setID(i);
+			c.setDesc(cphq.getDescript());
+			c.setStuAns(CphQSet[i]);
+			c.setTrueAns(cphq.getAnswer());
+			MCphQs.add(c);
+		}
+		MarkingPaper mp=new MarkingPaper();
+		mp.setMarkingSAQs(MSAQs);
+		mp.setMarkingCphQs(MCphQs);
+		return mp;
 	}
 }

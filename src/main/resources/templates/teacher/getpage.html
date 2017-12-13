@@ -61,8 +61,8 @@
 		</div>
 			<div class="panel-body">
 	            <ul class="nav nav-tabs">
-                <li class="active" style="font-size:15px;font-weight:700;"><a href="#blockquestion" data-toggle="tab" >填空题</a></li>
-                <li class="" style="font-size:15px;font-weight:700;"><a href="#edtquestion" data-toggle="tab" >综合题</a></li>
+                <li class="active" style="font-size:15px;font-weight:700;"><a href="#markingSAQs" data-toggle="tab" >填空题</a></li>
+                <li class="" style="font-size:15px;font-weight:700;"><a href="#markingCphQs" data-toggle="tab" >综合题</a></li>
                 <form style="margin-left: 400px;" action="" method="post">
            	    <span>总分</span><input id="scoreSum" style="width: 100px;" type="text" value="" placeholder="点击查看" onclick="getSum();" />
            	    <input style="height: 28px;line-height: 14px;" class="btn btn-default" type="submit" value="提交"/>
@@ -70,11 +70,11 @@
                 </ul>
 
                 <div class="tab-content">
-                    <div class="tab-pane fade active in" id="blockquestion">
-                        <ol id="blockquestion-ol"></ol>
+                    <div class="tab-pane fade active in" id="markingSAQs">
+                        <ol id="markingSAQs-ol"></ol>
                     </div>
-                    <div class="tab-pane fade" id="edtquestion">
-                    	<ol id="edtquestion-ol"></ol>
+                    <div class="tab-pane fade" id="markingCphQs">
+                    	<ol id="markingCphQs-ol"></ol>
                     </div>
                 </div>
          </div>
@@ -98,74 +98,32 @@
 		scoreSum.value=sum;
 		}
 		
-		var questions = { 
-			"blockquestion": [{
-					"ID": "1",
-					"desc": "数据模型通常由 （）（）和（）3要素组成",
-					"stuAns":"你猜我答案是什么",
-					"trueAns": "数据结构.关系操作.完整性约束"
-				},
-				{
-					"ID": "2",
-					"desc": "当前数据库系统的主流是（）",
-					"stuAns":"你猜我猜不猜你答案",
-					"trueAns": "数据结构"
-				}
-			],
-			"edtquestion": [{
-					"ID": "1",
-					"desc": "什么是数据建模？",
-					"stuAns":"你猜我猜你猜不猜你答案",
-					"trueAns": "数据建模指的是对现实世界各类数据的抽象组织，确定数据库需管辖的范围、数据的组织形式等直至转化成现实的数据库。<br>将经过系统分析后抽象出来的概念模型转化为物理模型后，在visio或erwin等工具建立数据库实体以及各实体之间关系的过程·；（实体一般是表）。"
-				},
-				{
-					"ID": "2",
-					"desc": "什么是E-R图",
-					"stuAns":"你猜我猜你猜我猜不猜你答案",
-					"trueAns": "E-R图也称实体-联系图，提供了表示实体类型、属性和联系的方法，用来描述现实世界的概念模型。"
-				},
-
-			]
-		};
+		var questions = [[${mp}]];
 		//添加填空题
-		var blockul = document.getElementById("blockquestion-ol");
+		var blockul = document.getElementById("markingSAQs-ol");
 		//要添加的题目li变量
 		var blockli;
 		//要添加的
 		　　　　 //添加 li
-		for(var i = 0; i < questions.blockquestion.length; i++) {
+		for(var i = 0; i < questions.markingSAQs.length; i++) {
 			//设置 li 属性，如 id
 			blockli = document.createElement("li");　　　　
-			blockli.setAttribute("id", "blockquestion" + (i + 1));　　　
-			blockli.innerHTML = "<ul><li>" + questions.blockquestion[i].desc + "</li><br/><br/><li>学生答案：" + questions.blockquestion[i].stuAns + "</li><li class=\"answer\">正确答案: "+questions.blockquestion[i].trueAns+"</li><br/><li>得分: <input class=\"score\" maxlength=\"2\"  style=\"width:50px;\" type=\"text\"/></li></ul><hr/>";　　　　
+			blockli.setAttribute("id", "markingSAQs" + (i + 1));　　　
+			blockli.innerHTML = "<ul><li>" + questions.markingSAQs[i].desc + "</li><br/><br/><li>学生答案：" + questions.markingSAQs[i].stuAns + "</li><li class=\"answer\">正确答案: "+questions.markingSAQs[i].trueAns+"</li><br/><li>得分: <input class=\"score\" maxlength=\"2\"  style=\"width:50px;\" type=\"text\"/></li></ul><hr/>";　　　　
 			blockul.appendChild(blockli);
 		}
-		  //添加填空题
-//      var SHORTANSWERul = document.getElementById("blockquestion-ol");
-//		//要添加的题目li变量
-//      var SHORTANSWERli; 
-//      //要添加的
-　　　　//添加 li
-//     for(var i=0;i<questions.SHORTANSWER.length;i++){
-//     	//设置 li 属性，如 id
-//     	SHORTANSWERli= document.createElement("li");
-//　　　　SHORTANSWERli.setAttribute("id", "SHORTANSWER"+(i+1));
-// 
-//　　　　SHORTANSWERli.innerHTML = "<ul><li>"+questions.SHORTANSWER[i].desc+"</li><br/><li></li><br/><li class=\"answer\">正确答案："+questions.SHORTANSWER[i].trueAns+"</li></ul><hr/>";
-//　　　　SHORTANSWERul.appendChild(SHORTANSWERli);
-//     }
 
 		//添加简答题到简答题div中
-		var edtul = document.getElementById("edtquestion-ol");
+		var edtul = document.getElementById("markingCphQs-ol");
 		//要添加的题目li变量
 		var edtli;
 		//要添加的
 		　　　　 //添加 li
-		for(var i = 0; i < questions.edtquestion.length; i++) {
+		for(var i = 0; i < questions.markingCphQs.length; i++) {
 			//设置 li 属性，如 id
 			edtli = document.createElement("li");　　　　
-			edtli.setAttribute("id", "edtquestion" + (i + 1));　　　
-			edtli.innerHTML = "<ul><li>" + questions.edtquestion[i].desc + "</li><li>学生答案: "+questions.edtquestion[i].stuAns+"</li><li maxlength=\"2\" class=\"answer\">正确答案：" + questions.edtquestion[i].trueAns + "</li><br/><li>得分: <input class=\"score\" style=\"width:50px;\" type=\"text\"/></li></ul><hr/>";　　　　
+			edtli.setAttribute("id", "markingCphQs" + (i + 1));　　　
+			edtli.innerHTML = "<ul><li>" + questions.markingCphQs[i].desc + "</li><li>学生答案: "+questions.markingCphQs[i].stuAns+"</li><li maxlength=\"2\" class=\"answer\">正确答案：" + questions.markingCphQs[i].trueAns + "</li><br/><li>得分: <input class=\"score\" style=\"width:50px;\" type=\"text\"/></li></ul><hr/>";　　　　
 			edtul.appendChild(edtli);
 		}
 		/*]]>*/

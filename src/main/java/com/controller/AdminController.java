@@ -42,13 +42,7 @@ public class AdminController {
 		model.addAttribute("pages", toJsonObject.JsonObject(pagelist) );
 		model.addAttribute("pageNumber",pageteacher.getTotalPages() );
 		model.addAttribute("currentPage", page);
-		System.out.println(pageteacher.getTotalPages());
-		
 		List<Teacher> teachers= teacherService.findAll();
-	
-		model.addAttribute("teachers", teachers);
-
-		
 		model.addAttribute("teachers", toJsonObject.JsonObject(teachers));
 
 		return new ModelAndView("admin/teacher_info_list","teacherModel",model);
@@ -64,7 +58,7 @@ public class AdminController {
 		model.addAttribute("pages",toJsonObject.JsonObject(pagelist) );
 		model.addAttribute("pageNumber",pagestudent.getTotalPages() );
 		model.addAttribute("currentPage", page);
-	  List<Student> students= studentService.findAll();
+		List<Student> students= studentService.findAll();
 		
 		model.addAttribute("students", toJsonObject.JsonObject(students));
 		return new ModelAndView("admin/students_info_list","studentModel",model);

@@ -143,6 +143,7 @@ public class ExamServiceImpl implements ExamService{
 
 	@Override
 	public List<ShortanswerQuestion> getListSQ(String SQString) {
+		if(SQString.equals("")) return null;
 		List<ShortanswerQuestion> shortanswerQuestions=new ArrayList<>();
 		String[] temp=SQString.split("/");
 		for(int i=0;i<temp.length;i++){
@@ -154,6 +155,7 @@ public class ExamServiceImpl implements ExamService{
 
 	@Override
 	public List<ComprehensiveQuestion> getListCphQ(String CphQString) {
+		if(CphQString.equals("")) return null;
 		List<ComprehensiveQuestion> comprehensiveQuestions=new ArrayList<>();
 		String[] temp=CphQString.split("/");
 		for(int i=0;i<temp.length;i++){
