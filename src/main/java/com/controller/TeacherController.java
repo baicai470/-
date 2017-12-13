@@ -66,8 +66,12 @@ public class TeacherController {
 		return new ModelAndView("teacher/getpage");
 	}
 	@GetMapping("/test_library")
-	public ModelAndView test_library(){
-		return new ModelAndView("teacher/test_library");
+	public ModelAndView test_library(Model model){
+		List<ChoiceQuestion> choiceQuestion= examService.getAllCQs();
+		   model.addAttribute("choiceQuestion", choiceQuestion);
+		   model.addAttribute("shortanswerQuestion", examService.getAllSQs());
+		   model.addAttribute("comprehensiveQuestion", examService.getAllCphQs());
+		return new ModelAndView("teacher/test_library","searchModel",model);
 	}
 	@GetMapping("/teacher_info")
 	public ModelAndView teacher_index2(HttpServletRequest request,Model model) throws IOException{	
