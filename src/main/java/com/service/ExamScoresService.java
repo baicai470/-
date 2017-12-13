@@ -5,6 +5,7 @@ import java.util.List;
 import com.entity.ChoiceQuestion;
 import com.entity.ExamScores;
 import com.model.Choose;
+import com.model.MarkingPaper;
 import com.model.SelfTestESet;
 
 public interface ExamScoresService {
@@ -40,4 +41,10 @@ public interface ExamScoresService {
 	 * @return
 	 */
 	public ExamScores getExamScoresById(String Id);
+	/**
+	 * 根据ExamScores 返回用于批改试卷的model
+	 * @param ex
+	 * @return
+	 */
+	public MarkingPaper getMarkingPaperByExamScores(ExamScores ex);
 }

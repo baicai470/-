@@ -38,23 +38,23 @@
 		        <input name="ymd" data-format="yyyy-MM-dd" type="text" placeholder="考试日期"></input>
 		        <span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span>
 		        </div>
-		        <input name="CQnum" style="margin-left: 80px;width: 120px;" type="text" maxlength="2" pattern="^[0-9]*[1-9][0-9]*$" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" placeholder="选择题数"/>
-		        <input name="CQscore" type="text" style="width: 30px;margin-left:5px ;" maxlength="2" pattern="^[0-9]*[1-9][0-9]*$" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" placeholder="总分" />
+		        <input name="CQnum" style="margin-left: 80px;width: 120px;" type="text" maxlength="2" pattern="[0-9]{1,3}" title="请输入0~100以内的整数" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" placeholder="选择题数"/>
+		        <input name="CQscore" type="text" style="width: 30px;margin-left:5px ;" maxlength="2" pattern="[0-9]{1,3}" title="请输入0~100以内的整数" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" placeholder="总分" />
 		        <br/>
 		      
 		        <div id="datetimepicker2" class="input-append">
 		       	<input name="BeginTime" data-format="hh:mm:ss" type="text" placeholder="考试开始时间"></input>
 		       	<span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span>		 
 		        </div>
-		        <input name="SQnum" style="margin-left: 80px;width: 120px;" type="text" maxlength="2" pattern="^[0-9]*[1-9][0-9]*$" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" placeholder="填空题数"/>
-		        <input name="SQscore" type="text" style="width: 30px;margin-left:5px ;" maxlength="2" pattern="^[0-9]*[1-9][0-9]*$" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" placeholder="总分" /><br/> 
+		        <input name="SQnum" style="margin-left: 80px;width: 120px;" type="text" maxlength="2" pattern="[0-9]{1,3}" title="请输入0~100以内的整数" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" placeholder="填空题数"/>
+		        <input name="SQscore" type="text" style="width: 30px;margin-left:5px ;" maxlength="2" pattern="[0-9]{1,3}" title="请输入0~100以内的整数" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" placeholder="总分" /><br/> 
 		       
 		        <div id="datetimepicker3" class="input-append">
 		       	<input name="EndTime" data-format="hh:mm:ss" type="text" placeholder="考试结束时间"></input>
 		       	<span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span>
 		        </div>
-		        <input name="CphQnum" style="margin-left: 80px;width: 120px;" type="text" maxlength="2" pattern="^[0-9]*[1-9][0-9]*$" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" placeholder="主观题数"/>
-		        <input name="CphQScore" type="text" style="width: 30px;margin-left:5px ;" maxlength="2" pattern="^[0-9]*[1-9][0-9]*$" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" placeholder="总分" /><br/>
+		        <input name="CphQnum" style="margin-left: 80px;width: 120px;" type="text" maxlength="2" pattern="[0-9]{1,3}" title="请输入0~100以内的整数" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" placeholder="主观题数"/>
+		        <input name="CphQScore" type="text" style="width: 30px;margin-left:5px ;" maxlength="2" pattern="[0-9]{1,3}" title="请输入0~100以内的整数" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" placeholder="总分" /><br/>
 	       </div>     
 		    <div style="margin-left: 170px;margin-top: 60px;" id="buttons">		
 		    	<input style="width: 90px;font-size: 20px;" class="btn " type="submit" value="提交"  />
