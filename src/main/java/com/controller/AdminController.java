@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.entity.Student;
 import com.entity.Teacher;
+import com.service.ExamService;
 import com.service.StudentService;
 import com.service.TeacherService;
 import com.util.toJsonObject;
@@ -26,6 +27,9 @@ public class AdminController {
 	
 	@Autowired
 	StudentService studentService;
+	
+	@Autowired
+	ExamService examService;
 	
 	@GetMapping("/admin_button")
 	public ModelAndView button(){
@@ -70,15 +74,18 @@ public class AdminController {
 		return new ModelAndView("admin/students_info_list","studentModel",model);
 	}
 	
+	@GetMapping("/admin_SearchCourse")
+	public ModelAndView SearchCourse(Model model){
+		
+		return new ModelAndView("admin/SearchCourse");
+	}
+	
 	@GetMapping("/admin_top")
 	public ModelAndView top(){
 		return new ModelAndView("admin/top");
 	}
 	
-	@GetMapping("/admin_SearchCourse")
-	public ModelAndView SearchCourse(){
-		return new ModelAndView("admin/SearchCourse");
-	}
+	
 	
 	@GetMapping("/admin_footer")
 	public ModelAndView footer(){
