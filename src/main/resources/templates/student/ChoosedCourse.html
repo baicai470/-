@@ -1,24 +1,56 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="UTF-8"/>
-		<title></title>
-	</head>
-	<body>
-		<div>
-			<div><img src="" alt="database picture"/></div>
-			<div id="database">数据库原理</div>
-			<div id="teacher">郑巧仙</div>
-		</div>
-		<div>
-			<div><img src="" alt="system control picture"/></div>
-			<div id="System">操作系统</div>
-			<div id="teacher">周双娥</div>
-		</div>
-		<div>
-			<div><img src="" alt="internet picture"/></div>
-			<div id="Web">计算机网络</div>	
-			<div id ="teacher">陈南平</div>
-		</div>
-	</body>
+<html xmlns:th="http://www.thymeleaf.org">
+	<form>
+
+		<head>
+			<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+			<title>学生信息</title>
+		</head>
+		<body>
+			<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+			<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css"/>
+			<div class="panel panel-default" >
+			 <div class="panel-heading">
+                        <span style="font-size: 25px;">课程信息</span>
+                        
+			 </div>
+			 <table name="courseTable" class="table table-striped" id="courseTable">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>课程名</th>
+                                            <th>教师姓名</th>
+                                            <th>已选人数</th>
+                                        </tr>
+                                    </thead>
+                                   
+                                </table>
+			</div>
+			
+		
+		</body>
+		<script th:inline="javascript">
+        /*<![CDATA[*/
+			//test用的json数据
+			var course=[{"courseName":"数据库原理","teacherName":"郑巧仙","choiceNum":" "},
+			            {"courseName":"操作系统","teacherName":"周双娥","choiceNum":" "},
+			            {"courseName":"计算机网络","teacherName":"陈南平","choiceNum":" "}
+			];
+			for(var i=0;i<course.length;i++){
+        	    var thisrow = courseTable.insertRow(courseTable.rows.length); //确定添加的行的索引位置
+				var thiscell0 = thisrow.insertCell(0);
+				thiscell0.innerHTML = courseTable.rows.length-1;
+				var thiscell1 = thisrow.insertCell(1);
+				thiscell1.innerHTML = course[i].courseName;
+//				thiscell1.align = "center";
+				var thiscell2 = thisrow.insertCell(2);
+				thiscell2.innerHTML =course[i].teacherName;
+//				thiscell2.align = "center";
+				var thiscell3 = thisrow.insertCell(3);				
+				thiscell3.innerHTML =course[i].choiceNum;
+//				thiscell3.align = "center";
+			}
+			/*]]>*/
+			</script>
+</form>
 </html>

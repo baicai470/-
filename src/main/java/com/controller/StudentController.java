@@ -1,6 +1,8 @@
 package com.controller;
 
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,6 +22,7 @@ import com.model.User;
 import com.service.ExamScoresService;
 import com.service.ExamService;
 import com.service.StudentService;
+import com.util.toJsonObject;
 
 
 
@@ -39,11 +42,11 @@ public class StudentController {
 
 	
 	@GetMapping("/student_StudentInfo")
-	public ModelAndView student_StudentInfo(HttpServletRequest request,Model model){
+	public ModelAndView student_StudentInfo(HttpServletRequest request,Model model) throws IOException{
 		//String id = request.getParameter("id");
 		User user= (User) request.getSession().getAttribute("user");  
 		Student student = studentService.getStudent(user.getAccount());
-		model.addAttribute("student", student);
+    	model.addAttribute("student", toJsonObject.JsonObject(student));
 		return new ModelAndView("student/StudentInfo","studentModel",model);
 	}
 	

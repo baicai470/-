@@ -1,19 +1,129 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-	<head>
-	<meta charset="UTF-8"/>
-	<title></title>
-	</head>
-	<body>
-		<div>
-			<div id="Info">
-				<div>昵称:   <span  th:text="${studentModel.student.name}"   >    </span>  </div> 	
-				<div>姓名： <span  th:text="${studentModel.student.name}"   >    </span> </div>
-				<div>性别：  </div>
-				<div>学号：  </div>
-				<div>学校：  </div>
-				<div>邮箱：  </div>
+	<form>
+
+		<head>
+			<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+			<title>学生信息</title>
+		</head>
+		<style>
+			
+			p{ font-size: 20px; font-family: 'Open Sans', helvetica, arial, sans-serif;    color: #4d5b76;margin-left:30px ;}
+		#teainf {
+				display: block;
+				border: 2px solid lightgrey;
+				font-family: lightgrey;
+				padding: 15px;
+				/*margin: 100px;*/
+				margin-left: 25px;
+				width:350px
+			}
+			
+			input.input_into {
+				font-family: "微软雅黑";
+				border: none;
+				text-align:left;
+			    margin: 2px;
+				padding: 2px;
+				
+				
+			}
+		    button:.hover {
+			background-color: #ddd;}
+		</style>
+
+		<body>
+			<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+			<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css"/>
+			<div class="panel panel-default" >
+			 <div class="panel-heading">
+                        <span style="font-size: 25px;">学生个人信息</span>
+                        
+			 </div>
 			</div>
-		</div>
-	</body>
+			<div id="teainf">	
+				<form id="myform" action="" method="post" onsubmit="return checkNumber();">	
+				<p>学&nbsp;&nbsp;&nbsp;&nbsp;号：<input readonly="readonly" class="input_into" id="input_into1" type="text" value="" onclick="selectText(event)"/></p>
+				<p>姓&nbsp;&nbsp;&nbsp;&nbsp;名：<input readonly="readonly" class="input_into" id="input_into2" type="text" value="" onclick="selectText(event)"/></p>
+				<p>邮&nbsp;&nbsp;&nbsp;&nbsp;箱：<input readonly="readonly" class="input_into" id="input_into3" type="text" value="" onclick="selectText(event)"/></p>
+				<p>电&nbsp;&nbsp;&nbsp;&nbsp;话：<input readonly="readonly" class="input_into" id="input_into4" type="text" value="" onclick="selectText(event)"/></p>
+				<p>身份证：<input readonly="readonly" class="input_into" id="input_into5" type="text" value="" onclick="selectText(event)"/></p>
+				<div id="baocun">
+					
+				<input type="button" id="change" class="btn btn-default"  value="修改" onclick="changeBtn();"/>
+				<input type="submit" id="save1" class="btn btn-default.shover"  value="保存" onclick="saveBtn();"/>
+				
+				
+				</div>
+					</form>
+			</div>
+	
+		</body>
+		 <script th:inline="javascript">
+		  /*<![CDATA[*/
+			//test用的json数据
+			var student=[[${studentModel.student}]];
+			document.getElementById("input_into1").value=student.studentId;
+			document.getElementById("input_into2").value=student.name;
+			document.getElementById("input_into3").value=student.mailbox;
+			document.getElementById("input_into4").value=student.phone;
+			document.getElementById("input_into5").value=student.identityCard;
+
+			var form=document.getElementById("myform");
+			function selectText(evt){
+				if(evt.currentTarget.focus){
+					evt.currentTarget.select();
+				}
+			}
+			//验证函数
+			var checkNumber=function() {
+			return true;
+			}
+
+
+   
+    
+			function changeBtn(){
+				//修改
+				
+				document.getElementById("input_into1").readOnly=false;		
+				document.getElementById("input_into2").readOnly=false;
+				document.getElementById("input_into3").readOnly=false;
+				document.getElementById("input_into4").readOnly=false;
+				document.getElementById("input_into5").readOnly=false;
+				var save=document.getElementById("save1");
+				var classes=save.className.split(".");
+				save.className=classes[0];
+				save.removeAttribute("disabled");
+				document.getElementById("input_into1").select();
+				var inputs=document.getElementsByClassName("input_into");
+				for(var a=0;a<inputs.length;a++){
+					inputs[a].style.border="1px solid black";
+				}
+//				document.getElementById("teainf").style.padding="6px";
+			}
+			function saveBtn()
+			{
+				//保存对个人信息的更改
+				//先验证再提交
+				if(checkNumber()){
+				document.getElementById("input_into1").readOnly=true;		
+				document.getElementById("input_into2").readOnly=true;
+				document.getElementById("input_into3").readOnly=true;
+				document.getElementById("input_into4").readOnly=true;
+				document.getElementById("input_into5").readOnly=true;
+				var save=document.getElementById("save1");
+				save.className+=".shover";
+				save.setAttribute("disabled",true)
+				var inputs=document.getElementsByClassName("input_into");
+				for(var a=0;a<inputs.length;a++){
+					inputs[a].style.border="none";
+					inputs[a].style.margin="2px";
+				}
+			}
+			}
+			
+			/*]]>*/
+			</script>
+</form>
 </html>
