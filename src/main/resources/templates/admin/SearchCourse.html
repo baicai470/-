@@ -39,45 +39,42 @@
                             </ul>
 
                             <div class="tab-content">
-                                <div class="tab-pane fade active in" id="CHOICE">
-                                    <ol id="CHOICE-ol"></ol>
-                                    
-                                    <div class="col-md-12 column">
-			<ul class="pagination pull-right">
-				<li>
-					 <a href="#">Prev</a>
-				</li>
-				<li>
-					 <a href="#">1</a>
-				</li>
-				<li>
-					 <a href="#">Next</a>
-				</li>
-			</ul>
+			<div class="tab-pane fade active in" id="CHOICE">
+				<ol id="CHOICE-ol"></ol>
+
+				<div class="col-md-12 column">
+					<ul class="pagination pull-right">
+						<li><a href="#">Prev</a></li>
+						<li><a href="#">1</a></li>
+						<li><a href="#">Next</a></li>
+					</ul>
+				</div>
+
+			</div>
+			<div class="tab-pane fade" id="SHORTANSWER">
+				<ol id="SHORTANSWER-ol"></ol>
+
+				<div class="col-md-12 column">
+					<ul class="pagination pull-right">
+						<li><a href="#">Prev</a></li>
+						<li><a href="#">1</a></li>
+						<li><a href="#">Next</a></li>
+					</ul>
+				</div>
+
+			</div>
+			<div class="tab-pane fade" id="COMPREHENSIVE">
+				<ol id="COMPREHENSIVE-ol"></ol>
+
+				<div class="col-md-12 column">
+					<ul class="pagination pull-right">
+						<li><a href="#">Prev</a></li>
+						<li><a href="#">1</a></li>
+						<li><a href="#">Next</a></li>
+					</ul>
+				</div>
+			</div>
 		</div>
-                                    
-                                </div>
-                                <div class="tab-pane fade" id="SHORTANSWER">
-                                    <ol id="SHORTANSWER-ol"></ol>
-                                    
-                                      <div class="col-md-12 column">
-			<ul class="pagination pull-right">
-				<li>
-					 <a href="#">Prev</a>
-				</li>
-				<li>
-					 <a href="#">1</a>
-				</li>
-				<li>
-					 <a href="#">Next</a>
-				</li>
-			</ul>
-		</div>
-                                    
-                                </div>
-                                <div class="tab-pane fade" id="COMPREHENSIVE">
-                                </div>
-                            </div>
                         </div>
                     </div>
                 
@@ -121,6 +118,21 @@
      
     　　　　SHORTANSWERli.innerHTML = "<ul><li>"+questions.SHORTANSWER[i].descript+"</li><br/><li></li><br/><li class=\"answer\">正确答案："+questions.SHORTANSWER[i].answer+"</li></ul><hr/>";
     　　　　SHORTANSWERul.appendChild(SHORTANSWERli);
+           }
+            
+           //添加填空题
+           var COMPREHENSIVERul = document.getElementById("COMPREHENSIVE-ol");
+    		//要添加的题目li变量
+            var COMPREHENSIVEli; 
+            //要添加的
+    　　　　//添加 li
+           for(var i=0;i<questions.COMPREHENSIVE.length;i++){
+           	//设置 li 属性，如 id
+           	COMPREHENSIVEli= document.createElement("li");
+    　　　　COMPREHENSIVEli.setAttribute("id", "COMPREHENSIVE"+(i+1));
+     
+    　　　　COMPREHENSIVEli.innerHTML = "<ul><li>"+questions.COMPREHENSIVE[i].descript+"</li><br/><li></li><br/><li class=\"answer\">正确答案："+questions.COMPREHENSIVE[i].answer+"</li></ul><hr/>";
+    　　　　COMPREHENSIVERul.appendChild(COMPREHENSIVEli);
            }
 
 　　　　
