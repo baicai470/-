@@ -48,12 +48,7 @@ public class ExamScoresServiceImpl implements ExamScoresService{
 		return "保存成功";
 	}
 
-	@Override
-	public int getScore(int id) {
-		ExamScores eScores=examScoreDao.findByStudentStudentId(id);
-		if(eScores.getMarked()) return eScores.getScore();
-		else return 0;
-	}
+	
 
 	@Override
 	public SelfTestESet getErrorSet(List<ChoiceQuestion> CQs, Choose ch) {
@@ -81,6 +76,7 @@ public class ExamScoresServiceImpl implements ExamScoresService{
 
 	@Override
 	public ExamScores getExamScoresById(String Id) {
+		
 		return examScoreDao.findOne(Integer.valueOf(Id));
 	}
 
@@ -115,4 +111,16 @@ public class ExamScoresServiceImpl implements ExamScoresService{
 		mp.setMarkingCphQs(MCphQs);
 		return mp;
 	}
+
+
+
+	@Override
+	public List<ExamScores> getAllPaperByStudentId(String studentId) {
+		return examScoreDao.findByStudentStudentId(Integer.valueOf(studentId));
+	}
+
+
+
+
+
 }

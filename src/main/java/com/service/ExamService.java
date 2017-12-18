@@ -52,6 +52,11 @@ public interface ExamService {
 	 */
 	public void savePaper(Exam exam);
 	/**
+	 * 根据试卷id删除试卷
+	 * @param id
+	 */
+	public void delectPaper(String id);
+	/**
 	 * 
 	 * @param paperId
 	 * @return 试卷

@@ -38,7 +38,7 @@
 		<ol>
 		<li th:each="CphQ :${paper.CphQs}">
 			<span th:text="${CphQ.descript}"></span>
-			答案: <input type="text" th:name="CphQanswer+${SQStat.index}"/><br/>
+			答案: <input type="text" th:name="CphQanswer+${CphQStat.index}"/><br/>
 			<dl>
 			</dl>
 		</li>

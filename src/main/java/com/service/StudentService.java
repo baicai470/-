@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import com.entity.ExamScores;
 import com.entity.Student;
-import com.entity.Teacher;
 
 public interface StudentService {
 	
@@ -36,4 +36,10 @@ public interface StudentService {
 	 * @return
 	 */
 	public List<Student> findAll();
+	/**
+	 * 根据学生id返回所有答题卡
+	 * @param id
+	 * @return
+	 */
+	public List<ExamScores> findByStudentId(String id);
 }

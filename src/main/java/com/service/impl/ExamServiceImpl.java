@@ -184,20 +184,22 @@ public class ExamServiceImpl implements ExamService{
 
 	@Override
 	public List<ChoiceQuestion> getAllCQs() {
-		// TODO Auto-generated method stub
 		return choiceQuestionDao.findAll();
 	}
 
 	@Override
 	public List<ShortanswerQuestion> getAllSQs() {
-		// TODO Auto-generated method stub
 		return shortanswerQuestionDao.findAll();
 	}
 
 	@Override
 	public List<ComprehensiveQuestion> getAllCphQs() {
-		// TODO Auto-generated method stub
 		return comprehensiveQuestionDao.findAll();
+	}
+
+	@Override
+	public void delectPaper(String id) {
+		examDao.delete(Integer.valueOf(id));
 	}
 
 

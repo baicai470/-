@@ -84,4 +84,15 @@ public class ExamController {
 		examScoresService.saveExamScore(ex);
 		return new ModelAndView("student/finsh");
 	}
+	@PostMapping("/score")
+	public ModelAndView score(HttpServletRequest request,Model model){
+		String id=request.getParameter("testId");
+		String score=request.getParameter("score");
+		ExamScores ex=examScoresService.getExamScoresById(id);
+		int scoreSum=Integer.parseInt(score)+Integer.parseInt(ex.getChoiceQuestionScore());
+		ex.setScore(scoreSum);
+		ex.setMarked(true);
+		examScoresService.saveExamScore(ex);
+		return new ModelAndView("teacher/success");
+	}
 }

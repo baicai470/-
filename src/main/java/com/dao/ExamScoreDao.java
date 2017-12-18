@@ -10,7 +10,8 @@ import com.entity.ExamScores;
 
 public interface ExamScoreDao extends JpaRepository<ExamScores, Integer>,JpaSpecificationExecutor<ExamScores> {
 
-	ExamScores findByStudentStudentId(int id);
 
 	List<ExamScores> findByExamPaperId(int id);
+	
+	List<ExamScores> findByStudentStudentId(int id);
 }

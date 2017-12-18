@@ -17,12 +17,6 @@ public interface ExamScoresService {
 	 */
 	public String saveExamScore(ExamScores es);
 	/**
-	 * 查询分数
-	 * @param id 学生id
-	 * @return 分数 如果为0则说明未批改完
-	 */
-	public int getScore(int id); 
-	/**
 	 * 
 	 * @param CQs 自测的题目
 	 * @param ch 自测的题号与答案
@@ -35,6 +29,12 @@ public interface ExamScoresService {
 	 * @return
 	 */
 	public List<ExamScores> getAllPaperByPaperId(String paperId);
+	/**
+	 * 根据学生id 查找全部答题卡
+	 * @param studentId
+	 * @return
+	 */
+	public List<ExamScores> getAllPaperByStudentId(String studentId);
 	/**
 	 * 根据ExamScores Id查看答题卡
 	 * @param Id

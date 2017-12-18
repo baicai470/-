@@ -63,6 +63,7 @@ public class TeacherController {
 		ExamScores ex=examScoresService.getExamScoresById(paperId);
 		MarkingPaper mp=examScoresService.getMarkingPaperByExamScores(ex);
 		model.addAttribute("mp",toJsonObject.JsonObject(mp) );
+		model.addAttribute("testId", paperId);
 		return new ModelAndView("teacher/getpage");
 	}
 	@GetMapping("/test_library")

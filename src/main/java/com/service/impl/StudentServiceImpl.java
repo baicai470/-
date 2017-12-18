@@ -8,7 +8,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.dao.ExamScoreDao;
 import com.dao.StudentDao;
+import com.entity.ExamScores;
 import com.entity.Student;
 import com.service.StudentService;
 
@@ -17,6 +19,9 @@ public class StudentServiceImpl implements StudentService{
 
 	@Autowired
 	StudentDao studentDao;
+	
+	@Autowired
+	ExamScoreDao examScoreDao;
 	
 	public String getPassword(String id) throws Exception {
 		Student s=studentDao.findByStudentId(Integer.valueOf(id));
@@ -49,9 +54,10 @@ public class StudentServiceImpl implements StudentService{
 		
 		return studentDao.findAll(pageable);
 	}
-	
-	
-	
-	
 
+	@Override
+	public List<ExamScores> findByStudentId(String id) {
+		
+		return examScoreDao.findByStudentStudentId(Integer.valueOf(id));
+	}
 }

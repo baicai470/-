@@ -63,9 +63,10 @@
 	            <ul class="nav nav-tabs">
                 <li class="active" style="font-size:15px;font-weight:700;"><a href="#markingSAQs" data-toggle="tab" >填空题</a></li>
                 <li class="" style="font-size:15px;font-weight:700;"><a href="#markingCphQs" data-toggle="tab" >综合题</a></li>
-                <form style="margin-left: 400px;" action="" method="post">
-           	    <span>总分</span><input id="scoreSum" style="width: 100px;" type="text" value="" placeholder="点击查看" onclick="getSum();" />
-           	    <input style="height: 28px;line-height: 14px;" class="btn btn-default" type="submit" value="提交"/>
+                <form style="margin-left: 400px;" action="/score" method="post">
+           	    <span>总分</span><input name="score" id="scoreSum" style="width: 100px;" type="text" value="" placeholder="点击查看" onclick="getSum();" />
+           	    
+           	    <button name="testId" th:value="${testId}" style="height: 28px;line-height: 14px;" class="btn btn-default" type="submit" >提交</button>
            </form>
                 </ul>
 
