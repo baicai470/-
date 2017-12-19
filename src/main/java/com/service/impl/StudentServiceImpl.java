@@ -1,6 +1,7 @@
 package com.service.impl;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import com.dao.ExamScoreDao;
 import com.dao.StudentDao;
 import com.entity.ExamScores;
 import com.entity.Student;
+import com.model.historyModel;
 import com.service.StudentService;
 
 @Service("Student")
@@ -56,8 +58,20 @@ public class StudentServiceImpl implements StudentService{
 	}
 
 	@Override
-	public List<ExamScores> findByStudentId(String id) {
-		
-		return examScoreDao.findByStudentStudentId(Integer.valueOf(id));
+	public List<historyModel> findByStudentId(String id) {
+		List<historyModel> histories=new ArrayList<>();
+		List<ExamScores> exs=examScoreDao.findByStudentStudentId(Integer.valueOf(id));
+		for(int i=0;i<exs.size();i++){
+			ExamScores ex=exs.get(i);
+			historyModel history=new historyModel();
+			history.setHisID(ex.getId()+"");
+			if(ex.getMarked()!=null &&ex.getMarked()) history.setHasRead("已批阅");
+			else history.setHasRead("未批阅");
+			history.setScore(ex.getExam().getCQScore()+ex.getExam().getSQScore()+ex.getExam().getCphQScore());
+			history.setAct_score(ex.getScore());
+			history.setSubject(ex.getExam().getCourseId());
+			histories.add(history);
+		}
+		return histories;
 	}
 }

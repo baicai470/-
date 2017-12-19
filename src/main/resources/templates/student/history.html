@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8"/>
+		<title></title>
+
+		<link href="assets/css/bootstrap.css" rel="stylesheet" />
+		<!-- FontAwesome Styles-->
+		<link href="assets/css/font-awesome.css" rel="stylesheet" />
+		<!-- Morris Chart Styles-->
+
+		<!-- Custom Styles-->
+		<link href="assets/css/custom-styles.css" rel="stylesheet" />
+		<!-- Google Fonts-->
+		<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+		<!-- TABLE STYLES-->
+		<link href="assets/js/dataTables/dataTables.bootstrap.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<style type="text/css">
+			.pCSS {
+				font-family: 'Open Sans', helvetica, arial, sans-serif;
+				color: #4d5b76;
+				margin-left: 30px;
+			}
+			
+			#teainf1 {
+				z-index: 2;
+				position: fixed;
+				background-color: white;
+				display: none;
+				border: 2px solid lightgrey;
+				font-family: lightgrey;
+				padding: 8px;
+				/*margin: 100px;*/
+				top: 30px;
+				left: 350px;
+				width: 380px;
+				box-shadow: #666 0px 0px 5px;
+			}
+			
+			#teainf2 {
+				z-index: 2;
+				position: fixed;
+				background-color: white;
+				display: none;
+				border: 2px solid lightgrey;
+				font-family: lightgrey;
+				padding: 8px;
+				/*margin: 100px;*/
+				top: 30px;
+				left: 350px;
+				width: 380px;
+				box-shadow: #666 0px 0px 5px;
+			}
+			
+			#Course {
+				z-index: 2;
+				position: fixed;
+				background-color: white;
+				display: none;
+				border: 2px solid lightgrey;
+				font-family: lightgrey;
+				padding: 8px;
+				/*margin: 100px;*/
+				top: 100px;
+				left: 350px;
+				box-shadow: #666 0px 0px 5px;
+			}
+			
+			.detail hover {
+				background-color: #0000FF
+			}
+			
+			.baocun {
+				display: ruby-base-group;
+			}
+			
+			input.input_into {
+				font-family: "微软雅黑";
+				border: inherit;
+				text-align: left;
+				/*	width: 40%;*/
+				padding: 0px;
+			}
+			
+			#hideDiv {
+				display: none;
+				position: absolute;
+				width: 100%;
+				height: 120%;
+				background-color: #333;
+				opacity: 0.3;
+				margin-top: -500px;
+				z-index: 1;
+			}
+			
+			button:.hover {
+				background-color: #ddd;
+			}
+		</style>
+
+		<body>
+			<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css" />
+			<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css"/>
+			<cenetr>
+				<!-- 过滤条件(搜索) -->
+
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<span style="font-family:Helvetica,Arial,sans-serif; font-size:25px;">历史成绩</span>
+						<div id="addbutton" style="float: right;margin-right: 30px;margin-top: auto;">
+							<!--连接到添加页面-->
+						</div>
+
+					</div>
+					
+					<!--表格-->
+					<div class="panel-body" style="width: 95%;">
+						<div class="table-responsive">
+							<table name="teaTable" class="table table-striped table-bordered table-hover" id="teaTable">
+								<!-- 表头-->
+								<tr align="center" valign="middle" id="TableTitle">
+
+									<td width="6%" align="center">ID</td>
+									<td width="11%" align="center">是否批改</td>
+									<td width="14%" align="center">总分</td>
+									<td width="14%" align="center">考试科目</td>
+									<td width="11%" align="center">实际得分</td>
+									<td width="10%" align="center">操作</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+
+				</div>
+				<!--隐藏框-->
+				<div id="hideDiv"></div>
+			</cenetr>
+
+		</body>
+
+		<script th:inline="javascript">
+        /*<![CDATA[*/
+			//test用的json数据
+			var histories = [[${histories}]]
+			
+			//将数据导入表格中
+			for(var i = 0; i < histories.length; i++) {
+				var thisrow = teaTable.insertRow(teaTable.rows.length); //确定添加的行的索引位置
+
+				var thiscell0 = thisrow.insertCell(0);
+				thiscell0.innerHTML = histories[i].hisID;
+				thiscell0.align = "center";
+				var thiscell1 = thisrow.insertCell(1);
+				thiscell1.innerHTML = histories[i].hasRead;
+				thiscell1.align = "center";
+				var thiscell2 = thisrow.insertCell(2);
+
+				thiscell2.innerHTML = histories[i].score;
+				thiscell2.align = "center";
+				var thiscell3 = thisrow.insertCell(3);
+				thiscell3.innerHTML = histories[i].subject;
+				thiscell3.align = "center";
+				var thiscell4 = thisrow.insertCell(4);
+				thiscell4.innerHTML = histories[i].act_score;
+				thiscell4.align = "center";
+				var thiscell5 = thisrow.insertCell(5);
+				thiscell5.innerHTML = "<form action='/selectpaper' method='post'><button id='check' type='submit'>查看试卷</button></form>";
+				thiscell5.align = "center";
+				
+			}
+
+			function selectText(evt) {
+				if(evt.currentTarget.focus) {
+					evt.currentTarget.select();
+				}
+			}
+			//			保存到表里面
+			
+			function searchBtn() {
+				//ajax获得json数据
+				var data = {
+					"hisID": "1",
+					"time": "一号",
+					"score": "一号邮箱号",
+					"subject": "一号身份证",
+					"act_score": "一号电话"
+				};
+				var table = document.getElementById("teaTable");
+				var len = table.rows.length;
+				for(var i = 1; i < len; i++) {
+					table.deleteRow(1);
+				}
+				var thisrow = teaTable.insertRow(teaTable.rows.length); //确定添加的行的索引位置
+				var thiscell0 = thisrow.insertCell(0);
+				thiscell0.innerHTML = data.hisID;
+				thiscell0.align = "center";
+				var thiscell1 = thisrow.insertCell(1);
+				thiscell1.innerHTML = data.time;
+				thiscell1.align = "center";
+				var thiscell2 = thisrow.insertCell(2);
+
+				thiscell2.innerHTML = data.score;
+				thiscell2.align = "center";
+				var thiscell3 = thisrow.insertCell(3);
+				thiscell3.innerHTML = data.subject;
+				thiscell3.align = "center";
+				var thiscell4 = thisrow.insertCell(4);
+				thiscell4.innerHTML = data.act_score;
+				thiscell4.align = "center";
+				var thiscell5 = thisrow.insertCell(5);
+				thiscell5.align = "center";
+				
+			}
+
+			var checkNumber = function() {
+				return true;
+			}
+
+			
+			function showCourse(evt) {
+				//要传递的参数
+				var IDNum = evt.currentTarget.parentNode.parentNode.childNodes[1].innerHTML;
+				//。。。			
+				//ajax获得成绩信息
+				var course = [{
+					"course": "课程一号"
+				}, {
+					"course": "课程二号"
+				}, {
+					"course": "课程三号"
+				}];
+				courseTable.caption.innerHTML = evt.currentTarget.parentNode.parentNode.childNodes[1].innerHTML;
+				var thisrow1 = courseTable.insertRow(courseTable.rows.length);
+				for(var i = 0; i < course.length; i++) {
+					var thiscell1 = thisrow1.insertCell(i);
+					thiscell1.innerHTML = course[i].course;
+					thiscell1.align = "center";
+
+				}
+				document.getElementById("Course").style.display = "block";
+				document.getElementById("hideDiv").style.display = "block";
+
+			}
+
+			function closeCourse() {
+				var len = courseTable.rows.length;
+				for(var i = 0; i < len; i++) {
+					courseTable.deleteRow(0);
+				}
+				document.getElementById("Course").style.display = "none";
+				document.getElementById("hideDiv").style.display = "none";
+			}
+			/*]]>*/
+		</script>
+	</body>
+
+</html>

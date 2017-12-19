@@ -13,11 +13,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.dao.StudentDao;
 import com.entity.ChoiceQuestion;
+import com.entity.ExamScores;
 import com.entity.Student;
 import com.model.Choose;
 import com.model.SelfTestESet;
 import com.model.User;
+import com.model.historyModel;
 import com.service.ExamScoresService;
 import com.service.ExamService;
 import com.service.StudentService;
@@ -91,7 +94,20 @@ public class StudentController {
 	public ModelAndView student_index5(HttpServletRequest request){
 		return new ModelAndView("student/index5");
 	}
-
+	@GetMapping("/history")
+	public ModelAndView history(HttpServletRequest request,Model model){
+		String studentId=request.getSession().getAttribute("studentId")+"";
+		List<historyModel> histories=studentService.findByStudentId(studentId);
+		model.addAttribute("histories", histories);
+		return new ModelAndView("student/history");
+		
+	}
+	@PostMapping("/selectpaper")
+	public ModelAndView selectpaper(){
+		
+		return new ModelAndView("student/paper");
+		
+	}
 }
 
 

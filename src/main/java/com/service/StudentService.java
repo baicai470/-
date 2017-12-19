@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import com.entity.ExamScores;
 import com.entity.Student;
+import com.model.historyModel;
 
 public interface StudentService {
 	
@@ -41,5 +41,5 @@ public interface StudentService {
 	 * @param id
 	 * @return
 	 */
-	public List<ExamScores> findByStudentId(String id);
+	public List<historyModel> findByStudentId(String id);
 }
