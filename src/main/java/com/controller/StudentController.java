@@ -17,6 +17,7 @@ import com.dao.StudentDao;
 import com.entity.ChoiceQuestion;
 import com.entity.ExamScores;
 import com.entity.Student;
+import com.entity.Teacher;
 import com.model.Choose;
 import com.model.SelfTestESet;
 import com.model.User;
@@ -51,7 +52,22 @@ public class StudentController {
     	model.addAttribute("student", toJsonObject.JsonObject(student));
 		return new ModelAndView("student/StudentInfo","studentModel",model);
 	}
-	
+	@PostMapping("/savestudent")
+	public ModelAndView savestudent(HttpServletRequest request,Model model) throws IOException{
+		User user= (User) request.getSession().getAttribute("user");  
+		Student student = studentService.getStudent(user.getAccount());
+		String email=request.getParameter("email");
+		String identity=request.getParameter("identity");
+		String phone=request.getParameter("phone");
+		String name=request.getParameter("name");
+		student.setIdentityCard(identity);
+		student.setMailbox(email);
+		student.setName(name);
+		student.setPhone(phone);
+		studentService.saveStudent(student);
+    	model.addAttribute("student", toJsonObject.JsonObject(student));
+		return new ModelAndView("student/StudentInfo","studentModel",model);
+	}
 	@GetMapping("/student_button")
 	public ModelAndView student_button(){
 		return new ModelAndView("student/button");

@@ -40,12 +40,12 @@
 			 </div>
 			</div>
 			<div id="teainf">	
-				<form id="myform" action="" method="post" onsubmit="return checkNumber();">	
+				<form id="myform" action="/saveteacher" method="post" onsubmit="return checkNumber();">	
 				<p>教师ID：<input readonly="readonly" class="input_into" id="input_into1" type="text" value="" onclick="selectText(event)"/></p>
-				<p>姓&nbsp;&nbsp;&nbsp;&nbsp;名：<input readonly="readonly" class="input_into" id="input_into2" type="text" value="" onclick="selectText(event)"/></p>
-				<p>邮&nbsp;&nbsp;&nbsp;&nbsp;箱：<input readonly="readonly" class="input_into" id="input_into3" type="text" value="" onclick="selectText(event)"/></p>
-				<p>身份证：<input readonly="readonly" class="input_into" id="input_into4" type="text" value="" onclick="selectText(event)"/></p>
-				<p>电&nbsp;&nbsp;&nbsp;&nbsp;话：<input readonly="readonly" class="input_into" id="input_into5" type="text" value="" onclick="selectText(event)"/></p>
+				<p>姓&nbsp;&nbsp;&nbsp;&nbsp;名：<input name="name" readonly="readonly" class="input_into" id="input_into2" type="text" value="" onclick="selectText(event)"/></p>
+				<p>邮&nbsp;&nbsp;&nbsp;&nbsp;箱：<input name="email" readonly="readonly" class="input_into" id="input_into3" type="text" value="" onclick="selectText(event)"/></p>
+				<p>身份证：<input readonly="readonly" name="identity" class="input_into" id="input_into4" type="text" value="" onclick="selectText(event)"/></p>
+				<p>电&nbsp;&nbsp;&nbsp;&nbsp;话：<input name="phone" readonly="readonly" class="input_into" id="input_into5" type="text" value="" onclick="selectText(event)"/></p>
 				<div id="baocun">
 					
 				<input type="button" id="change" class="btn btn-default"  value="修改" onclick="changeBtn();"/>

@@ -107,6 +107,7 @@
 									<td width="7%" align="center">姓名</td>
 									<td width="10%" align="center">科目</td>
 									<td width="10%" align="center">操作</td>
+									<td width="10%" align="center">是否批改</td>
 								</tr>
 							</table>
 						</div>
@@ -140,6 +141,9 @@
 				var thiscell4=thisrow.insertCell(4);
 				thiscell4.innerHTML="<form method='post' action='/getpage'><button name='paperId' value="+students[i].id+" class='btn btn-default' type='submit'>批改试卷</button></form>";
 				thiscell4.align = "center";
+				var thiscell5 = thisrow.insertCell(5);
+				thiscell5.innerHTML = students[i].marked;
+				thiscell5.align = "center";
 			}
 			function selectText(evt) {
 				if(evt.currentTarget.focus) {

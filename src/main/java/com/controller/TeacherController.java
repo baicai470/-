@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.ws.rs.POST;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -52,6 +53,22 @@ public class TeacherController {
 		List<ExamScores> examScores= examScoresService.getAllPaperByPaperId(paperId);	
 		model.addAttribute("Exam", toJsonObject.JsonObject(examScores));
 		return new ModelAndView("teacher/check_grade");
+	}
+	@PostMapping("/saveteacher")
+	public ModelAndView teacherinfo(HttpServletRequest request,Model model) throws IOException{
+		User user= (User) request.getSession().getAttribute("user"); 
+		String email=request.getParameter("email");
+		String identity=request.getParameter("identity");
+		String phone=request.getParameter("phone");
+		String name=request.getParameter("name");
+		Teacher teacher = teacherService.getTeacher(user.getAccount());
+		teacher.setIdentityCard(identity);
+		teacher.setMailbox(email);
+		teacher.setName(name);
+		teacher.setPhone(phone);
+		teacherService.saveTeacher(teacher);
+		model.addAttribute("teacher",toJsonObject.JsonObject(teacher));
+		return new ModelAndView("teacher/teacher_info","teacherModel",model);
 	}
 	@GetMapping("/search_paper")
 	public ModelAndView search_paper() throws IOException{

@@ -1,5 +1,6 @@
 package com.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +20,7 @@ import com.entity.ShortanswerQuestion;
 import com.service.ExamScoresService;
 import com.service.ExamService;
 import com.service.StudentService;
+import com.util.toJsonObject;
 
 @Controller
 public class ExamController {
@@ -85,14 +87,22 @@ public class ExamController {
 		return new ModelAndView("student/finsh");
 	}
 	@PostMapping("/score")
-	public ModelAndView score(HttpServletRequest request,Model model){
+	public ModelAndView score(HttpServletRequest request,Model model) throws IOException{
 		String id=request.getParameter("testId");
 		String score=request.getParameter("score");
 		ExamScores ex=examScoresService.getExamScoresById(id);
-		int scoreSum=Integer.parseInt(score)+Integer.parseInt(ex.getChoiceQuestionScore());
+		String CQscores=ex.getChoiceQuestionScore();
+		String[] sc=CQscores.split("/");
+		int scoreSum=0;
+		for(int i=0;i<sc.length;i++){
+			scoreSum+=Integer.valueOf(sc[i]);
+		}
+		scoreSum+=Integer.parseInt(score);
 		ex.setScore(scoreSum);
 		ex.setMarked(true);
 		examScoresService.saveExamScore(ex);
-		return new ModelAndView("teacher/success");
+		List<ExamScores> examScores= examScoresService.getAllPaperByPaperId(ex.getExam().getPaperId()+"");	
+		model.addAttribute("Exam", toJsonObject.JsonObject(examScores));
+		return new ModelAndView("teacher/check_grade");
 	}
 }
