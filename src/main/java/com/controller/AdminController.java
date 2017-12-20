@@ -2,12 +2,16 @@ package com.controller;
 
 import java.io.IOException;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -31,6 +35,36 @@ public class AdminController {
 	
 	@Autowired
 	ExamService examService;
+	
+	@PostMapping("/addStudent")
+	public ModelAndView addStu(HttpServletRequest request){
+		String name=request.getParameter("name");
+		String email=request.getParameter("email");
+		String phone=request.getParameter("phone");
+		String identity=request.getParameter("identity");
+		Student student=new Student();
+		student.setIdentityCard(identity);
+		student.setName(name);
+		student.setMailbox(email);
+		student.setPhone(phone);
+		studentService.saveStudent(student);
+		return new ModelAndView("teacher/success");
+	}
+	
+	@PostMapping("/addTeacher")
+	public ModelAndView addTea(HttpServletRequest request){
+		String name=request.getParameter("name");
+		String email=request.getParameter("email");
+		String phone=request.getParameter("phone");
+		String identity=request.getParameter("identity");
+		Teacher teacher=new Teacher();
+		teacher.setName(name);
+		teacher.setMailbox(email);
+		teacher.setPhone(phone);
+		teacher.setIdentityCard(identity);
+		teacherService.saveTeacher(teacher);
+		return new ModelAndView("teacher/success");
+	}
 	
 	@GetMapping("/admin_button")
 	public ModelAndView button(){

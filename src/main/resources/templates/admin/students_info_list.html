@@ -151,16 +151,15 @@
 			<div id="teainf1">	
 				<p style="font-family: 'Open Sans', helvetica, arial, sans-serif;color: #4d5b76;margin-left:100px ;font-size: 25px;">添加学生</p>
 				<!--添加action连接-->
-				<form id="myform" action="/addStudent" method="post" onsubmit="return false;">	
-				<p class="pCSS">学&nbsp;&nbsp;&nbsp;&nbsp;号：<input style="border: 1px solid #84A5C6;"  class="input_into" id="input_into1" type="text"  onclick="selectText(event)"/></p>
-				<p class="pCSS">姓&nbsp;&nbsp;&nbsp;&nbsp;名：<input style="border: 1px solid #84A5C6;"   class="input_into" id="input_into2" type="text"  onclick="selectText(event)"/></p>
-				<p class="pCSS">邮&nbsp;&nbsp;&nbsp;&nbsp;箱：<input style="border: 1px solid #84A5C6;"   class="input_into" id="input_into3" type="text"  onclick="selectText(event)"/></p>
-				<p class="pCSS">电&nbsp;&nbsp;&nbsp;&nbsp;话：<input style="border: 1px solid #84A5C6;"   class="input_into" id="input_into4" type="text"  onclick="selectText(event)"/></p>
-				<p class="pCSS">身份证：<input style="border: 1px solid #84A5C6;" class="input_into" id="input_into5" type="text"  onclick="selectText(event)"/></p>
+				<form id="myform" action="/addStudent" method="post" >	
+				<p class="pCSS">姓&nbsp;&nbsp;&nbsp;&nbsp;名：<input name="name" style="border: 1px solid #84A5C6;"   class="input_into" id="input_into2" type="text"  onclick="selectText(event)"/></p>
+				<p class="pCSS">邮&nbsp;&nbsp;&nbsp;&nbsp;箱：<input name="email" style="border: 1px solid #84A5C6;"   class="input_into" id="input_into3" type="text"  onclick="selectText(event)"/></p>
+				<p class="pCSS">电&nbsp;&nbsp;&nbsp;&nbsp;话：<input name="phone" style="border: 1px solid #84A5C6;"   class="input_into" id="input_into4" type="text"  onclick="selectText(event)"/></p>
+				<p class="pCSS">身份证：<input name="identity" style="border: 1px solid #84A5C6;" class="input_into" id="input_into5" type="text"  onclick="selectText(event)"/></p>
 			    
 				<div id="baocun" style="margin-left: 75px;">
 					
-					<input type="submit" class="btn btn-default" name="" id="" value="保存" onclick="saveTeainf();" />&nbsp;&nbsp;&nbsp;&nbsp;
+					<input type="submit" class="btn btn-default"  value="保存"  />&nbsp;&nbsp;&nbsp;&nbsp;
 					<button class="btn btn-default" th:onclick="'closeTeainf();'">退出</button>
 				
 				</div>
@@ -169,13 +168,12 @@
 			<!--修改弹出列表-->
 			<div id="teainf2">	
 				<!--添加action和method-->
-				<form id="myform" action="" method="" onsubmit="return checkNumber();">	
+				<form id="myform" action="/addStudent" method="post" >	
 					<p style="font-family: 'Open Sans', helvetica, arial, sans-serif;color: #4d5b76;margin-left:100px ;font-size: 25px;">修改学生</p>
-				<p>学&nbsp;&nbsp;&nbsp;&nbsp;号：<input readonly="readonly" class="input_into" id="input_into1-1" type="text" value="" onclick="selectText(event)"/></p>
-				<p>姓&nbsp;&nbsp;&nbsp;&nbsp;名：<input readonly="readonly" class="input_into" id="input_into2-1" type="text" value="" onclick="selectText(event)"/></p>
-				<p>邮&nbsp;&nbsp;&nbsp;&nbsp;箱：<input readonly="readonly" class="input_into" id="input_into3-1" type="text" value="" onclick="selectText(event)"/></p>
-				<p>电&nbsp;&nbsp;&nbsp;&nbsp;话：<input readonly="readonly" class="input_into" id="input_into4-1" type="text" value="" onclick="selectText(event)"/></p>
-				<p>身份证：<input readonly="readonly" class="input_into" id="input_into5-1" type="text" value="" onclick="selectText(event)"/></p>
+				<p>姓&nbsp;&nbsp;&nbsp;&nbsp;名：<input name="name" readonly="readonly" class="input_into" id="input_into2-1" type="text" value="" onclick="selectText(event)"/></p>
+				<p>邮&nbsp;&nbsp;&nbsp;&nbsp;箱：<input name="email" readonly="readonly" class="input_into" id="input_into3-1" type="text" value="" onclick="selectText(event)"/></p>
+				<p>电&nbsp;&nbsp;&nbsp;&nbsp;话：<input name="phone" readonly="readonly" class="input_into" id="input_into4-1" type="text" value="" onclick="selectText(event)"/></p>
+				<p>身份证：<input name="identity" readonly="readonly" class="input_into" id="input_into5-1" type="text" value="" onclick="selectText(event)"/></p>
 				<div id="baocun">
 					
 				<input type="button" id="change" class="btn btn-default"  value="修改" onclick="changeBtn();"/>
